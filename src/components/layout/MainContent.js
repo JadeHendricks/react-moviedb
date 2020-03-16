@@ -2,47 +2,39 @@ import React, {Fragment, useState, useEffect} from 'react';
 import MovieCardItem from "../cards/MovieCardItem";
 import SwitchTabs from "../layout/SwitchTabs";
 import Pagination from "../informational/Pagination";
+import Header from './Header';
 
 function MainContent() {
-
+  
+  const [mostPopularMovie, setMostPopularMovie] = useState({});
   const [nowPlaying, setNowPlaying] = useState([]);
-  const [topRated, setTopRated] = useState([]);
-  const [popular, setPopular] = useState([]);
-  const [comingSoon, setComingSoon] = useState([]);
   
   useEffect(() => {
-    getNowPlayingMovies();
-    getTopRatedMovies();
-    getPopularMovies();
-    getComingSoonMovie();
+    getMostPopularMovie();
+    getNowPlaying();
   }, [])
-  
-  const getNowPlayingMovies = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    setNowPlaying(data.results);
-  }
-  
-  const getTopRatedMovies = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    setTopRated(data.results);
-  }
-  
-  const getPopularMovies = async () => {
+
+
+  const getMostPopularMovie = async () => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     const data = await response.json();
-    setPopular(data.results);
+
+    const popularMovie = data.results.sort((a,b) => {
+        return b.popularity - a.popularity;
+    });
+
+    data && setMostPopularMovie(popularMovie[0]);
   }
-  
-  const getComingSoonMovie = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+
+  const getNowPlaying = async () => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     const data = await response.json();
-    setComingSoon(data.results);
+    data && setNowPlaying(data.results);
   }
 
   return (
     <Fragment>
+      <Header movie={mostPopularMovie} />
       <section className="movieSection">
         <div className="container">
           <SwitchTabs />
