@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import svgAssets from "../../images/sprite.svg"
+import svgAssets from "../../images/sprite.svg";
+import { Link } from "react-router-dom";
+import MovieSummary from "../informational/MovieSummary";
 
 const Header = () => {
 
@@ -13,11 +15,13 @@ const Header = () => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     const data = await response.json();
 
-    const mostPopularMovie = data.results.sort((a,b) => {
+    console.log(`${process.env.REACT_APP_API_KEY}`);
+
+    const popularMovie = data.results.sort((a,b) => {
         return b.popularity - a.popularity;
     });
 
-    setMostPopularMovie(mostPopularMovie[0]);
+    setMostPopularMovie(popularMovie[0]);
   }
 
   const backgroundImage = {
@@ -45,7 +49,7 @@ const Header = () => {
           <p className="movie-header__description">
             {mostPopularMovie.overview}
           </p>
-          <button className="button button--green marginBottom20">Watch Trailer</button>
+          <Link to={`/movieSummary/${mostPopularMovie.id}`}><button className="button button--green marginBottom20">Watch Trailer</button></Link>
       </div>
     </header>
   )
