@@ -1,11 +1,32 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Review from "../reviews/Review";
 import Rating from "../rating/Rating";
 import svgAsset from "../../images/sprite.svg";
 import MovieCardItem from '../cards/MovieCardItem';
 import CastCard from '../cards/CastCard';
 
-function MovieSummary() {
+function MovieSummary({match}) {
+
+  const [movie, setMovie] = useState({})
+
+  useEffect(() => {
+    getMovie(match.params.id)
+  }, []);
+
+  const getMovie = async (id) => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const data = await response.json();
+    data && setMovie(data);
+    console.log(data);
+  }
+
+  const backgroundImage = {
+    backgroundImage: movie.backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` : "",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "top center",
+    backgroundSize: "cover"
+  }
+
   return (
     <section className="movieDetails">
 
@@ -14,7 +35,7 @@ function MovieSummary() {
           <div className="movieDetailSummary">
 
               <div className="movieDetailSummary__imageContanier">
-                  <img src="./assets/06_movie-profile-A_03.jpg" className="movieDetailSummary__image" alt="Movie Poster" title="Movie Poster" />
+                  <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="movieDetailSummary__image" alt={movie.title} />
               </div>
 
               <div className="movieDetailSummary__wrapper">
@@ -29,12 +50,12 @@ function MovieSummary() {
                   <div className="misc">
                     <div className="misc__box">
                         <div className="movieDetails__title movieDetails__title--smaller">Release Date</div>
-                        <p className="misc__info">2 October, 2017 (USA)</p>
+                        <p className="misc__info">{movie.release_date}</p>
                     </div>
 
                     <div className="misc__box">
                         <div className="movieDetails__title movieDetails__title--smaller">Length</div>
-                        <p className="misc__info">2 hr 43 min</p>
+                        <p className="misc__info">{movie.runtime}</p>
                     </div>
 
                     <div className="misc__box">
@@ -49,7 +70,7 @@ function MovieSummary() {
                   </div>
                   <div className="reviews">
                       <h3 className="movieDetails__title">Recent Reviews</h3>
-                      <Review />
+                      {/*<Review />*/}
                   </div>
               </div>
 
@@ -57,7 +78,7 @@ function MovieSummary() {
 
           <div className="movieDetailsMaincontent">
 
-              <header className="movieDetailHeader">
+              <header className="movieDetailHeader" style={backgroundImage}>
                   <svg className="movieDetailHeader__playicon">
                       <use xlinkHref={`${svgAsset}#icon-play2`}></use>
                   </svg>
@@ -73,30 +94,24 @@ function MovieSummary() {
               </header>
 
               <main className="movieMain">
-                <Rating />
-                <h2 className="movieMain__title">Baby Driver <span>(2017)</span></h2>
+                <Rating rating={movie.vote_average} />
+                <h2 className="movieMain__title">{movie.title} <span>({movie.release_date})</span></h2>
                 <div className="movieMain__storyline">
                     <h3 className="marginBottom10">Storyline</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi modi aliquam repellendus ipsam ducimus temporibus suscipit quos saepe 
-                        delectus totam omnis autem libero, necessitatibus mollitia debitis animi vel tenetur molestiae et. Nam inventore reiciendis aperiam natus deleniti? 
-                        Excepturi doloribus et ea vero, perferendis tenetur vel nostrum blanditiis nisi voluptas quasi ipsam ullam harum est corporis suscipit numquam eligendi 
-                        expedita consequuntur quas ad ratione at? Vel incidunt omnis adipisci reprehenderit. Voluptates voluptate dolorum vitae minima omnis adipisci provident 
-                        vero, in eius a molestias eveniet corporis quos illo praesentium aut magni eum voluptatem optio iste incidunt! Tempora quo repellat ullam asperiores et.
-                    </p>
+                    <p>{movie.overview}</p>
                 </div>
 
                 <div className="cast">
                   <h3 className="cast__title">The Cast</h3>
                   <div className="cast__wrapper">
-                    <CastCard />
+                    {/*<CastCard />*/}
                   </div>
                 </div>
 
                 <section className="moreMovies">
                     <h3 className="moreMovies__title">Similar Movies</h3>
                     <div className="moreMovies__titles">
-                      <MovieCardItem />
+                      {/*<MovieCardItem />*/}
                     </div>
                 </section>
 

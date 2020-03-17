@@ -8,7 +8,7 @@ function Rating({rating}) {
 
   return (
     <div className={ratingTheme(rating)}>
-      <span className="ratingholder__number">{rating.toFixed(1)}</span>
+      <span className="ratingholder__number">{rating && rating.toFixed(1)}</span>
     </div>
   )
 }

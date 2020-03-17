@@ -30,7 +30,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average
           <p className="movieCard__date">{release_date}</p>
           <div className="movieCard__buttons">
             <button onClick={playTrailer} className="button button--green">Watch Trailer</button>
-            <Link to={`/movie-summary/${id}`} className="button button--green button--skeleton">View More</Link>
+            <Link to={`/movieSummary/${id}`} className="button button--green button--skeleton">View More</Link>
           </div>
       </div>
     </div>
