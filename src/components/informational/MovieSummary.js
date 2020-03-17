@@ -7,17 +7,59 @@ import CastCard from '../cards/CastCard';
 
 function MovieSummary({match}) {
 
-  const [movie, setMovie] = useState({})
+  const [movie, setMovie] = useState({});
+  const [reviews, setReviews] = useState([]);
+  const [cast, setCast] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
 
   useEffect(() => {
-    getMovie(match.params.id)
+    getMovie(match.params.id);
+    getReviews(match.params.id);
+    getCast(match.params.id);
+    getVideos(match.params.id);
+    getSimilarMovies(match.params.id);
   }, []);
 
   const getMovie = async (id) => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     const data = await response.json();
     data && setMovie(data);
-    console.log(data);
+  }
+
+  const getReviews = async (id) => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const data = await response.json();
+    data && setReviews(data.results);
+  }
+
+  const getCast = async (id) => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const data = await response.json();
+    data && setCast(data.cast);
+  }
+
+  const getVideos = async (id) => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const data = await response.json();
+    data && setVideos(data.results);
+  }
+
+  const getSimilarMovies = async (id) => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const data = await response.json();
+    data && setSimilarMovies(data.results);
+  }
+
+  const playTrailer = async () => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${match.params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const data = await response.json();
+    const videoKey = data.results[0].key;
+
+    window.open(
+      `https://www.youtube.com/watch?v=${videoKey}`,
+      `_blank`
+    );
   }
 
   const backgroundImage = {
@@ -58,19 +100,10 @@ function MovieSummary({match}) {
                         <p className="misc__info">{movie.runtime}</p>
                     </div>
 
-                    <div className="misc__box">
-                        <div className="movieDetails__title movieDetails__title--smaller">Director</div>
-                        <p className="misc__info">James Wan</p>
-                    </div>
-
-                    <div className="misc__box">
-                        <div className="movieDetails__title movieDetails__title--smaller">Writers</div>
-                        <p className="misc__info">Gary Scott Thompson (Producer), Chris Morgan (Book)</p>
-                    </div>
                   </div>
                   <div className="reviews">
-                      <h3 className="movieDetails__title">Recent Reviews</h3>
-                      {/*<Review />*/}
+                    {reviews.length !== 0 ? <h3 className="movieDetails__title">Recent Reviews</h3> : ""}
+                    {reviews && reviews.map(review => <Review key={review.id} review={review}/>)}
                   </div>
               </div>
 
@@ -79,16 +112,22 @@ function MovieSummary({match}) {
           <div className="movieDetailsMaincontent">
 
               <header className="movieDetailHeader" style={backgroundImage}>
-                  <svg className="movieDetailHeader__playicon">
+                  <svg className="movieDetailHeader__playicon" onClick={playTrailer}>
                       <use xlinkHref={`${svgAsset}#icon-play2`}></use>
                   </svg>
                   <div className="movieDetailHeader__media">
                       <h3 className="movieDetailHeader__title">Media</h3>
                       <div className="movieDetailHeader__videos">
-                          <img src="./assets/06_movie-profile-A_07.jpg" alt="Movie media" title="Movie media" />
-                          <img src="./assets/06_movie-profile-A_07.jpg" alt="Movie media" title="Movie media" />
-                          <img src="./assets/06_movie-profile-A_07.jpg" alt="Movie media" title="Movie media" />
-                          <img src="./assets/06_movie-profile-A_07.jpg" alt="Movie media" title="Movie media" />
+                      
+                          {videos && videos.map(
+                              video => 
+                              <iframe 
+                                key={video.id}
+                                width="300" height="170" 
+                                src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" 
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+                              </iframe>
+                           )}
                       </div>
                   </div>
               </header>
@@ -104,14 +143,14 @@ function MovieSummary({match}) {
                 <div className="cast">
                   <h3 className="cast__title">The Cast</h3>
                   <div className="cast__wrapper">
-                    {/*<CastCard />*/}
+                    {cast && cast.slice(0, 12).map(castMember => <CastCard key={castMember.id} cast={castMember} />)}
                   </div>
                 </div>
 
                 <section className="moreMovies">
                     <h3 className="moreMovies__title">Similar Movies</h3>
                     <div className="moreMovies__titles">
-                      {/*<MovieCardItem />*/}
+                      {similarMovies && similarMovies.slice(0, 12).map(movie => <MovieCardItem key={movie.id} movie={movie} />)}
                     </div>
                 </section>
 

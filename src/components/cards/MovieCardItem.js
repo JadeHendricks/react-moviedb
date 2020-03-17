@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average, id}}) => {
 
-  const titleTrimmer = (title) => {
-    return title.length > 45 ? title.slice(0, 45) + "..." : title;
+  const contentTrimmer = (content, number) => {
+    return content.length > number ? content.slice(0, number) + "..." : content;
   }
 
   const playTrailer = async () => {
@@ -25,7 +25,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average
           <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} className="movieCard__imagesrc" alt={title}/>
       </div>
       <div className="movieCard__information">
-          <h5 className="movieCard__title">{titleTrimmer(title)}</h5>
+          <h5 className="movieCard__title">{contentTrimmer(title, 45)}</h5>
           <Rating rating={vote_average} />
           <p className="movieCard__date">{release_date}</p>
           <div className="movieCard__buttons">
