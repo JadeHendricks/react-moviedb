@@ -1,10 +1,13 @@
 import React from 'react';
 import svgAssets from "../../images/sprite.svg";
+import { Link } from "react-router-dom";
 
 function SideNavigation() {
   return (
     <nav className="navigation">
-        <h3 className="navigation__logo">MDBv2<span>&#149;</span></h3>
+        <Link to="/" style={{textDecoration: "none"}}>
+            <h3 className="navigation__logo">MDBv2</h3>
+        </Link>
         <div className="navigation__wrapper">
             <a className="navigation__node active">
                 <svg className="navigation__icon">

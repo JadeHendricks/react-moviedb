@@ -4,6 +4,7 @@ import Rating from "../rating/Rating";
 import svgAsset from "../../images/sprite.svg";
 import MovieCardItem from '../cards/MovieCardItem';
 import CastCard from '../cards/CastCard';
+import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
 
 function MovieSummary({match}) {
@@ -93,12 +94,12 @@ function MovieSummary({match}) {
                   <div className="misc">
                     <div className="misc__box">
                         <div className="movieDetails__title movieDetails__title--smaller">Release Date</div>
-                        <p className="misc__info">{movie.release_date}</p>
+                        <p className="misc__info">{ moment(movie.release_date).format("DD MMM YYYY") }</p>
                     </div>
 
                     <div className="misc__box">
-                        <div className="movieDetails__title movieDetails__title--smaller">Length</div>
-                        <p className="misc__info">{movie.runtime}</p>
+                        <div className="movieDetails__title movieDetails__title--smaller">Runtime</div>
+                        <p className="misc__info">{movie.runtime}mins</p>
                     </div>
 
                   </div>
@@ -135,7 +136,7 @@ function MovieSummary({match}) {
 
               <main className="movieMain">
                 <Rating rating={movie.vote_average} />
-                <h2 className="movieMain__title">{movie.title} <span>({movie.release_date})</span></h2>
+                <h2 className="movieMain__title">{movie.title} <span>({ moment(movie.release_date).format("DD MMM YYYY") })</span></h2>
                 <div className="movieMain__storyline">
                     <h3 className="marginBottom10">Storyline</h3>
                     <p>{movie.overview}</p>

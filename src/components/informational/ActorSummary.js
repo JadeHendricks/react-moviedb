@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import MovieCardItem from '../cards/MovieCardItem';
+import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
 
 function ActorSummary({match}) {
@@ -63,7 +64,7 @@ function ActorSummary({match}) {
 
                   <div className="misc__box">
                       <div className="movieDetails__title movieDetails__title--smaller">Date of birth</div>
-                      <p className="misc__info">{actor.birthday}</p>
+                      <p className="misc__info">{ moment(actor.birthday).format("DD MMM YYYY") }</p>
                   </div>
 
                   <div className="misc__box">

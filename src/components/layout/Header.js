@@ -1,6 +1,7 @@
 import React from 'react'
 import svgAssets from "../../images/sprite.svg";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const Header = ({ movie: { backdrop_path, title, overview, release_date, id } }) => {
 
@@ -36,7 +37,7 @@ const Header = ({ movie: { backdrop_path, title, overview, release_date, id } })
               </div>
           </div>
           <h1 className="movie-header__title">{ title }</h1>
-          <span className="movie-header__date">{ release_date } &nbsp; | &nbsp; 240 mins.&nbsp;</span>
+          <span className="movie-header__date">{ moment(release_date).format("DD MMM YYYY") } &nbsp; | &nbsp; 240 mins.&nbsp;</span>
           <p className="movie-header__description">
             { overview }
           </p>

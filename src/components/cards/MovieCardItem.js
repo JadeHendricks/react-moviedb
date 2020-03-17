@@ -2,6 +2,7 @@ import React from 'react';
 import Rating from "../rating/Rating";
 import { Link } from "react-router-dom";
 import imageNotFound from "../../images/imageNotFound.jpg";
+import moment from "moment";
 
 const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average, id}}) => {
 
@@ -28,7 +29,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average
       <div className="movieCard__information">
           <h5 className="movieCard__title">{contentTrimmer(title, 45)}</h5>
           <Rating rating={vote_average} />
-          <p className="movieCard__date">{release_date}</p>
+          <p className="movieCard__date">{moment(release_date).format("DD MMM YYYY")}</p>
           <div className="movieCard__buttons">
             <button onClick={playTrailer} className="button button--green">Watch Trailer</button>
             <Link to={`/movieSummary/${id}`} className="button button--green button--skeleton">View More</Link>
