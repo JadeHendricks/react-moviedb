@@ -124,6 +124,7 @@ function MovieSummary({match}) {
                           {videos && videos.slice(0, 4).map(
                               video => 
                               <iframe 
+                                title={video.title}
                                 key={video.id}
                                 width="300" height="170" 
                                 src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" 
