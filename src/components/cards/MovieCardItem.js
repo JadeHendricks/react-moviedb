@@ -1,6 +1,7 @@
 import React from 'react';
 import Rating from "../rating/Rating";
 import { Link } from "react-router-dom";
+import imageNotFound from "../../images/imageNotFound.jpg";
 
 const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average, id}}) => {
 
@@ -22,7 +23,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average
   return (
     <div className="card movieCard">
       <div className="movieCard__image">
-          <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} className="movieCard__imagesrc" alt={title}/>
+          {backdrop_path ? <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} className="movieCard__imagesrc" alt={title}/> : <img src={imageNotFound} className="movieCard__imagesrc" alt={title}/>}
       </div>
       <div className="movieCard__information">
           <h5 className="movieCard__title">{contentTrimmer(title, 45)}</h5>

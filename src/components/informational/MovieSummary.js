@@ -4,6 +4,7 @@ import Rating from "../rating/Rating";
 import svgAsset from "../../images/sprite.svg";
 import MovieCardItem from '../cards/MovieCardItem';
 import CastCard from '../cards/CastCard';
+import imageNotFound from "../../images/imageNotFound.jpg";
 
 function MovieSummary({match}) {
 
@@ -77,7 +78,7 @@ function MovieSummary({match}) {
           <div className="movieDetailSummary">
 
               <div className="movieDetailSummary__imageContanier">
-                  <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="movieDetailSummary__image" alt={movie.title} />
+                {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="movieDetailSummary__image" alt={movie.title} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={movie.title} />}
               </div>
 
               <div className="movieDetailSummary__wrapper">
@@ -119,7 +120,7 @@ function MovieSummary({match}) {
                       <h3 className="movieDetailHeader__title">Media</h3>
                       <div className="movieDetailHeader__videos">
                       
-                          {videos && videos.map(
+                          {videos && videos.slice(0, 4).map(
                               video => 
                               <iframe 
                                 key={video.id}
