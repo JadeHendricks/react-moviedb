@@ -11,6 +11,7 @@ function ActorSummary({match}) {
   useEffect(() => {
     getActor(match.params.id);
     getCredits(match.params.id);
+    // eslint-disable-next-line
   }, []);
 
   const getActor = async (id) => {

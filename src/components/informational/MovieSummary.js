@@ -21,6 +21,7 @@ function MovieSummary({match}) {
     getCast(match.params.id);
     getVideos(match.params.id);
     getSimilarMovies(match.params.id);
+    // eslint-disable-next-line
   }, []);
 
   const getMovie = async (id) => {
