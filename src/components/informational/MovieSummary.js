@@ -14,6 +14,7 @@ function MovieSummary({match}) {
   const [cast, setCast] = useState([]);
   const [videos, setVideos] = useState([]);
   const [similarMovies, setSimilarMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     getMovie(match.params.id);
@@ -23,6 +24,21 @@ function MovieSummary({match}) {
     getSimilarMovies(match.params.id);
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    setGenresArray(movie.genres);
+    // eslint-disable-next-line
+  }, [movie]);
+
+  const setGenresArray = async (genre_ids) => {
+
+    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+    const data = await response.json();
+    if (genre_ids) {
+      const genresArray = data.genres.filter(genreOne => genre_ids.find(genreTwo => genreOne.id === genreTwo.id));
+      setGenres(genresArray);
+    }
+  }
 
   const getMovie = async (id) => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
@@ -88,8 +104,7 @@ function MovieSummary({match}) {
                   <div className="category">
                       <div className="movieDetails__title movieDetails__title--smaller">Category</div>
                       <div className="category__wrapper">
-                          <div className="category__pill">Drama</div>
-                          <div className="category__pill">Sci-fi</div>
+                      {genres.length !== 0 ? genres.slice(0, 2).map(genre => <div key={genre.id} className="category__pill">{genre.name}</div>) : ""}
                       </div>
                   </div>
                   <div className="misc">
