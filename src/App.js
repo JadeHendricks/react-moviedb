@@ -4,10 +4,10 @@ import SideNavigation from "./components/layout/SideNavigation";
 import TopNavigation from "./components/layout/TopNavigation";
 import Modal from "./components/modals/Modal";
 import AccountSettings from "./components/informational/AccountSettings";
-import SearchResults from "./components/informational/SearchResults";
-import MovieSummary from './components/informational/MovieSummary';
+import MovieSummary from "./components/informational/MovieSummary";
 import AccountSummary from "./components/informational/ActorSummary";
-import MainContent from './components/layout/MainContent';
+import MainContent from "./components/layout/MainContent";
+import SearchResults from "./components/informational/SearchResults";
 
 function App() {
   return (

@@ -1,19 +1,30 @@
 import React from 'react';
-import Rating from "../rating/Rating"
+import Rating from "../rating/Rating";
+import {Link} from "react-router-dom";
+import imageNotFound from "../../images/imageNotFound.jpg";
 
-export default function SearchCardItem() {
+function SearchCardItem({movie: {id, title, vote_average, overview, poster_path}}) {
+
+  const contentTrimmer = (content, number) => {
+    return content.length > number ? content.slice(0, number) + "..." : content;
+  }
+
   return (
-    <div class="card cardSearch">
-      <div class="cardSearch__imageholder">
-        <img class="cardSearch__image" src="./assets/06_movie-profile-A_10.jpg" alt="" />
-      </div>
-      <div class="cardSearch__info">
-        <Rating />
-        <h5 class="cardSearch__title">Shrek Two</h5>
-        <p class="cardSearch__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, enim ipsam laborum, 
+    <div className="card cardSearch">
+       <Link to={`/movieSummary/${id}`}>
+        <div className="cardSearch__imageholder">
+          {poster_path ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} className="castCard__image" alt={title}/> : <img src={imageNotFound} className="castCard__image" alt={title}/>}
+        </div>
+      </Link>
+      <div className="cardSearch__info">
+        <Rating rating={vote_average}/>
+        <h5 className="cardSearch__title">{title}</h5>
+        <p className="cardSearch__description">
+          {contentTrimmer(overview, 150)}
         </p>
       </div>
     </div>
   )
 }
+
+export default SearchCardItem;
