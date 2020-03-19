@@ -11,6 +11,7 @@ function ActorSummary({match}) {
   useEffect(() => {
     getActor(match.params.id);
     getCredits(match.params.id);
+    window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, []);
 

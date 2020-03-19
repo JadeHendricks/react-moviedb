@@ -22,13 +22,14 @@ function MovieSummary({match}) {
     getCast(match.params.id);
     getVideos(match.params.id);
     getSimilarMovies(match.params.id);
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
     setGenresArray(movie.genres);
     // eslint-disable-next-line
   }, [movie]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // eslint-disable-next-line
+  }, [match.params.id]);
 
   const setGenresArray = async (genre_ids) => {
 
@@ -82,7 +83,7 @@ function MovieSummary({match}) {
   }
 
   const backgroundImage = {
-    backgroundImage: movie.backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` : "",
+    backgroundImage: movie.backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("")`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "top center",
     backgroundSize: "cover"
@@ -134,7 +135,7 @@ function MovieSummary({match}) {
                       <use xlinkHref={`${svgAsset}#icon-play2`}></use>
                   </svg>
                   <div className="movieDetailHeader__media">
-                      <h3 className="movieDetailHeader__title">Media</h3>
+                    {videos.length !== 0 ? <h3 className="movieDetailHeader__title">Media</h3> : <h3 className="movieDetailHeader__title">No videos available</h3>}
                       <div className="movieDetailHeader__videos">
                       
                           {videos && videos.slice(0, 4).map(
