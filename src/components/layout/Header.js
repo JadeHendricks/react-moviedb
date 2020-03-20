@@ -31,7 +31,6 @@ const Header = ({ movie: { backdrop_path, title, overview, release_date, id, gen
 
 
   const setGenresArray = async (genre_ids) => {
-
     const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
     const data = await response.json();
     if (genre_ids) {
@@ -55,7 +54,7 @@ const Header = ({ movie: { backdrop_path, title, overview, release_date, id, gen
               </div>
           </div>
           <h1 className="movie-header__title">{ title }</h1>
-          <span className="movie-header__date">{ moment(release_date).format("DD MMM YYYY") }</span>
+          <span className="movie-header__date">Release date: { moment(release_date).format("DD MMM YYYY") }</span>
           <p className="movie-header__description">
             { overview }
           </p>

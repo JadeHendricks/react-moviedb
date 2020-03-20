@@ -23,13 +23,15 @@ const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average
 
   return (
     <div className="card movieCard">
-      <div className="movieCard__image">
-          {backdrop_path ? <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} className="movieCard__imagesrc" alt={title}/> : <img src={imageNotFound} className="movieCard__imagesrc" alt={title}/>}
-      </div>
+      <Link to={`/movieSummary/${id}`}>
+        <div className="movieCard__image">
+            {backdrop_path ? <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} className="movieCard__imagesrc" alt={title}/> : <img src={imageNotFound} className="movieCard__imagesrc" alt={title}/>}
+        </div>
+      </Link>
       <div className="movieCard__information">
           <h5 className="movieCard__title">{contentTrimmer(title, 45)}</h5>
           <Rating rating={vote_average} />
-          <p className="movieCard__date">{moment(release_date).format("DD MMM YYYY")}</p>
+          <p className="movieCard__date">Release date: {moment(release_date).format("DD MMM YYYY")}</p>
           <div className="movieCard__buttons">
             <button onClick={playTrailer} className="button button--green">Watch Trailer</button>
             <Link to={`/movieSummary/${id}`} className="button button--green button--skeleton">View More</Link>

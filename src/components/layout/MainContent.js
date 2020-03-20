@@ -12,6 +12,8 @@ function MainContent() {
   useEffect(() => {
     getMostPopularMovie();
     getNowPlaying();
+    getTopRated();
+    getUpcoming();
     window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, [])
@@ -34,6 +36,17 @@ function MainContent() {
     data && setNowPlaying(data.results);
   }
 
+  const getTopRated = async () => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const data = await response.json();
+  }
+
+  const getUpcoming = async () => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const data = await response.json();
+    console.log("getUpcoming", data.results);
+  }
+  
   return (
     <Fragment>
       <Header movie={mostPopularMovie} />
