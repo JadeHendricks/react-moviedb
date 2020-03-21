@@ -2,22 +2,23 @@ import React, { Fragment, useEffect, useState } from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SideNavigation from "./components/layout/SideNavigation";
 import TopNavigation from "./components/layout/TopNavigation";
-import Modal from "./components/modals/Modal";
+import Modal from "./components/layout/Modal";
 import AccountSettings from "./components/informational/AccountSettings";
 import MovieSummary from "./components/informational/MovieSummary";
 import AccountSummary from "./components/informational/ActorSummary";
 import MainContent from "./components/layout/MainContent";
 import SearchResults from "./components/informational/SearchResults";
+import Loader from "./components/layout/Loader";
 
 function App() {
 
-  useEffect(() => {
-    InitialCardState(); 
-  }, []);
-  
-
   const [movies, setMovies] = useState([]);
   const [whatsShowing, setWhatsShowing] = useState("Now Playing");
+
+  useEffect(() => {
+    InitialCardState(); 
+    // eslint-disable-next-line
+  }, []);
 
   const InitialCardState = async () => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);

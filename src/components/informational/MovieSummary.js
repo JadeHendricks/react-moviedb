@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import Review from "../reviews/Review";
 import Rating from "../rating/Rating";
 import svgAsset from "../../images/sprite.svg";
@@ -6,6 +6,7 @@ import MovieCardItem from '../cards/MovieCardItem';
 import CastCard from '../cards/CastCard';
 import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
+import Loader from "../layout/Loader";
 
 function MovieSummary({match}) {
 
@@ -90,94 +91,97 @@ function MovieSummary({match}) {
   }
 
   return (
-    <section className="movieDetails">
+    <Fragment>
+      <Loader />
+      <section className="movieDetails">
 
-      <div className="movieDetails__wrapper">
+        <div className="movieDetails__wrapper">
 
-          <div className="movieDetailSummary">
+            <div className="movieDetailSummary">
 
-              <div className="movieDetailSummary__imageContanier">
-                {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="movieDetailSummary__image" alt={movie.title} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={movie.title} />}
-              </div>
-
-              <div className="movieDetailSummary__wrapper">
-                  <h3 className="movieDetails__title">Movie Details</h3>
-                  <div className="category">
-                      <div className="movieDetails__title movieDetails__title--smaller">Category</div>
-                      <div className="category__wrapper">
-                      {genres.length !== 0 ? genres.slice(0, 2).map(genre => <div key={genre.id} className="category__pill">{genre.name}</div>) : ""}
-                      </div>
-                  </div>
-                  <div className="misc">
-                    <div className="misc__box">
-                        <div className="movieDetails__title movieDetails__title--smaller">Release Date</div>
-                        <p className="misc__info">{ moment(movie.release_date).format("DD MMM YYYY") }</p>
-                    </div>
-
-                    <div className="misc__box">
-                        <div className="movieDetails__title movieDetails__title--smaller">Runtime</div>
-                        <p className="misc__info">{movie.runtime}mins</p>
-                    </div>
-
-                  </div>
-                  <div className="reviews">
-                    {reviews.length !== 0 ? <h3 className="movieDetails__title">Recent Reviews</h3> : ""}
-                    {reviews && reviews.map(review => <Review key={review.id} review={review}/>)}
-                  </div>
-              </div>
-
-          </div>
-
-          <div className="movieDetailsMaincontent">
-
-              <header className="movieDetailHeader" style={backgroundImage}>
-                  <svg className="movieDetailHeader__playicon" onClick={playTrailer}>
-                      <use xlinkHref={`${svgAsset}#icon-play2`}></use>
-                  </svg>
-                  <div className="movieDetailHeader__media">
-                    {videos.length !== 0 ? <h3 className="movieDetailHeader__title">Media</h3> : <h3 className="movieDetailHeader__title">No videos available</h3>}
-                      <div className="movieDetailHeader__videos">
-                      
-                          {videos && videos.slice(0, 4).map(
-                              video => 
-                              <iframe 
-                                title={video.title}
-                                key={video.id}
-                                width="300" height="170" 
-                                src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" 
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
-                              </iframe>
-                           )}
-                      </div>
-                  </div>
-              </header>
-
-              <main className="movieMain">
-                <Rating rating={movie.vote_average} />
-                <h2 className="movieMain__title">{movie.title} <span>({ moment(movie.release_date).format("DD MMM YYYY") })</span></h2>
-                <div className="movieMain__storyline">
-                    <h3 className="marginBottom10">Storyline</h3>
-                    <p>{movie.overview}</p>
+                <div className="movieDetailSummary__imageContanier">
+                  {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="movieDetailSummary__image" alt={movie.title} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={movie.title} />}
                 </div>
 
-                <div className="cast">
-                  <h3 className="cast__title">The Cast</h3>
-                  <div className="cast__wrapper">
-                    {cast && cast.slice(0, 12).map(castMember => <CastCard key={castMember.id} cast={castMember} />)}
-                  </div>
+                <div className="movieDetailSummary__wrapper">
+                    <h3 className="movieDetails__title">Movie Details</h3>
+                    <div className="category">
+                        <div className="movieDetails__title movieDetails__title--smaller">Category</div>
+                        <div className="category__wrapper">
+                        {genres.length !== 0 ? genres.slice(0, 2).map(genre => <div key={genre.id} className="category__pill">{genre.name}</div>) : ""}
+                        </div>
+                    </div>
+                    <div className="misc">
+                      <div className="misc__box">
+                          <div className="movieDetails__title movieDetails__title--smaller">Release Date</div>
+                          <p className="misc__info">{ moment(movie.release_date).format("DD MMM YYYY") }</p>
+                      </div>
+
+                      <div className="misc__box">
+                          <div className="movieDetails__title movieDetails__title--smaller">Runtime</div>
+                          <p className="misc__info">{movie.runtime}mins</p>
+                      </div>
+
+                    </div>
+                    <div className="reviews">
+                      {reviews.length !== 0 ? <h3 className="movieDetails__title">Recent Reviews</h3> : ""}
+                      {reviews && reviews.map(review => <Review key={review.id} review={review}/>)}
+                    </div>
                 </div>
 
-                <section className="moreMovies">
-                    <h3 className="moreMovies__title">Similar Movies</h3>
-                    <div className="moreMovies__titles">
-                      {similarMovies && similarMovies.slice(0, 12).map(movie => <MovieCardItem key={movie.id} movie={movie} />)}
-                    </div>
-                </section>
+            </div>
 
-              </main>
-          </div>
-      </div>
-    </section>
+            <div className="movieDetailsMaincontent">
+
+                <header className="movieDetailHeader" style={backgroundImage}>
+                    <svg className="movieDetailHeader__playicon" onClick={playTrailer}>
+                        <use xlinkHref={`${svgAsset}#icon-play2`}></use>
+                    </svg>
+                    <div className="movieDetailHeader__media">
+                      {videos.length !== 0 ? <h3 className="movieDetailHeader__title">Media</h3> : <h3 className="movieDetailHeader__title">No videos available</h3>}
+                        <div className="movieDetailHeader__videos">
+                        
+                            {videos && videos.slice(0, 4).map(
+                                video => 
+                                <iframe 
+                                  title={video.title}
+                                  key={video.id}
+                                  width="300" height="170" 
+                                  src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" 
+                                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+                                </iframe>
+                            )}
+                        </div>
+                    </div>
+                </header>
+
+                <main className="movieMain">
+                  <Rating rating={movie.vote_average} />
+                  <h2 className="movieMain__title">{movie.title} <span>({ moment(movie.release_date).format("DD MMM YYYY") })</span></h2>
+                  <div className="movieMain__storyline">
+                      <h3 className="marginBottom10">Storyline</h3>
+                      <p>{movie.overview}</p>
+                  </div>
+
+                  <div className="cast">
+                    <h3 className="cast__title">The Cast</h3>
+                    <div className="cast__wrapper">
+                      {cast && cast.slice(0, 12).map(castMember => <CastCard key={castMember.id} cast={castMember} />)}
+                    </div>
+                  </div>
+
+                  <section className="moreMovies">
+                      <h3 className="moreMovies__title">Similar Movies</h3>
+                      <div className="moreMovies__titles">
+                        {similarMovies && similarMovies.slice(0, 12).map(movie => <MovieCardItem key={movie.id} movie={movie} />)}
+                      </div>
+                  </section>
+
+                </main>
+            </div>
+        </div>
+      </section>
+    </Fragment>
   )
 }
 

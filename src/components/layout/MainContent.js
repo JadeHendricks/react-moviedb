@@ -9,11 +9,7 @@ function MainContent(props) {
   const [mostPopularMovie, setMostPopularMovie] = useState({});
   
   useEffect(() => {
-    let unmounted = false;
-    if (!unmounted) {
-      getMostPopularMovie(); 
-    }
-    return () => { unmounted = true };
+    getMostPopularMovie(); 
     // eslint-disable-next-line
   }, [])
 

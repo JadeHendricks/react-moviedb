@@ -7,6 +7,7 @@ const Header = ({ movie: { backdrop_path, title, overview, release_date, id, gen
 
   useEffect(() => {
     setGenresArray(genre_ids);
+    // eslint-disable-next-line
   }, [genre_ids]);
 
   const [genres, setGenres] = useState([]);

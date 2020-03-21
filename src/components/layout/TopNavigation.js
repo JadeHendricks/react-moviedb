@@ -13,7 +13,7 @@ function TopNavigation(props) {
       props.history.push(`/searchResults/${query}`);
       setRedirect(false);
     }
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [query]);
 
   const initSearch = e => {
