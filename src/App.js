@@ -12,31 +12,27 @@ import SearchResults from "./components/informational/SearchResults";
 function App() {
 
   useEffect(() => {
-
+    InitialCardState();
   }, []);
 
-  const [movieCards, setMovieCards] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [whatsShowing, setWhatsShowing] = useState("Now Playing");
 
-  const handleClick = () => {
-    alert("I'm working");
-  }
-
-  const getUpcoming = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-  }
-
-  const getNowPlaying = async () => {
+  const InitialCardState = async () => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     const data = await response.json();
+    data && setMovies(data.results);
   }
 
-  const getTopRated = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-  }
-  const getPopular = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
+  const handleClick = async (e) => {
+      const requestName = e.target.getAttribute("data-name");
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${requestName}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      const data = await response.json();
+
+      const CardTitle = requestName.replace(/_/g, " ");
+      const formattedTitle = CardTitle.charAt(0).toUpperCase() + CardTitle.substring(1);
+      requestName && setWhatsShowing(formattedTitle)
+      data && setMovies(data.results);
   }
 
   return (
@@ -46,7 +42,7 @@ function App() {
           <div className="main-content">
             <TopNavigation />
             <Switch>
-              <Route path="/" component={MainContent} exact />
+              <Route path="/" component={() => <MainContent movie={movies} requestName={whatsShowing} exact/>} />
               <Route path="/accountSettings" component={AccountSettings} exact />
               <Route path="/searchResults/:id" component={SearchResults} exact />
               <Route path="/movieSummary/:id" component={MovieSummary} exact />

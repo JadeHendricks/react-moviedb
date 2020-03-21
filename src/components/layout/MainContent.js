@@ -4,17 +4,13 @@ import SwitchTabs from "../layout/SwitchTabs";
 import Pagination from "../informational/Pagination";
 import Header from './Header';
 
-function MainContent() {
+function MainContent(props) {
   
   const [mostPopularMovie, setMostPopularMovie] = useState({});
-  const [nowPlaying, setNowPlaying] = useState([]);
   
   useEffect(() => {
     getMostPopularMovie();
-    getNowPlaying();
-    getTopRated();
-    getUpcoming();
-    window.scrollTo(0, 0);
+    console.log("properties", props);
     // eslint-disable-next-line
   }, [])
 
@@ -30,32 +26,15 @@ function MainContent() {
     data && setMostPopularMovie(popularMovie[0]);
   }
 
-  const getNowPlaying = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    data && setNowPlaying(data.results);
-  }
-
-  const getTopRated = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-  }
-
-  const getUpcoming = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    console.log("getUpcoming", data.results);
-  }
-  
   return (
     <Fragment>
       <Header movie={mostPopularMovie} />
       <section className="movieSection">
         <div className="container">
           <SwitchTabs />
-          <h3 className="movieSection__title">Now Playing</h3>
+          <h3 className="movieSection__title">{props.requestName}</h3>
           <div className="movieSection__titles">
-            { nowPlaying.map(movie => <MovieCardItem key={movie.id} movie={movie}  /> ) }
+            { props.movie ? props.movie.map(movie => <MovieCardItem key={movie.id} movie={movie}  /> ) : "" }
           </div>
         </div>
         <Pagination />
