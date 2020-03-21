@@ -9,8 +9,11 @@ function MainContent(props) {
   const [mostPopularMovie, setMostPopularMovie] = useState({});
   
   useEffect(() => {
-    getMostPopularMovie();
-    console.log("properties", props);
+    let unmounted = false;
+    if (!unmounted) {
+      getMostPopularMovie(); 
+    }
+    return () => { unmounted = true };
     // eslint-disable-next-line
   }, [])
 
@@ -32,7 +35,7 @@ function MainContent(props) {
       <section className="movieSection">
         <div className="container">
           <SwitchTabs />
-          <h3 className="movieSection__title">{props.requestName}</h3>
+          <h3 className="movieSection__title">{props.whatsShowing}</h3>
           <div className="movieSection__titles">
             { props.movie ? props.movie.map(movie => <MovieCardItem key={movie.id} movie={movie}  /> ) : "" }
           </div>

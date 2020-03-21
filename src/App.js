@@ -12,8 +12,9 @@ import SearchResults from "./components/informational/SearchResults";
 function App() {
 
   useEffect(() => {
-    InitialCardState();
+    InitialCardState(); 
   }, []);
+  
 
   const [movies, setMovies] = useState([]);
   const [whatsShowing, setWhatsShowing] = useState("Now Playing");
@@ -29,7 +30,7 @@ function App() {
       const response = await fetch(`https://api.themoviedb.org/3/movie/${requestName}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
       const data = await response.json();
 
-      const CardTitle = requestName.replace(/_/g, " ");
+      const CardTitle = requestName && requestName.replace(/_/g, " ");
       const formattedTitle = CardTitle.charAt(0).toUpperCase() + CardTitle.substring(1);
       requestName && setWhatsShowing(formattedTitle)
       data && setMovies(data.results);
@@ -42,11 +43,11 @@ function App() {
           <div className="main-content">
             <TopNavigation />
             <Switch>
-              <Route path="/" component={() => <MainContent movie={movies} requestName={whatsShowing} exact/>} />
               <Route path="/accountSettings" component={AccountSettings} exact />
               <Route path="/searchResults/:id" component={SearchResults} exact />
               <Route path="/movieSummary/:id" component={MovieSummary} exact />
               <Route path="/actorSummary/:id" component={AccountSummary} exact />
+              <Route path="/" component={() => <MainContent movie={movies} whatsShowing={whatsShowing} exact/>} />
             </Switch>
             <Modal />
           </div>
