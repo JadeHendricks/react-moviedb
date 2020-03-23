@@ -3,7 +3,7 @@ import Rating from "../rating/Rating";
 import {Link} from "react-router-dom";
 import imageNotFound from "../../images/imageNotFound.jpg";
 
-function SearchCardItem({movie: {id, title, vote_average, overview, poster_path}}) {
+function SearchCardItem({movie: {id, title, name, vote_average, overview, poster_path}}) {
 
   const contentTrimmer = (content, number) => {
     return content.length > number ? content.slice(0, number) + "..." : content;
@@ -18,7 +18,7 @@ function SearchCardItem({movie: {id, title, vote_average, overview, poster_path}
       </Link>
       <div className="cardSearch__info">
         <Rating rating={vote_average}/>
-        <h5 className="cardSearch__title">{title}</h5>
+        <h5 className="cardSearch__title">{title ? title : name}</h5>
         <p className="cardSearch__description">
           {contentTrimmer(overview, 150)}
         </p>

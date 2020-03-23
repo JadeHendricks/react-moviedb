@@ -1,11 +1,15 @@
-import React, {useReducer} from "react";
+import React, {useReducer, useContext} from "react";
 import HeaderContext from './HeaderContext';
 import HeaderReducer from './HeaderReducer';
+import MainContentContext from "../mainContent/MainContentContext";
 import { 
   FETCH_GENRES,
   FETCH_MOSTPOPULAR_MOVIE } from '../types';
 
 const HeaderState = props => {
+
+  const mainContentContext = useContext(MainContentContext);
+  const {appWideContent} = mainContentContext;
 
   const initialState = {
     genres: [],
@@ -28,8 +32,15 @@ const HeaderState = props => {
   }
 
   const getMostPopularMovie = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    let response;
+    if (appWideContent === "movies") {
+      response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    } else {
+      response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    }
     const data = await response.json();
+    
+    console.log(data);
 
     const popularMovie = data.results.sort((a,b) => {
         return b.popularity - a.popularity;

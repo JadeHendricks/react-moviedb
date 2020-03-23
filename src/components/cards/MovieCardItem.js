@@ -1,17 +1,26 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Rating from "../rating/Rating";
 import { Link } from "react-router-dom";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import moment from "moment";
+import MainContentContext from "../../context/mainContent/MainContentContext";
 
-const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average, id}}) => {
+const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, vote_average, id}}) => {
+
+  const mainContentContext = useContext(MainContentContext);
+  const {appWideContent} = mainContentContext;
 
   const contentTrimmer = (content, number) => {
     return content.length > number ? content.slice(0, number) + "..." : content;
   }
 
-  const playTrailer = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+  const playTrailer = async (e) => {
+    let response;
+    if (appWideContent === "movies") {
+      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    } else {
+      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    }
     const data = await response.json();
     const videoKey = data.results[0].key;
 
@@ -29,7 +38,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, release_date, vote_average
         </div>
       </Link>
       <div className="movieCard__information">
-          <h5 className="movieCard__title">{contentTrimmer(title, 45)}</h5>
+          <h5 className="movieCard__title">{contentTrimmer(`${title ? title: name}`, 45)}</h5>
           <Rating rating={vote_average} />
           <p className="movieCard__date">Release date: {moment(release_date).format("DD MMM YYYY")}</p>
           <div className="movieCard__buttons">

@@ -3,12 +3,16 @@ import svgAssets from "../../images/sprite.svg";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import HeaderContext from "../../context/header/HeaderContext";
+import MainContentContext from "../../context/mainContent/MainContentContext";
 
 const Header = () => {
 
   const headerContext = useContext(HeaderContext);
   const {setGenresArray, getMostPopularMovie, genres, mostPopularMovie} = headerContext;
-  const {backdrop_path, title, overview, release_date, id, genre_ids} = mostPopularMovie;
+  const {backdrop_path, title, name, overview, release_date, id, genre_ids} = mostPopularMovie;
+
+  const mainContentContext = useContext(MainContentContext);
+  const {appWideContent} = mainContentContext;
 
   useEffect(() => {
     setGenresArray(genre_ids);
@@ -24,7 +28,12 @@ const Header = () => {
   }
 
   const playTrailer = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    let response;
+    if (appWideContent === "movies") {
+      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    } else {
+      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    }
     const data = await response.json();
     const videoKey = data.results[0].key;
 
@@ -48,7 +57,7 @@ const Header = () => {
                 {genres.slice(0, 3).map(genre => <div key={genre.id} className="category__pill category__pill--large category__pill--white">{genre.name}</div>)}
               </div>
           </div>
-          <h1 className="movie-header__title">{ title }</h1>
+          <h1 className="movie-header__title">{ title ? title : name }</h1>
           <span className="movie-header__date">Release date: { moment(release_date).format("DD MMM YYYY") }</span>
           <p className="movie-header__description">
             { overview }

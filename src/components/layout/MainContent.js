@@ -8,12 +8,12 @@ import MainContentContext from "../../context/mainContent/MainContentContext";
 function MainContent(props) {
 
   const mainContentContext = useContext(MainContentContext);
-  const {movies, whatsShowing, InitialCardState} = mainContentContext;
+  const {movies, whatsShowing, InitialCardState, appWideContent} = mainContentContext;
 
   useEffect(() => {
     InitialCardState(); 
     // eslint-disable-next-line
-  }, [])
+  }, [appWideContent])
 
   return (
     <Fragment>

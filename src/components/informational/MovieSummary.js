@@ -7,6 +7,7 @@ import CastCard from '../cards/CastCard';
 import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import MovieSummaryContext from "../../context/movieSummary/MovieSummaryContext";
+import MainContentContext from "../../context/mainContent/MainContentContext";
 
 function MovieSummary({match}) {
 
@@ -15,6 +16,9 @@ function MovieSummary({match}) {
     setGenresArray, getMovie, getReviews, getCast, getVideos, 
     getSimilarMovies, movie, reviews, cast, videos, 
     similarMovies, genres} = movieSummaryContext;
+
+  const mainContentContext = useContext(MainContentContext);
+  const {appWideContent} = mainContentContext;
 
   useEffect(() => {
     getMovie(match.params.id);
@@ -32,7 +36,12 @@ function MovieSummary({match}) {
   }, [match.params.id]);
 
   const playTrailer = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${match.params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    let response;
+    if (appWideContent === "movies") {
+      response = await fetch(`https://api.themoviedb.org/3/movie/${match.params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    } else {
+      response = await fetch(`https://api.themoviedb.org/3/tv/${match.params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    }
     const data = await response.json();
     const videoKey = data.results[0].key;
 
@@ -58,7 +67,7 @@ function MovieSummary({match}) {
             <div className="movieDetailSummary">
 
                 <div className="movieDetailSummary__imageContanier">
-                  {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="movieDetailSummary__image" alt={movie.title} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={movie.title} />}
+                  {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} />}
                 </div>
 
                 <div className="movieDetailSummary__wrapper">
@@ -72,13 +81,24 @@ function MovieSummary({match}) {
                     <div className="misc">
                       <div className="misc__box">
                           <div className="movieDetails__title movieDetails__title--smaller">Release Date</div>
-                          <p className="misc__info">{ moment(movie.release_date).format("DD MMM YYYY") }</p>
+                          <p className="misc__info">{ moment(movie.release_date ? movie.release_date : movie.first_air_date).format("DD MMM YYYY") }</p>
                       </div>
 
                       <div className="misc__box">
                           <div className="movieDetails__title movieDetails__title--smaller">Runtime</div>
-                          <p className="misc__info">{movie.runtime}mins</p>
+                          <p className="misc__info">{movie.runtime ? movie.runtime : movie.episode_run_time}mins</p>
                       </div>
+                      {  }
+                      <div className="misc__box">
+                          <div className="movieDetails__title movieDetails__title--smaller">Number of seasons</div>
+                          <p className="misc__info">{movie.number_of_seasons}</p>
+                      </div>
+
+                      <div className="misc__box">
+                          <div className="movieDetails__title movieDetails__title--smaller">Number of episodes</div>
+                          <p className="misc__info">{movie.number_of_episodes}</p>
+                      </div>
+
 
                     </div>
                     <div className="reviews">
@@ -115,7 +135,7 @@ function MovieSummary({match}) {
 
                 <main className="movieMain">
                   <Rating rating={movie.vote_average} />
-                  <h2 className="movieMain__title">{movie.title} <span>({ moment(movie.release_date).format("DD MMM YYYY") })</span></h2>
+                  <h2 className="movieMain__title">{movie.title ? movie.title : movie.name} <span>({ moment(movie.release_date).format("DD MMM YYYY") })</span></h2>
                   <div className="movieMain__storyline">
                       <h3 className="marginBottom10">Storyline</h3>
                       <p>{movie.overview}</p>

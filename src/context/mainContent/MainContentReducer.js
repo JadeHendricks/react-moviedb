@@ -1,5 +1,6 @@
 import {
   FETCH_MOVIES_MAINCONTENT, 
+  SET_APP_CONTENT,
   FETCH_WHATSSHOWING_MOVIESUMMARY} from "../types"; 
 
 export default ( state, action ) => {
@@ -13,6 +14,11 @@ export default ( state, action ) => {
       return {
         ...state,
         whatsShowing: action.payload
+      };
+      case SET_APP_CONTENT:
+      return {
+        ...state,
+        appWideContent: action.payload
       };
     default: 
       return state;
