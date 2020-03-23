@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SideNavigation from "./components/layout/SideNavigation";
 import TopNavigation from "./components/layout/TopNavigation";
@@ -8,52 +8,37 @@ import MovieSummary from "./components/informational/MovieSummary";
 import AccountSummary from "./components/informational/ActorSummary";
 import MainContent from "./components/layout/MainContent";
 import SearchResults from "./components/informational/SearchResults";
-import Loader from "./components/layout/Loader";
+import MovieSummaryState from "./context/movieSummary/MovieSummaryState";
+import ActorSummaryState from "./context/actorSummary/ActorSummaryState";
+import HeaderState from "./context/header/HeaderState";
+import MainContentState from "./context/mainContent/MainContentState";
 
 function App() {
-
-  const [movies, setMovies] = useState([]);
-  const [whatsShowing, setWhatsShowing] = useState("Now Playing");
-
-  useEffect(() => {
-    InitialCardState(); 
-    // eslint-disable-next-line
-  }, []);
-
-  const InitialCardState = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    data && setMovies(data.results);
-  }
-
-  const handleClick = async (e) => {
-      const requestName = e.target.getAttribute("data-name");
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${requestName}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-      const data = await response.json();
-
-      const CardTitle = requestName && requestName.replace(/_/g, " ");
-      const formattedTitle = CardTitle.charAt(0).toUpperCase() + CardTitle.substring(1);
-      requestName && setWhatsShowing(formattedTitle)
-      data && setMovies(data.results);
-  }
-
   return (
-    <Router>
-      <Fragment>
-        <SideNavigation handler={handleClick}/>
-          <div className="main-content">
-            <TopNavigation />
-            <Switch>
-              <Route path="/accountSettings" component={AccountSettings} exact />
-              <Route path="/searchResults/:id" component={SearchResults} exact />
-              <Route path="/movieSummary/:id" component={MovieSummary} exact />
-              <Route path="/actorSummary/:id" component={AccountSummary} exact />
-              <Route path="/" component={() => <MainContent movie={movies} whatsShowing={whatsShowing} exact/>} />
-            </Switch>
-            <Modal />
-          </div>
-      </Fragment>
-    </Router>
+    <MainContentState>
+    <MovieSummaryState>
+    <ActorSummaryState>
+    <HeaderState>
+      <Router>
+        <Fragment>
+          <SideNavigation />
+            <div className="main-content">
+              <TopNavigation />
+              <Switch>
+                <Route path="/accountSettings" component={AccountSettings} exact />
+                <Route path="/searchResults/:id" component={SearchResults} exact />
+                <Route path="/movieSummary/:id" component={MovieSummary} exact />
+                <Route path="/actorSummary/:id" component={AccountSummary} exact />
+                <Route path="/" component={MainContent} exact />
+              </Switch>
+              <Modal />
+            </div>
+        </Fragment>
+      </Router>
+    </HeaderState>
+    </ActorSummaryState>
+    </MovieSummaryState>
+    </MainContentState>
   );
 }
 

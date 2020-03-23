@@ -1,16 +1,20 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useContext} from 'react'
 import svgAssets from "../../images/sprite.svg";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import HeaderContext from "../../context/header/HeaderContext";
 
-const Header = ({ movie: { backdrop_path, title, overview, release_date, id, genre_ids } }) => {
+const Header = () => {
+
+  const headerContext = useContext(HeaderContext);
+  const {setGenresArray, getMostPopularMovie, genres, mostPopularMovie} = headerContext;
+  const {backdrop_path, title, overview, release_date, id, genre_ids} = mostPopularMovie;
 
   useEffect(() => {
     setGenresArray(genre_ids);
+    getMostPopularMovie();
     // eslint-disable-next-line
   }, [genre_ids]);
-
-  const [genres, setGenres] = useState([]);
 
   const backgroundImage = {
     backgroundImage: backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/original${backdrop_path})` : "",
@@ -28,16 +32,6 @@ const Header = ({ movie: { backdrop_path, title, overview, release_date, id, gen
       `https://www.youtube.com/watch?v=${videoKey}`,
       `_blank`
     );
-  }
-
-
-  const setGenresArray = async (genre_ids) => {
-    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
-    const data = await response.json();
-    if (genre_ids) {
-      const genresArray = data.genres.filter(element => genre_ids.includes(element.id));
-      setGenres(genresArray);
-    }
   }
 
   return (

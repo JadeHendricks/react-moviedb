@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useContext} from 'react';
 import MovieCardItem from '../cards/MovieCardItem';
 import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
+import ActorSummaryContext from "../../context/actorSummary/ActorSummaryContext";
 
 function ActorSummary({match}) {
 
-  const [actor, setActor] = useState({});
-  const [credits, setCredits] = useState([]);
+  const actorSummaryContext = useContext(ActorSummaryContext);
+  const {getActor, getCredits, actor, credits} = actorSummaryContext;
 
   useEffect(() => {
     getActor(match.params.id);
@@ -15,25 +16,9 @@ function ActorSummary({match}) {
     // eslint-disable-next-line
   }, []);
 
-  const getActor = async (id) => {
-    const response = await fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
-    const data = await response.json();
-    data && setActor(data);
-  }
 
   const genderChecker = (gender) => {
     return gender === 2 ? "Male" : "Female";
-  }
-
-  const getCredits = async (id) => {
-    const response = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
-    const data = await response.json();
-
-    const sortByMostPopular = data.cast
-    .sort((a, b) => b.vote_average - a.vote_average)
-    .filter(movie =>  movie.poster_path !== null);
-    
-    sortByMostPopular && setCredits(sortByMostPopular.slice(0, 24));
   }
 
   return (

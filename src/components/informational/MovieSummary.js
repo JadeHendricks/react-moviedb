@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Fragment} from 'react';
+import React, {useEffect, Fragment, useContext} from 'react';
 import Review from "../reviews/Review";
 import Rating from "../rating/Rating";
 import svgAsset from "../../images/sprite.svg";
@@ -6,16 +6,15 @@ import MovieCardItem from '../cards/MovieCardItem';
 import CastCard from '../cards/CastCard';
 import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
-import Loader from "../layout/Loader";
+import MovieSummaryContext from "../../context/movieSummary/MovieSummaryContext";
 
 function MovieSummary({match}) {
 
-  const [movie, setMovie] = useState({});
-  const [reviews, setReviews] = useState([]);
-  const [cast, setCast] = useState([]);
-  const [videos, setVideos] = useState([]);
-  const [similarMovies, setSimilarMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
+  const movieSummaryContext = useContext(MovieSummaryContext);
+  const {
+    setGenresArray, getMovie, getReviews, getCast, getVideos, 
+    getSimilarMovies, movie, reviews, cast, videos, 
+    similarMovies, genres} = movieSummaryContext;
 
   useEffect(() => {
     getMovie(match.params.id);
@@ -31,46 +30,6 @@ function MovieSummary({match}) {
     window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, [match.params.id]);
-
-  const setGenresArray = async (genre_ids) => {
-
-    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
-    const data = await response.json();
-    if (genre_ids) {
-      const genresArray = data.genres.filter(genreOne => genre_ids.find(genreTwo => genreOne.id === genreTwo.id));
-      setGenres(genresArray);
-    }
-  }
-
-  const getMovie = async (id) => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    data && setMovie(data);
-  }
-
-  const getReviews = async (id) => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    data && setReviews(data.results);
-  }
-
-  const getCast = async (id) => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    data && setCast(data.cast);
-  }
-
-  const getVideos = async (id) => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    data && setVideos(data.results);
-  }
-
-  const getSimilarMovies = async (id) => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    data && setSimilarMovies(data.results);
-  }
 
   const playTrailer = async () => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${match.params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
@@ -92,7 +51,6 @@ function MovieSummary({match}) {
 
   return (
     <Fragment>
-      <Loader />
       <section className="movieDetails">
 
         <div className="movieDetails__wrapper">
