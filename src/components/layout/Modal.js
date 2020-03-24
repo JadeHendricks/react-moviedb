@@ -9,6 +9,10 @@ function Modal() {
 
   useEffect(() => {
     closeModal();
+
+    return () => {
+        clearTimeout(closeModal);
+    }
     // eslint-disable-next-line
   }, [])
 
