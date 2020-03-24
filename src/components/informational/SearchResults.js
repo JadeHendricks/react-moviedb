@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import SearchCardItem from "../cards/SearchCardItem";
-import Pagination from './Pagination';
 
 function SearchResults() {
   const query = decodeURI(window.location.href.split("/").pop());
@@ -27,8 +26,6 @@ function SearchResults() {
     setSearchResults(mostPopluarOrder);
   }
 
-
-
   return (
     <section className="searchResults">
       <div className="container">
@@ -37,7 +34,6 @@ function SearchResults() {
             {searchResults.map(result => <SearchCardItem key={result.id} movie={result}/>)}
           </div>
       </div>
-      <Pagination />
     </section>
 
   )

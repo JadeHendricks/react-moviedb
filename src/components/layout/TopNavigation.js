@@ -1,12 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext, Fragment} from 'react';
 import svgAsset from "../../images/sprite.svg";
 import { withRouter } from "react-router-dom";
+import ModalContext from "../../context/modal/ModalContext";
+import Modal from "../layout/Modal";
 
 function TopNavigation(props) {
+
+  const modalContext = useContext(ModalContext);
+  const {authSelection, modalShow} = modalContext;
 
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
   const [redirect, setRedirect] = useState(false);
+  
 
   useEffect(() => {
     if (redirect) {
@@ -29,6 +35,8 @@ function TopNavigation(props) {
   }
 
   return (
+    <Fragment>
+    {modalShow ? <Modal /> : ""}
     <nav className="topnav">
       <form className="searchForm" onSubmit={initSearch}>
           <svg className="searchForm__icon">
@@ -38,8 +46,8 @@ function TopNavigation(props) {
       </form>
       <div clas="userAuth">
           <div className="topnav__buttons">
-              <button className="button button--green button--skeleton">Login</button>
-              <button className="button button--green">Sign up</button>
+              <button className="button button--green button--skeleton" data-auth="login" onClick={authSelection}>Login</button>
+              <button className="button button--green" data-auth="signup" onClick={authSelection}>Sign up</button>
           </div>
           <div className="topnav__account">
               <img src="./assets/x_03.jpg" alt="person" title="person" />
@@ -47,6 +55,7 @@ function TopNavigation(props) {
           </div>
       </div>
     </nav>
+    </Fragment>
   )
 }
 

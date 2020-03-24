@@ -1,7 +1,6 @@
 import React, {Fragment, useContext, useEffect} from 'react';
 import MovieCardItem from "../cards/MovieCardItem";
 import SwitchTabs from "../layout/SwitchTabs";
-import Pagination from "../informational/Pagination";
 import Header from './Header';
 import MainContentContext from "../../context/mainContent/MainContentContext";
 
@@ -26,7 +25,6 @@ function MainContent(props) {
             { movies ? movies.map(movie => <MovieCardItem key={movie.id} movie={movie}  /> ) : "" }
           </div>
         </div>
-        <Pagination />
       </section>
     </Fragment>
   )

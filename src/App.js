@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SideNavigation from "./components/layout/SideNavigation";
 import TopNavigation from "./components/layout/TopNavigation";
-import Modal from "./components/layout/Modal";
 import AccountSettings from "./components/informational/AccountSettings";
 import MovieSummary from "./components/informational/MovieSummary";
 import AccountSummary from "./components/informational/ActorSummary";
@@ -12,6 +11,7 @@ import MovieSummaryState from "./context/movieSummary/MovieSummaryState";
 import ActorSummaryState from "./context/actorSummary/ActorSummaryState";
 import HeaderState from "./context/header/HeaderState";
 import MainContentState from "./context/mainContent/MainContentState";
+import ModalState from "./context/modal/ModalState";
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
     <MovieSummaryState>
     <ActorSummaryState>
     <HeaderState>
+    <ModalState>
       <Router>
         <Fragment>
           <SideNavigation />
@@ -31,10 +32,10 @@ function App() {
                 <Route path="/actorSummary/:id" component={AccountSummary} exact />
                 <Route path="/" component={MainContent} exact />
               </Switch>
-              <Modal />
             </div>
         </Fragment>
       </Router>
+    </ModalState>
     </HeaderState>
     </ActorSummaryState>
     </MovieSummaryState>
