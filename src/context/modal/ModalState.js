@@ -41,10 +41,16 @@ const ModalState = props => {
     });
   }
 
+  const authFailure = (e) => {
+    e.preventDefault();
+    alert("This will work in due time")
+  }
+
   return (
     <ModalContext.Provider value={{
       authSelection,
       closeModal,
+      authFailure,
       activity: state.activity,
       modalShow: state.modalShow
     }}>

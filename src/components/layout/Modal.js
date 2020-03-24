@@ -1,13 +1,15 @@
 import React, {useContext, useEffect} from 'react';
 import svgAsset from "../../images/sprite.svg";
 import ModalContext from "../../context/modal/ModalContext";
+
 function Modal() {
 
   const modalContext = useContext(ModalContext);
-  const {authSelection, activity, closeModal} = modalContext;
+  const {authSelection, activity, closeModal, authFailure} = modalContext;
 
   useEffect(() => {
     closeModal();
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -63,8 +65,8 @@ function Modal() {
               </div> : ""}
 
               <div className="modalAuth__padding">
-                  {activity === "login" ? <button className="button button--green" type="submit">Login</button> : ""}
-                  {activity === "signup" ? <button className="button button--green" type="submit">Sign up</button> : ""}
+                  {activity === "login" ? <button className="button button--green" type="submit" onClick={authFailure}>Login</button> : ""}
+                  {activity === "signup" ? <button className="button button--green" type="submit" onClick={authFailure}>Sign up</button> : ""}
                   {/* <span className="auth-label paddingBottom30">this is an auth message</span> */}
               </div>
           </div>
