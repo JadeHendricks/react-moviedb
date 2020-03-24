@@ -1,20 +1,34 @@
-import React, {useEffect, useContext} from 'react';
+import React, {Fragment, useEffect, useContext, useState} from 'react';
 import MovieCardItem from '../cards/MovieCardItem';
 import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import ActorSummaryContext from "../../context/actorSummary/ActorSummaryContext";
+import Loader from "../layout/Loader";
 
 function ActorSummary({match}) {
 
   const actorSummaryContext = useContext(ActorSummaryContext);
   const {getActor, getCredits, actor, credits} = actorSummaryContext;
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     getActor(match.params.id);
     getCredits(match.params.id);
     window.scrollTo(0, 0);
+    addLoader();
+
+    return () => {
+      clearTimeout(addLoader);
+    }
     // eslint-disable-next-line
   }, []);
+
+  const addLoader = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }
 
 
   const genderChecker = (gender) => {
@@ -22,6 +36,8 @@ function ActorSummary({match}) {
   }
 
   return (
+    <Fragment>
+    {loading ? <Loader /> : ""}
     <section className="movieDetails">
       <div className="movieDetails__wrapper">
       <div className="movieDetailSummary actorDetailSummary">
@@ -74,6 +90,7 @@ function ActorSummary({match}) {
         </div>
     </div>
     </section>
+    </Fragment>
   )
 }
 

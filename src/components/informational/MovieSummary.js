@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment, useContext} from 'react';
+import React, {useEffect, Fragment, useContext, useState} from 'react';
 import Review from "../reviews/Review";
 import Rating from "../rating/Rating";
 import svgAsset from "../../images/sprite.svg";
@@ -8,6 +8,7 @@ import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import MovieSummaryContext from "../../context/movieSummary/MovieSummaryContext";
 import MainContentContext from "../../context/mainContent/MainContentContext";
+import Loader from "../layout/Loader";
 
 function MovieSummary({match}) {
 
@@ -20,6 +21,8 @@ function MovieSummary({match}) {
   const mainContentContext = useContext(MainContentContext);
   const {appWideContent} = mainContentContext;
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     getMovie(match.params.id);
     getReviews(match.params.id);
@@ -31,9 +34,20 @@ function MovieSummary({match}) {
   }, [movie]);
 
   useEffect(() => {
+    addLoader();
     window.scrollTo(0, 0);
+
+    return () => {
+      clearTimeout(addLoader);
+    }
     // eslint-disable-next-line
   }, [match.params.id]);
+
+  const addLoader = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  }
 
   const playTrailer = async () => {
     let response;
@@ -60,6 +74,7 @@ function MovieSummary({match}) {
 
   return (
     <Fragment>
+      {loading ? <Loader /> : ""}
       <section className="movieDetails">
 
         <div className="movieDetails__wrapper">

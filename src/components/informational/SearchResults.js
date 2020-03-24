@@ -1,17 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import SearchCardItem from "../cards/SearchCardItem";
+import Loader from "../layout/Loader";
 
 function SearchResults() {
   const query = decodeURI(window.location.href.split("/").pop());
 
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState([]);
+
   useEffect(() => {
     fetchMoviesAndSeries(query);
     window.scrollTo(0, 0);
+    addLoader();
+
+    return () => {
+      clearTimeout(addLoader);
+    }
     // eslint-disable-next-line
   }, [query]);
 
-
-  const [searchResults, setSearchResults] = useState([]);
+  const addLoader = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }
 
   const fetchMoviesAndSeries = async (query) => {
     const responseMovies = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
@@ -27,14 +39,17 @@ function SearchResults() {
   }
 
   return (
-    <section className="searchResults">
-      <div className="container">
-          <h2 className="searchResults__title">Search results for <span>{`${query}`}</span></h2>
-          <div className="searchResults__wrapper">
-            {searchResults.map(result => <SearchCardItem key={result.id} movie={result}/>)}
-          </div>
-      </div>
-    </section>
+    <Fragment>
+      {loading ? <Loader /> : ""}
+      <section className="searchResults">
+        <div className="container">
+            <h2 className="searchResults__title">Search results for <span>{`${query}`}</span></h2>
+            <div className="searchResults__wrapper">
+              {searchResults.map(result => <SearchCardItem key={result.id} movie={result}/>)}
+            </div>
+        </div>
+      </section>
+    </Fragment>
 
   )
 }
