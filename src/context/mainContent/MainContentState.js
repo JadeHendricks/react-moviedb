@@ -32,7 +32,7 @@ const MainContentState = props => {
     } 
 
   const handleClick = async (e) => {
-    const requestName = e.target.getAttribute("data-content");
+    const requestName = e.currentTarget.getAttribute("data-content");
     let response;
     if (state.appWideContent === "movies") {
        response = await fetch(`https://api.themoviedb.org/3/movie/${requestName}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);

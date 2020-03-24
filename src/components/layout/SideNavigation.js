@@ -15,29 +15,29 @@ function SideNavigation() {
         </Link>
         <div className="navigation__wrapper">
             <Link className="navigation__node active"  data-content={appWideContent === "series" ? "on_the_air" : "now_playing"} to="/" onClick={handleClick}>
-                <svg className="navigation__icon" data-content={appWideContent === "series" ? "on_the_air" : "now_playing"}>
+                <svg className="navigation__icon">
                     <use xlinkHref={`${svgAssets}#icon-video`}></use>
                 </svg>
-                <h5 className="navigation__nodename" data-content={appWideContent === "series" ? "on_the_air" : "now_playing"}>Now Playing</h5>
+                <h5 className="navigation__nodename">Now Playing</h5>
             </Link>
             <Link className="navigation__node" data-content="top_rated" to="/" onClick={handleClick}>
-                <svg className="navigation__icon" data-content="top_rated">
+                <svg className="navigation__icon">
                     <use xlinkHref={`${svgAssets}#icon-desktop`}></use>
                 </svg>
-                <h5 className="navigation__nodename" data-content="top_rated">Top Rated</h5>
+                <h5 className="navigation__nodename">Top Rated</h5>
             </Link>
             <Link className="navigation__node" data-content="popular" to="/" onClick={handleClick}>
-                <svg className="navigation__icon" data-content="popular">
+                <svg className="navigation__icon">
                     <use xlinkHref={`${svgAssets}#icon-presentation`}></use>
                 </svg>
-                <h5 className="navigation__nodename" data-content="popular">Popular</h5>
+                <h5 className="navigation__nodename">Popular</h5>
             </Link>
             {appWideContent === "movies" ? 
             <Link className="navigation__node" data-content="upcoming" to="/" onClick={handleClick}>
-                <svg className="navigation__icon"  data-content="upcoming">
+                <svg className="navigation__icon">
                     <use xlinkHref={`${svgAssets}#icon-clock`}></use>
                 </svg>
-                <h5 className="navigation__nodename" data-content="upcoming">Coming Soon</h5>
+                <h5 className="navigation__nodename">Upcoming</h5>
             </Link> : ""}
         </div>
     </nav>

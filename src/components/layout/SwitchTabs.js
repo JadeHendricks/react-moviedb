@@ -4,12 +4,12 @@ import MainContentContext from "../../context/mainContent/MainContentContext";
 function SwitchTabs() {
 
   const mainContentContext = useContext(MainContentContext);
-  const { setSiteContent } = mainContentContext;
+  const { setSiteContent, appWideContent } = mainContentContext;
 
   return (
     <div className="switchTabs">
-      <div className="switchTabs__tab active" data-content="movies" onClick={setSiteContent}>Movies</div>
-      <div className="switchTabs__tab" data-content="series" onClick={setSiteContent}>Series</div>
+      <div className={appWideContent === "movies" ? "switchTabs__tab active" : "switchTabs__tab"} data-content="movies" onClick={setSiteContent}>Movies</div>
+      <div className={appWideContent === "series" ? "switchTabs__tab active" : "switchTabs__tab"} data-content="series" onClick={setSiteContent}>Series</div>
     </div>
   )
 }
