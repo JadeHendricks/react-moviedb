@@ -95,7 +95,7 @@ function MovieSummary({match}) {
                     </div>
                     <div className="misc">
                       <div className="misc__box">
-                          <div className="movieDetails__title movieDetails__title--smaller">Release Date</div>
+                          <div className="movieDetails__title movieDetails__title--smaller">Initial release date</div>
                           <p className="misc__info">{ moment(movie.release_date ? movie.release_date : movie.first_air_date).format("DD MMM YYYY") }</p>
                       </div>
 

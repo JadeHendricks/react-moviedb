@@ -11,7 +11,7 @@ const MainContentState = props => {
   const initialState = {
     movies: [],
     whatsShowing: "Now Playing",
-    appWideContent: "movies"
+    appWideContent: null
   };
 
   const [state, dispatch] = useReducer(MainContentReducer, initialState);

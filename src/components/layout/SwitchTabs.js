@@ -9,7 +9,7 @@ function SwitchTabs() {
   return (
     <div className="switchTabs">
       <div className={appWideContent === "movies" ? "switchTabs__tab active" : "switchTabs__tab"} data-content="movies" onClick={setSiteContent}>Movies</div>
-      <div className={appWideContent === "series" ? "switchTabs__tab active" : "switchTabs__tab"} data-content="series" onClick={setSiteContent}>Series</div>
+      <div className={appWideContent === "series" || appWideContent === null ? "switchTabs__tab active" : "switchTabs__tab"} data-content="series" onClick={setSiteContent}>Series</div>
     </div>
   )
 }
