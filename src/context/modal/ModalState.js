@@ -46,9 +46,23 @@ const ModalState = props => {
     alert("This will work in due time")
   }
 
+  const showPassword = (e) => {
+    const eyeElement = e.currentTarget.children[0];
+    const passwordInput = e.currentTarget.previousSibling;
+    
+    if (passwordInput.getAttribute("type") === "password") {
+      passwordInput.setAttribute("type", "text");
+      eyeElement.setAttribute("xlink:href", "/static/media/sprite.12eb0e28.svg#icon-eye-blocked")
+    } else {
+      passwordInput.setAttribute("type", "password");
+      eyeElement.setAttribute("xlink:href", "/static/media/sprite.12eb0e28.svg#icon-eye")
+    }
+  }
+
   return (
     <ModalContext.Provider value={{
       authSelection,
+      showPassword,
       closeModal,
       authFailure,
       activity: state.activity,

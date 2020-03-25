@@ -5,7 +5,7 @@ import ModalContext from "../../context/modal/ModalContext";
 function Modal() {
 
   const modalContext = useContext(ModalContext);
-  const {authSelection, activity, closeModal, authFailure} = modalContext;
+  const {authSelection, showPassword, activity, closeModal, authFailure} = modalContext;
 
   useEffect(() => {
     closeModal();
@@ -36,9 +36,9 @@ function Modal() {
                   </div>
                   <div className="inputbox__box">
                       <label id="signup_password" className="inputbox__label">Password *</label>
-                      <input type="text" name="signup_password" className="inputbox__input" placeholder="Password" />
+                      <input type="password" name="signup_password" className="inputbox__input" placeholder="Password" />
                       {/* <span className="auth-label">this is an auth message</span> */}
-                      <svg className="modalForm__icon">
+                      <svg className="modalForm__icon" onClick={showPassword}>
                           <use xlinkHref={`${svgAsset}#icon-eye`}></use>
                       </svg>
                   </div>
@@ -54,7 +54,7 @@ function Modal() {
                       <label id="login_password" className="inputbox__label">Password *</label>
                       <input type="password" name="login_password" className="inputbox__input" placeholder="Password" />
                       {/* <span className="auth-label">this is an auth message</span> */}
-                      <svg className="modalForm__icon">
+                      <svg className="modalForm__icon" onClick={showPassword}>
                           <use xlinkHref={`${svgAsset}#icon-eye`}></use>
                       </svg>
                   </div>
@@ -62,7 +62,7 @@ function Modal() {
                       <label id="login_confirmpassword" className="inputbox__label">Confirm Password *</label>
                       <input type="password" name="login_confirmpassword" className="inputbox__input" placeholder="Confirm Password" />
                       {/* <span className="auth-label">this is an auth message</span> */}
-                      <svg className="modalForm__icon">
+                      <svg className="modalForm__icon" onClick={showPassword}>
                           <use xlinkHref={`${svgAsset}#icon-eye`}></use>
                       </svg>
                   </div>
