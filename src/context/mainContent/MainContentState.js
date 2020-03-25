@@ -10,7 +10,7 @@ const MainContentState = props => {
 
   const initialState = {
     movies: [],
-    whatsShowing: "Now Playing",
+    whatsShowing: "Now playing",
     appWideContent: null
   };
 
@@ -32,7 +32,7 @@ const MainContentState = props => {
     } 
 
   const handleClick = async (e) => {
-    const requestName = e.currentTarget.getAttribute("data-content");
+    let requestName = e.currentTarget.getAttribute("data-content");
     let response;
     if (state.appWideContent === "movies") {
        response = await fetch(`https://api.themoviedb.org/3/movie/${requestName}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
@@ -41,8 +41,14 @@ const MainContentState = props => {
     }
     
       const data = await response.json();
-      const CardTitle = requestName && requestName.replace(/_/g, " ");
-      const formattedTitle = CardTitle.charAt(0).toUpperCase() + CardTitle.substring(1);
+
+      const cardTitle = requestName && requestName.replace(/_/g, " ");
+      let formattedTitle = cardTitle.charAt(0).toUpperCase() + cardTitle.substring(1);
+
+      
+      if (formattedTitle === "On the air") {
+        formattedTitle = "Now playing"
+      }
 
       requestName && dispatch({
         type: FETCH_WHATSSHOWING_MOVIESUMMARY,
@@ -62,6 +68,12 @@ const MainContentState = props => {
       type: SET_APP_CONTENT,
       payload: siteContent
     });
+
+    siteContent && dispatch({
+      type: FETCH_WHATSSHOWING_MOVIESUMMARY,
+      payload: "Now playing"
+    });
+
   }
 
   return (
