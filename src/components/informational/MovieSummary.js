@@ -86,7 +86,7 @@ function MovieSummary({match}) {
                 </div>
 
                 <div className="movieDetailSummary__wrapper">
-                    <h3 className="movieDetails__title">Movie Details</h3>
+                    <h3 className="movieDetails__title">{appWideContent === "movies" ? "Movie Details" : "Series Details"}</h3>
                     <div className="category">
                         <div className="movieDetails__title movieDetails__title--smaller">Category</div>
                         <div className="category__wrapper">
@@ -103,7 +103,8 @@ function MovieSummary({match}) {
                           <div className="movieDetails__title movieDetails__title--smaller">Runtime</div>
                           <p className="misc__info">{movie.runtime ? movie.runtime : movie.episode_run_time}mins</p>
                       </div>
-                      {  }
+                      { appWideContent === "series" ? 
+                      <Fragment>
                       <div className="misc__box">
                           <div className="movieDetails__title movieDetails__title--smaller">Number of seasons</div>
                           <p className="misc__info">{movie.number_of_seasons}</p>
@@ -112,8 +113,7 @@ function MovieSummary({match}) {
                       <div className="misc__box">
                           <div className="movieDetails__title movieDetails__title--smaller">Number of episodes</div>
                           <p className="misc__info">{movie.number_of_episodes}</p>
-                      </div>
-
+                      </div></Fragment> : "" }
 
                     </div>
                     <div className="reviews">
@@ -164,7 +164,7 @@ function MovieSummary({match}) {
                   </div>
 
                   <section className="moreMovies">
-                      <h3 className="moreMovies__title">Similar Movies</h3>
+                      <h3 className="moreMovies__title">{appWideContent === "series" ? "Similar Series" : "Similar Movies"}</h3>
                       <div className="moreMovies__titles">
                         {similarMovies && similarMovies.slice(0, 12).map(movie => <MovieCardItem key={movie.id} movie={movie} />)}
                       </div>
