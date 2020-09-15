@@ -8,8 +8,9 @@ Allowing the site to be more aligned with a real world complete application.
 ## Installation
 ```bash
 1 - npm install
+2 - get your movieDB api key (here)[https://www.themoviedb.org/]
 2 - npm run start
-3 - Explore
+3 - explore!
 ```
 
 ## Tools
@@ -17,4 +18,4 @@ A site built with React.js, SASS and [The MovieDB API](https://www.themoviedb.or
 State is managed with the Context API.
 
 ## View
-Will add on completion
+[Demo](https://react-the-moviedb.netlify.app/)
