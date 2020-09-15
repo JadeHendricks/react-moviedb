@@ -8,7 +8,8 @@ Allowing the site to be more aligned with a real world complete application.
 ## Installation
 ```bash
 1 - npm install
-2 - get your movieDB api key (here)[https://www.themoviedb.org/]
+2 - get your movieDB api key here - https://www.themoviedb.org/
+3 - add a .env file to the root and store you api key in "REACT_APP_API_KEY"
 2 - npm run start
 3 - explore!
 ```
