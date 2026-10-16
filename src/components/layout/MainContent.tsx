@@ -1,33 +1,20 @@
-import React, {Fragment, useContext, useEffect, useState} from 'react';
+import React, {Fragment, useContext} from 'react';
 import MovieCardItem from "../cards/MovieCardItem";
 import SwitchTabs from "../layout/SwitchTabs";
 import Header from './Header';
-import MainContentContext from "../../context/mainContent/MainContentContext";
+import UiContext from "../../context/ui/UiContext";
 import Loader from "../layout/Loader";
+import { useMediaList } from "../../api/queries";
+import { useTimedLoader } from "../../hooks/useTimedLoader";
 
 function MainContent() {
 
-  const mainContentContext = useContext(MainContentContext);
-  const {movies, whatsShowing, InitialCardState, appWideContent} = mainContentContext;
+  const {mediaType, category, whatsShowing} = useContext(UiContext);
 
-  const [loading, setLoading] = useState(true);
+  // The cards follow the query key (type + category), so the heading and the cards cannot disagree (B5).
+  const {data: movies} = useMediaList(mediaType, category);
 
-  useEffect(() => {
-    InitialCardState(); 
-    addLoader();
-
-    return () => {
-      // Passing the function is a no-op (B4), kept as-is until Phase 4; the cast only satisfies the types.
-      clearTimeout(addLoader as unknown as number);
-    }
-    // eslint-disable-next-line
-  }, [appWideContent])
-
-  const addLoader = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }
+  const loading = useTimedLoader(3000);
 
   return (
     <Fragment>

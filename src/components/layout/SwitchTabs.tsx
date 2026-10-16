@@ -1,15 +1,14 @@
 import React, { useContext} from "react";
-import MainContentContext from "../../context/mainContent/MainContentContext";
+import UiContext from "../../context/ui/UiContext";
 
 function SwitchTabs() {
 
-  const mainContentContext = useContext(MainContentContext);
-  const { setSiteContent, appWideContent } = mainContentContext;
+  const { setAppWideContent, appWideContent } = useContext(UiContext);
 
   return (
     <div className="switchTabs">
-      <div className={appWideContent === "movies" ? "switchTabs__tab active" : "switchTabs__tab"} data-content="movies" onClick={setSiteContent}>Movies</div>
-      <div className={appWideContent === "series" || appWideContent === null ? "switchTabs__tab active" : "switchTabs__tab"} data-content="series" onClick={setSiteContent}>Series</div>
+      <div className={appWideContent === "movies" ? "switchTabs__tab active" : "switchTabs__tab"} data-content="movies" onClick={() => setAppWideContent("movies")}>Movies</div>
+      <div className={appWideContent === "series" ? "switchTabs__tab active" : "switchTabs__tab"} data-content="series" onClick={() => setAppWideContent("series")}>Series</div>
     </div>
   )
 }

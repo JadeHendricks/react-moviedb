@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, Fragment, type FormEvent, type ChangeEvent} from 'react';
+import React, {useState, useContext, Fragment, type FormEvent, type ChangeEvent} from 'react';
 import svgAsset from "../../images/sprite.svg";
 import { useNavigate } from "react-router";
 import ModalContext from "../../context/modal/ModalContext";
@@ -11,24 +11,13 @@ function TopNavigation() {
   const {authSelection, modalShow} = modalContext;
 
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("");
-  const [redirect, setRedirect] = useState(false);
-  
-
-  useEffect(() => {
-    if (redirect) {
-      navigate(`/searchResults/${query}`);
-      setRedirect(false);
-    }
-    // eslint-disable-next-line
-  }, [query]);
 
   const initSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setQuery(search.toLowerCase());
     setSearch("");
 
-    search === "" ?  alert("Please insert a search term") : setRedirect(true);
+    // The term is encoded into the path segment; the results page reads it back with useParams (B6).
+    search === "" ?  alert("Please insert a search term") : navigate(`/searchResults/${encodeURIComponent(search.toLowerCase())}`);
   }
 
   const updateSearch = (e: ChangeEvent<HTMLInputElement>) => {

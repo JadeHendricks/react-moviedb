@@ -1,46 +1,33 @@
-import React, {useEffect, useContext} from 'react'
+import React, {useContext} from 'react'
 import svgAssets from "../../images/sprite.svg";
 import { Link } from "react-router";
 import moment from "moment";
-import HeaderContext from "../../context/header/HeaderContext";
-import MainContentContext from "../../context/mainContent/MainContentContext";
+import UiContext from "../../context/ui/UiContext";
+import { useGenres, useMostPopular, usePlayTrailer } from "../../api/queries";
+import { tmdbImage } from "../../api/tmdbClient";
+import type { MediaListItem } from "../../types/tmdb";
+
+const NO_MOST_POPULAR: Partial<MediaListItem> = {};
 
 const Header = () => {
 
-  const headerContext = useContext(HeaderContext);
-  const {setGenresArray, getMostPopularMovie, genres, mostPopularMovie} = headerContext;
+  const {mediaType} = useContext(UiContext);
+
+  // The hero is keyed by media type, so switching Movies/Series refetches it (B2).
+  const {data: mostPopularMovie = NO_MOST_POPULAR} = useMostPopular(mediaType);
   const {backdrop_path, title, name, overview, release_date, id, genre_ids} = mostPopularMovie;
 
-  const mainContentContext = useContext(MainContentContext);
-  const {appWideContent} = mainContentContext;
+  // Pills always come from the movie genre list, as before (series genres are B14, Phase 4).
+  const {data: allGenres} = useGenres("movie");
+  const genres = genre_ids ? (allGenres ?? []).filter(element => genre_ids.includes(element.id)) : [];
 
-  useEffect(() => {
-    setGenresArray(genre_ids);
-    getMostPopularMovie();
-    // eslint-disable-next-line
-  }, [genre_ids]);
+  const playTrailer = usePlayTrailer(mediaType, id);
 
   const backgroundImage = {
-    backgroundImage: backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/original${backdrop_path})` : "",
+    backgroundImage: backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(backdrop_path, "original")})` : "",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "top center",
     backgroundSize: "cover"
-  }
-
-  const playTrailer = async () => {
-    let response;
-    if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    }
-    const data = await response.json();
-    const videoKey = data.results[0].key;
-
-    window.open(
-      `https://www.youtube.com/watch?v=${videoKey}`,
-      `_blank`
-    );
   }
 
   return (
