@@ -381,9 +381,6 @@
 .paddingBottom30 {
   padding-bottom: 3rem !important;
 }
-.borderTop0 {
-  border-top: 0rem !important;
-}
 .borderBottom0 {
   border-bottom: 0rem !important;
 }
@@ -776,31 +773,6 @@
 .modalForm__box:first-child {
   border-bottom: 0;
 }
-.modalForm__icon {
-  width: 3rem;
-  height: 3rem;
-  position: absolute;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  fill: #868686;
-  cursor: pointer;
-}
-.modalForm__label {
-  margin-bottom: 1.2rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: currentColor;
-  font-size: 1.4rem;
-}
-.modalForm__input {
-  width: 100%;
-  border: 0;
-  font-size: 2rem;
-}
-.modalForm__input:focus {
-  outline: 0;
-}
 .modalForm button {
   width: 100%;
   margin: 4rem 0 0.5rem 0;
@@ -811,40 +783,6 @@
   display: block;
   width: 100%;
   margin-top: 0.5rem;
-}
-.inputbox__box {
-  position: relative;
-  padding: 2rem 2.5rem;
-  border-top: 0.1rem solid #bbb9bc;
-  border-bottom: 0.1rem solid #bbb9bc;
-}
-.inputbox__box:first-child {
-  border-bottom: 0;
-}
-.inputbox__icon {
-  width: 3rem;
-  height: 3rem;
-  position: absolute;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  fill: #868686;
-  cursor: pointer;
-}
-.inputbox__label {
-  margin-bottom: 1.2rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: currentColor;
-  font-size: 1.4rem;
-}
-.inputbox__input {
-  width: 100%;
-  border: 0;
-  font-size: 2rem;
-}
-.inputbox__input:focus {
-  outline: 0;
 }
 .accountSettings__banner {
   color: #333333;
@@ -915,22 +853,6 @@
   }
   .accountSettings .accountform__container {
     padding: 0 2rem;
-  }
-}
-@media screen and (max-width: 767px) {
-  .inputbox__box {
-    padding: 1rem 1.5rem;
-  }
-  .inputbox__icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    right: 2rem;
-  }
-  .inputbox__label {
-    font-size: 1.2rem;
-  }
-  .inputbox__input {
-    font-size: 1.6rem;
   }
 }
 .modal {

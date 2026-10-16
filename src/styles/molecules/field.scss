@@ -1,0 +1,33 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// A boxed form field: label and input between two hairlines, with an optional icon on the right
+// (the password eye). Boxes stack, so --flush-top drops the top line where one sits on another.
+.field {
+  position: relative;
+  padding: $space-20 $space-25;
+  border-top: $border-thin solid $color-border;
+  border-bottom: $border-thin solid $color-border;
+
+  @include respond-to(sm) {
+    padding: $space-10 $space-15;
+  }
+}
+
+.field:first-child {
+  border-bottom: 0;
+}
+
+.field--flush-top {
+  border-top: 0;
+}
+
+.field__icon {
+  --icon-size: #{$space-30};
+  --icon-fill: #{$color-muted};
+
+  position: absolute;
+  right: $space-20;
+  top: 50%;
+  transform: translateY(-50%);
+}

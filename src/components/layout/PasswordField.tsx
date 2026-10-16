@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import '../../styles/atoms/icon.scss';
+import '../../styles/atoms/input.scss';
+import '../../styles/atoms/label.scss';
+import '../../styles/molecules/field.scss';
 import svgAsset from "../../images/sprite.svg";
 
 interface PasswordFieldProps {
@@ -7,7 +11,7 @@ interface PasswordFieldProps {
   name: string;
   label: string;
   placeholder: string;
-  /** Extra class on the box, e.g. "borderTop0". */
+  /** Extra class on the box, e.g. "field--flush-top". */
   boxClassName?: string;
 }
 
@@ -15,12 +19,12 @@ interface PasswordFieldProps {
 function PasswordField({ labelId, name, label, placeholder, boxClassName }: PasswordFieldProps) {
   const [visible, setVisible] = useState(false);
   return (
-    <div className={boxClassName ? `inputbox__box ${boxClassName}` : "inputbox__box"}>
-        <label id={labelId} className="inputbox__label">{label}</label>
-        <input type={visible ? "text" : "password"} name={name} className="inputbox__input" placeholder={placeholder} />
+    <div className={boxClassName ? `field ${boxClassName}` : "field"}>
+        <label id={labelId} className="label label--caps">{label}</label>
+        <input type={visible ? "text" : "password"} name={name} className="input input--plain" placeholder={placeholder} />
         {/* <span className="auth-label">this is an auth message</span> */}
         {/* The sprite url is an import, so it follows the build's hashed file name (B19). */}
-        <svg className="modalForm__icon" onClick={() => setVisible(shown => !shown)}>
+        <svg className="icon icon--clickable field__icon" onClick={() => setVisible(shown => !shown)}>
             <use href={`${svgAsset}#${visible ? "icon-eye-blocked" : "icon-eye"}`}></use>
         </svg>
     </div>

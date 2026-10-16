@@ -1,4 +1,7 @@
 import React, {useContext} from 'react';
+import '../../styles/atoms/input.scss';
+import '../../styles/atoms/label.scss';
+import '../../styles/molecules/field.scss';
 import '../../styles/atoms/button.scss';
 import PasswordField from "./PasswordField";
 import ModalContext from "../../context/modal/ModalContext";
@@ -19,25 +22,25 @@ function Modal() {
           <div className="modalAuth__padding">
               <p className="modalAuth__slug">Enter your email and password to <strong>sign in</strong></p>
           </div>
-          <div className="modalForm inputbox">
+          <div className="modalForm">
           
               {activity === "login" ? <div className="modalForm__login">
-                  <div className="inputbox__box">
-                      <label id="signup_email" className="inputbox__label">Email *</label>
-                      <input type="text" name="signup_email" className="inputbox__input" placeholder="Email" />
+                  <div className="field">
+                      <label id="signup_email" className="label label--caps">Email *</label>
+                      <input type="text" name="signup_email" className="input input--plain" placeholder="Email" />
                       {/* <span className="auth-label">this is an auth message</span> */}
                   </div>
                   <PasswordField labelId="signup_password" name="signup_password" label="Password *" placeholder="Password" />
               </div> : ""}
 
               {activity === "signup" ? <div className="modalForm__signup">
-                  <div className="inputbox__box">
-                      <label id="login_email" className="inputbox__label">Email *</label>
-                      <input type="text" name="login_email" className="inputbox__input" placeholder="Email" />
+                  <div className="field">
+                      <label id="login_email" className="label label--caps">Email *</label>
+                      <input type="text" name="login_email" className="input input--plain" placeholder="Email" />
                       {/* <span className="auth-label">this is an auth message</span> */}
                   </div>
                   <PasswordField labelId="login_password" name="login_password" label="Password *" placeholder="Password" />
-                  <PasswordField labelId="login_confirmpassword" name="login_confirmpassword" label="Confirm Password *" placeholder="Confirm Password" boxClassName="borderTop0" />
+                  <PasswordField labelId="login_confirmpassword" name="login_confirmpassword" label="Confirm Password *" placeholder="Confirm Password" boxClassName="field--flush-top" />
               </div> : ""}
 
               <div className="modalAuth__padding">

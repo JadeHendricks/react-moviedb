@@ -34,10 +34,10 @@ test.describe('login / sign-up modal', () => {
 
     const password = page.locator('input[name="login_password"]');
     await expect(password).toHaveAttribute('type', 'password');
-    await page.locator('.modalForm__icon').first().click();
+    await page.locator('.field__icon').first().click();
     await expect(password).toHaveAttribute('type', 'text');
     await snap(page, 'modal-signup-password-visible', { fullPage: false });
-    await page.locator('.modalForm__icon').first().click();
+    await page.locator('.field__icon').first().click();
     await expect(password).toHaveAttribute('type', 'password');
 
     // Clicking the dimmed overlay (outside .modal) closes it.

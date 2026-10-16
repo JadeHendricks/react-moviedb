@@ -93,7 +93,7 @@ describe('login / sign-up modal', () => {
     renderWithProviders(<TopNavigation />);
     await openLogin(user);
 
-    const href = document.querySelector('.modalForm__icon use')?.getAttribute('href') ?? '';
+    const href = document.querySelector('.field__icon use')?.getAttribute('href') ?? '';
     expect(href).not.toContain('12eb0e28');
   });
 });
