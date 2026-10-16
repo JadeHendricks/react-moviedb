@@ -1,0 +1,50 @@
+import js from '@eslint/js';
+import globals from 'globals';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import tseslint from 'typescript-eslint';
+import prettier from 'eslint-config-prettier';
+
+export default tseslint.config(
+  {
+    ignores: ['build/**', 'node_modules/**', 'coverage/**', 'test-results/**', 'playwright-report/**', '.agents/**', '.worktrees/**'],
+  },
+  js.configs.recommended,
+  // Ready for Phase 2 (TypeScript): these only apply to .ts/.tsx files, of which there are few today.
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [tseslint.configs.recommended],
+  },
+  {
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { ...globals.browser },
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+    plugins: { react, 'react-hooks': reactHooks, 'jsx-a11y': jsxA11y },
+    rules: {
+      // Marks JSX-used imports as used (core no-unused-vars cannot see JSX).
+      'react/jsx-uses-vars': 'error',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      // Warnings only for now; they become errors in the accessibility phase.
+      ...Object.fromEntries(
+        Object.keys(jsxA11y.configs.recommended.rules).map((name) => [name, 'warn']),
+      ),
+      // React is imported in every file; the JSX transform no longer needs it.
+      'no-unused-vars': ['warn', { varsIgnorePattern: '^React$' }],
+    },
+  },
+  {
+    files: ['**/*.test.{js,jsx,ts,tsx}', 'src/test/**'],
+    languageOptions: { globals: { ...globals.browser, ...globals.node } },
+  },
+  {
+    files: ['*.{js,mjs,ts}', 'e2e/**/*.{js,mjs,ts}'],
+    languageOptions: { globals: { ...globals.node } },
+  },
+  prettier,
+);
