@@ -126,6 +126,17 @@ describe('query hooks (fetch is mocked)', () => {
     expect(result.current.data?.some((m) => m.id === 3)).toBe(false);
   });
 
+  it('usePersonMovieCredits sorts a copy, so the cached response keeps its order (B17)', async () => {
+    const cast = [item(1, { vote_average: 1 }), item(2, { vote_average: 9 }), item(3, { vote_average: 5 })];
+    fetchMock.mockResolvedValue(json({ cast }));
+
+    const { result } = renderHook(() => usePersonMovieCredits('6'), { wrapper });
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.data?.map((m) => m.id)).toEqual([2, 3, 1]);
+    const cached = queryClient.getQueryData<{ cast: { id: number }[] }>(['tmdb', 'person-credits', '6']);
+    expect(cached?.cast.map((m) => m.id)).toEqual([1, 2, 3]);
+  });
   it('useSearch runs both searches in parallel, merges by popularity and gives unique keys (B7, B8)', async () => {
     fetchMock.mockImplementation(async (input) => {
       const url = new URL(String(input));
