@@ -1,6 +1,6 @@
-import React, {useContext, useReducer} from "react";
+import React, {useContext, useReducer, type ReactNode} from "react";
 import MovieSummaryContext from './MovieSummaryContext';
-import MovieSummaryReducer from './MovieSummaryReducer';
+import MovieSummaryReducer, { type MovieSummaryStateShape } from './MovieSummaryReducer';
 import MainContentContext from "../mainContent/MainContentContext";
 import {
   FETCH_GENRES_MOVIESUMMARY, 
@@ -8,14 +8,15 @@ import {
   FETCH_REVIEWS_MOVIESUMMARY,
   FETCH_CAST_MOVIESUMMARY,
   FETCH_VIDEOS_MOVIESUMMARY,
-  FETCH_SIMILARMOVIES_MOVIESUMMARY} from "../types.js"; 
+  FETCH_SIMILARMOVIES_MOVIESUMMARY} from "../types";
+import type { Credit, Genre, MediaDetails, MediaListItem, Paged, Review, Video } from "../../types/tmdb"; 
 
-const HeaderState = props => {
+const HeaderState = (props: { children?: ReactNode }) => {
 
   const mainContentContext = useContext(MainContentContext);
   const {appWideContent} = mainContentContext;
 
-  const initialState = {
+  const initialState: MovieSummaryStateShape = {
     movie: {},
     reviews: [],
     cast: [],
@@ -26,14 +27,14 @@ const HeaderState = props => {
 
   const [state, dispatch] = useReducer(MovieSummaryReducer, initialState);
 
-  const setGenresArray = async (genre_ids) => {
+  const setGenresArray = async (genre_ids: Genre[] | undefined) => {
     let response;
     if (appWideContent === "movies") {
       response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US`);
     } else {
       response = await fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US`);
     }
-      const data = await response.json();
+      const data: { genres: Genre[] } = await response.json();
       if (genre_ids) {
         const genresArray = data.genres.filter(genreOne => genre_ids.find(genreTwo => genreOne.id === genreTwo.id));
   
@@ -45,14 +46,14 @@ const HeaderState = props => {
       }
   }
 
-  const getMovie = async (id) => {
+  const getMovie = async (id: string | undefined) => {
     let response;
     if (appWideContent === "movies") {
       response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
       response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
-      const data = await response.json();
+      const data: MediaDetails = await response.json();
       
       data && dispatch({  
         type: FETCH_MOVIE_MOVIESUMMARY,
@@ -60,14 +61,14 @@ const HeaderState = props => {
       })
   }
 
-  const getReviews = async (id) => {
+  const getReviews = async (id: string | undefined) => {
     let response;
     if (appWideContent === "movies") {
       response = await fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
       response = await fetch(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
-      const data = await response.json();
+      const data: { results: Review[] } = await response.json();
   
       data && dispatch({  
         type: FETCH_REVIEWS_MOVIESUMMARY,
@@ -75,7 +76,7 @@ const HeaderState = props => {
       })
   }
 
-  const getCast = async (id) => {
+  const getCast = async (id: string | undefined) => {
     let response;
     if (appWideContent === "movies") {
       response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
@@ -83,7 +84,7 @@ const HeaderState = props => {
       response = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
 
-      const data = await response.json();
+      const data: { cast: Credit[] } = await response.json();
   
       data && dispatch({  
         type: FETCH_CAST_MOVIESUMMARY,
@@ -91,7 +92,7 @@ const HeaderState = props => {
       })
   }
 
-  const getVideos = async (id) => {
+  const getVideos = async (id: string | undefined) => {
     let response;
     if (appWideContent === "movies") {
       response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
@@ -99,7 +100,7 @@ const HeaderState = props => {
       response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
 
-      const data = await response.json();
+      const data: { results: Video[] } = await response.json();
   
       data && dispatch({  
         type: FETCH_VIDEOS_MOVIESUMMARY,
@@ -107,14 +108,14 @@ const HeaderState = props => {
       })
   }
 
-  const getSimilarMovies = async (id) => {
+  const getSimilarMovies = async (id: string | undefined) => {
     let response;
     if (appWideContent === "movies") {
       response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
       response = await fetch(`https://api.themoviedb.org/3/tv/${id}/similar?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
-      const data = await response.json();
+      const data: Paged<MediaListItem> = await response.json();
       
       data && dispatch({  
         type: FETCH_SIMILARMOVIES_MOVIESUMMARY,

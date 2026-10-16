@@ -2,8 +2,20 @@ import {
   FETCH_MOVIES_MAINCONTENT, 
   SET_APP_CONTENT,
   FETCH_WHATSSHOWING_MOVIESUMMARY} from "../types"; 
+import type { MediaListItem } from "../../types/tmdb";
 
-export default ( state, action ) => {
+export interface MainContentState {
+  movies: MediaListItem[];
+  whatsShowing: string;
+  appWideContent: string;
+}
+
+export type MainContentAction =
+  | { type: typeof FETCH_MOVIES_MAINCONTENT; payload: MediaListItem[] }
+  | { type: typeof FETCH_WHATSSHOWING_MOVIESUMMARY; payload: string }
+  | { type: typeof SET_APP_CONTENT; payload: string };
+
+export default ( state: MainContentState, action: MainContentAction ): MainContentState => {
   switch (action.type) {
     case FETCH_MOVIES_MAINCONTENT:
       return {
