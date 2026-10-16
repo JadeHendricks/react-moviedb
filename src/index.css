@@ -125,14 +125,14 @@
 .movieMain__storyline {
   margin-top: 4rem;
 }
-.movieMain .ratingholder {
+.movieMain .rating {
   position: absolute;
   right: 10rem;
   top: 4rem;
   height: 6rem;
   width: 6rem;
 }
-.movieMain .ratingholder__number {
+.movieMain .rating__number {
   font-size: 1.8rem;
 }
 .misc {
@@ -204,14 +204,14 @@
   .movieMain__title {
     padding-right: 7rem;
   }
-  .movieMain .ratingholder {
+  .movieMain .rating {
     position: absolute;
     right: 2rem;
     top: 2rem;
     height: 5rem;
     width: 5rem;
   }
-  .movieMain .ratingholder__number {
+  .movieMain .rating__number {
     font-size: 1.4rem;
   }
   .movieDetailSummary__image {
@@ -441,7 +441,7 @@
   margin: 0 4rem 1.5rem 0;
   height: 4.5rem;
 }
-.movieCard .ratingholder {
+.movieCard .rating {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -533,11 +533,11 @@
 .moreMovies .movieCard__information {
   padding: 1rem;
 }
-.moreMovies .ratingholder {
+.moreMovies .rating {
   height: 3rem;
   width: 3rem;
 }
-.moreMovies .ratingholder__number {
+.moreMovies .rating__number {
   font-size: 1.2rem;
 }
 .cardSearch {
@@ -571,7 +571,7 @@
   font-size: 1.4rem;
   line-height: 1.4;
 }
-.cardSearch .ratingholder {
+.cardSearch .rating {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -625,11 +625,11 @@
   .moreMovies .movieCard__information {
     padding: 1rem;
   }
-  .moreMovies .ratingholder {
+  .moreMovies .rating {
     height: 2.5rem;
     width: 2.5rem;
   }
-  .moreMovies .ratingholder__number {
+  .moreMovies .rating__number {
     font-size: 1rem;
   }
   .cardSearch {
@@ -683,11 +683,11 @@
   .moreMovies .movieCard__image {
     height: 28rem;
   }
-  .moreMovies .ratingholder {
+  .moreMovies .rating {
     height: 3.5rem;
     width: 3.5rem;
   }
-  .moreMovies .ratingholder__number {
+  .moreMovies .rating__number {
     font-size: 1.2rem;
   }
   .cardSearch {
@@ -796,31 +796,6 @@ button[disabled] {
   background-color: #868686;
   color: #ffffff;
   border: 0.2rem solid #868686;
-}
-.ratingholder {
-  color: #3cb13e;
-  background: linear-gradient(90deg, #3cb13e 0%, #3cb13e 0%, #87e887 100%);
-  box-shadow:
-    0 1rem 3rem rgba(0, 0, 0, 0.05),
-    0 0.5rem 1rem rgba(0, 0, 0, 0.12);
-  height: 3.6rem;
-  width: 3.6rem;
-  border-radius: 100%;
-}
-.ratingholder__number {
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 700;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.ratingholder--orange {
-  background: linear-gradient(90deg, #ff8400 0%, #ffda00 100%);
-}
-.ratingholder--red {
-  background: linear-gradient(90deg, red 0%, #ff9292 100%);
 }
 input[type='search']::-ms-clear {
   display: none;
@@ -1169,7 +1144,7 @@ textarea {
   clear: both;
   display: table;
 }
-.reviews .ratingholder {
+.reviews .rating {
   position: absolute;
   top: 4rem;
   right: 0;
@@ -1564,7 +1539,7 @@ textarea {
   transform: translate(-50%, -50%) scale(1.3) rotate(360deg);
   cursor: pointer;
 }
-.movie-header .ratingholder {
+.movie-header .rating {
   position: absolute;
   bottom: 10rem;
   right: 10rem;

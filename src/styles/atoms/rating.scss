@@ -1,0 +1,31 @@
+@use '../tokens' as *;
+
+// A round score badge. The colour theme is a modifier (--orange, --red); green is the default.
+// Where it sits and how big it is belongs to the card that holds it. A card sets the hooks
+// --rating-size and --rating-number-size on the badge, so no rule here depends on its parent.
+.rating {
+  color: $color-green;
+  background: linear-gradient(90deg, $color-green 0%, $color-green-light 100%);
+  box-shadow: $shadow-card;
+  height: var(--rating-size, 3.6rem);
+  width: var(--rating-size, 3.6rem);
+  border-radius: $radius-round;
+}
+
+.rating__number {
+  color: $color-white;
+  font-size: var(--rating-number-size, $font-size-12);
+  font-weight: $font-weight-bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.rating--orange {
+  background: linear-gradient(90deg, $color-warn-start 0%, $color-warn-end 100%);
+}
+
+.rating--red {
+  background: linear-gradient(90deg, $color-danger-start 0%, $color-danger-end 100%);
+}
