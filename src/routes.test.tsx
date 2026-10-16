@@ -53,6 +53,7 @@ describe('routes', () => {
       'search/tv': page(item(7, { title: undefined, name: 'Same Id Show', popularity: 9 })),
     });
     vi.stubGlobal('fetch', fetchMock);
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => undefined);
 
     renderApp('/searchResults/same');
 
@@ -60,6 +61,8 @@ describe('routes', () => {
     const movie = screen.getByText('Same Id Movie').closest('.cardSearch') as HTMLElement;
     expect(within(show).getAllByRole('link')[0]).toHaveAttribute('href', '/seriesSummary/7');
     expect(within(movie).getAllByRole('link')[0]).toHaveAttribute('href', '/movieSummary/7');
+    // A movie and a series with the same id are two rows with two keys, so React has nothing to warn about (B8).
+    expect(consoleError.mock.calls.flat().join(' ')).not.toMatch(/same key/);
   });
 
   it('an actor credit always opens a movie, whichever tab is selected (B9)', async () => {
