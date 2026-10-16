@@ -4,12 +4,10 @@ import {Link} from "react-router";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import { tmdbImage } from "../../api/tmdbClient";
 import type { MediaListItem } from "../../types/tmdb";
+import { truncate } from "../../utils/truncate";
 
 function SearchCardItem({movie: {id, title, name, vote_average, overview, poster_path}}: {movie: MediaListItem}) {
 
-  const contentTrimmer = (content: string, number: number) => {
-    return content.length > number ? content.slice(0, number) + "..." : content;
-  }
 
   return (
     <div className="card cardSearch">
@@ -22,7 +20,7 @@ function SearchCardItem({movie: {id, title, name, vote_average, overview, poster
         <Rating rating={vote_average}/>
         <h5 className="cardSearch__title">{title ? title : name}</h5>
         <p className="cardSearch__description">
-          {contentTrimmer(overview, 150)}
+          {truncate(overview, 150)}
         </p>
       </div>
     </div>

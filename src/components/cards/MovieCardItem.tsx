@@ -7,14 +7,12 @@ import UiContext from "../../context/ui/UiContext";
 import { usePlayTrailer } from "../../api/queries";
 import { tmdbImage } from "../../api/tmdbClient";
 import type { MediaListItem } from "../../types/tmdb";
+import { truncate } from "../../utils/truncate";
 
 const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, vote_average, id}}: {movie: MediaListItem}) => {
 
   const {mediaType} = useContext(UiContext);
 
-  const contentTrimmer = (content: string, number: number) => {
-    return content.length > number ? content.slice(0, number) + "..." : content;
-  }
 
   const playTrailer = usePlayTrailer(mediaType, id);
 
@@ -26,7 +24,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, vote_a
         </div>
       </Link>
       <div className="movieCard__information">
-          <h5 className="movieCard__title">{contentTrimmer(`${title ? title: name}`, 45)}</h5>
+          <h5 className="movieCard__title">{truncate(title ? title : name, 45)}</h5>
           <Rating rating={vote_average} />
           <p className="movieCard__date">Release date: {moment(release_date).format("DD MMM YYYY")}</p>
           <div className="movieCard__buttons">
