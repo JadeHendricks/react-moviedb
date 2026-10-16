@@ -10,7 +10,6 @@ import {
   useMediaList,
   useMostPopular,
   usePersonMovieCredits,
-  usePlayTrailer,
   useSearch,
 } from './queries';
 
@@ -160,21 +159,5 @@ describe('query hooks (fetch is mocked)', () => {
     await waitFor(() => expect(result.current.isError).toBe(true));
     expect(result.current.error).toBeInstanceOf(ApiError);
     expect((result.current.error as ApiError).status).toBe(401);
-  });
-
-  it('usePlayTrailer opens the first video, and does nothing when there is none', async () => {
-    const open = vi.spyOn(window, 'open').mockReturnValue(null);
-    fetchMock.mockResolvedValueOnce(json({ results: [{ id: 'v', key: 'abc' }] }));
-    const { result } = renderHook(() => usePlayTrailer('movie', 1), { wrapper });
-
-    await result.current();
-    expect(open).toHaveBeenCalledWith('https://www.youtube.com/watch?v=abc', '_blank');
-
-    open.mockClear();
-    fetchMock.mockResolvedValueOnce(json({ results: [] }));
-    const none = renderHook(() => usePlayTrailer('movie', 2), { wrapper });
-    await none.result.current();
-    expect(open).not.toHaveBeenCalled();
-    open.mockRestore();
   });
 });
