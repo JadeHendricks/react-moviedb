@@ -28,16 +28,13 @@ export default defineConfig({
     { name: 'mobile-375', use: { ...devices['Desktop Chrome'], viewport: { width: 375, height: 812 } } },
   ],
   webServer: {
-    // Phase 0 only: CRA 3.4 (webpack 4) needs the legacy OpenSSL provider on Node 17+.
-    // Replace this command when the toolchain moves to Vite in Phase 1.
-    command: 'npm start',
+    // Serves the production build (what Netlify ships), so the baseline checks the real output.
+    // `vite build` inlines REACT_APP_API_KEY, hence the dummy key goes to the whole command.
+    command: `npm run build && npm run preview -- --port ${PORT} --strictPort`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: false,
     timeout: 240_000,
     env: {
-      NODE_OPTIONS: '--openssl-legacy-provider',
-      BROWSER: 'none',
-      PORT: String(PORT),
       // Dummy value: every TMDB call is mocked, the specs assert this key is what the app sends.
       REACT_APP_API_KEY: DUMMY_API_KEY,
     },

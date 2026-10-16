@@ -1,6 +1,6 @@
 import React from 'react';
 import Rating from "../rating/Rating";
-import {Link} from "react-router-dom";
+import {Link} from "react-router";
 import imageNotFound from "../../images/imageNotFound.jpg";
 
 function SearchCardItem({movie: {id, title, name, vote_average, overview, poster_path}}) {

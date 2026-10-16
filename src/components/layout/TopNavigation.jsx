@@ -1,10 +1,11 @@
 import React, {useState, useEffect, useContext, Fragment} from 'react';
 import svgAsset from "../../images/sprite.svg";
-import { withRouter } from "react-router-dom";
+import { useNavigate } from "react-router";
 import ModalContext from "../../context/modal/ModalContext";
 import Modal from "../layout/Modal";
 
-function TopNavigation(props) {
+function TopNavigation() {
+  const navigate = useNavigate();
 
   const modalContext = useContext(ModalContext);
   const {authSelection, modalShow} = modalContext;
@@ -16,7 +17,7 @@ function TopNavigation(props) {
 
   useEffect(() => {
     if (redirect) {
-      props.history.push(`/searchResults/${query}`);
+      navigate(`/searchResults/${query}`);
       setRedirect(false);
     }
     // eslint-disable-next-line
@@ -40,7 +41,7 @@ function TopNavigation(props) {
     <nav className="topnav">
       <form className="searchForm" onSubmit={initSearch}>
           <svg className="searchForm__icon">
-              <use xlinkHref={`${svgAsset}#icon-magnifying-glass`}></use>
+              <use href={`${svgAsset}#icon-magnifying-glass`}></use>
           </svg>
           <input className="searchForm__input" type="search" name="search" placeholder="Search for Movies or TV Series" value={search} onChange={updateSearch} />
       </form>
@@ -59,4 +60,4 @@ function TopNavigation(props) {
   )
 }
 
-export default withRouter(TopNavigation);
+export default TopNavigation;

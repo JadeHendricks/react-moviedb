@@ -29,9 +29,9 @@ const HeaderState = props => {
   const setGenresArray = async (genre_ids) => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+      response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+      response = await fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US`);
     }
       const data = await response.json();
       if (genre_ids) {
@@ -48,9 +48,9 @@ const HeaderState = props => {
   const getMovie = async (id) => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
       const data = await response.json();
       
@@ -63,9 +63,9 @@ const HeaderState = props => {
   const getReviews = async (id) => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
       const data = await response.json();
   
@@ -78,9 +78,9 @@ const HeaderState = props => {
   const getCast = async (id) => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
 
       const data = await response.json();
@@ -94,9 +94,9 @@ const HeaderState = props => {
   const getVideos = async (id) => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
 
       const data = await response.json();
@@ -110,9 +110,9 @@ const HeaderState = props => {
   const getSimilarMovies = async (id) => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/similar?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
       const data = await response.json();
       

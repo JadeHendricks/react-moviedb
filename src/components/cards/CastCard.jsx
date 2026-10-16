@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import imageNotFound from "../../images/imageNotFound.jpg";
 
 function CastCard({cast: {id, character, name, profile_path}}) {

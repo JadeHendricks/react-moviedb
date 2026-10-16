@@ -1,6 +1,7 @@
 import React, {useReducer} from "react";
 import ModalContext from './ModalContext';
 import ModalReducer from './ModalReducer';
+import svgAsset from "../../images/sprite.svg";
 import { 
   MODAL_VISIBILITY,
   SET_ACTIVITY } from '../types';
@@ -52,10 +53,11 @@ const ModalState = props => {
     
     if (passwordInput.getAttribute("type") === "password") {
       passwordInput.setAttribute("type", "text");
-      eyeElement.setAttribute("xlink:href", "/static/media/sprite.12eb0e28.svg#icon-eye-blocked")
+      // Sprite URL comes from the bundler; the old hard-coded CRA path (/static/media/sprite.<hash>.svg) no longer exists.
+      eyeElement.setAttribute("href", `${svgAsset}#icon-eye-blocked`)
     } else {
       passwordInput.setAttribute("type", "password");
-      eyeElement.setAttribute("xlink:href", "/static/media/sprite.12eb0e28.svg#icon-eye")
+      eyeElement.setAttribute("href", `${svgAsset}#icon-eye`)
     }
   }
 

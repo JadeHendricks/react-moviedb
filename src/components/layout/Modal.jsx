@@ -39,7 +39,7 @@ function Modal() {
                       <input type="password" name="signup_password" className="inputbox__input" placeholder="Password" />
                       {/* <span className="auth-label">this is an auth message</span> */}
                       <svg className="modalForm__icon" onClick={showPassword}>
-                          <use xlinkHref={`${svgAsset}#icon-eye`}></use>
+                          <use href={`${svgAsset}#icon-eye`}></use>
                       </svg>
                   </div>
               </div> : ""}
@@ -55,7 +55,7 @@ function Modal() {
                       <input type="password" name="login_password" className="inputbox__input" placeholder="Password" />
                       {/* <span className="auth-label">this is an auth message</span> */}
                       <svg className="modalForm__icon" onClick={showPassword}>
-                          <use xlinkHref={`${svgAsset}#icon-eye`}></use>
+                          <use href={`${svgAsset}#icon-eye`}></use>
                       </svg>
                   </div>
                   <div className="inputbox__box borderTop0">
@@ -63,7 +63,7 @@ function Modal() {
                       <input type="password" name="login_confirmpassword" className="inputbox__input" placeholder="Confirm Password" />
                       {/* <span className="auth-label">this is an auth message</span> */}
                       <svg className="modalForm__icon" onClick={showPassword}>
-                          <use xlinkHref={`${svgAsset}#icon-eye`}></use>
+                          <use href={`${svgAsset}#icon-eye`}></use>
                       </svg>
                   </div>
               </div> : ""}

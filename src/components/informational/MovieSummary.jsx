@@ -1,4 +1,5 @@
 import React, {useEffect, Fragment, useContext, useState} from 'react';
+import { useParams } from "react-router";
 import Review from "../reviews/Review";
 import Rating from "../rating/Rating";
 import svgAsset from "../../images/sprite.svg";
@@ -10,7 +11,8 @@ import MovieSummaryContext from "../../context/movieSummary/MovieSummaryContext"
 import MainContentContext from "../../context/mainContent/MainContentContext";
 import Loader from "../layout/Loader";
 
-function MovieSummary({match}) {
+function MovieSummary() {
+  const params = useParams();
 
   const movieSummaryContext = useContext(MovieSummaryContext);
   const {
@@ -24,11 +26,11 @@ function MovieSummary({match}) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getMovie(match.params.id);
-    getReviews(match.params.id);
-    getCast(match.params.id);
-    getVideos(match.params.id);
-    getSimilarMovies(match.params.id);
+    getMovie(params.id);
+    getReviews(params.id);
+    getCast(params.id);
+    getVideos(params.id);
+    getSimilarMovies(params.id);
     setGenresArray(movie.genres);
     // eslint-disable-next-line
   }, [movie]);
@@ -41,7 +43,7 @@ function MovieSummary({match}) {
       clearTimeout(addLoader);
     }
     // eslint-disable-next-line
-  }, [match.params.id]);
+  }, [params.id]);
 
   const addLoader = () => {
     setTimeout(() => {
@@ -52,9 +54,9 @@ function MovieSummary({match}) {
   const playTrailer = async () => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${match.params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${match.params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/tv/${params.id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
     const data = await response.json();
     const videoKey = data.results[0].key;
@@ -128,7 +130,7 @@ function MovieSummary({match}) {
 
                 <header className="movieDetailHeader" style={backgroundImage}>
                     <svg className="movieDetailHeader__playicon" onClick={playTrailer}>
-                        <use xlinkHref={`${svgAsset}#icon-play2`}></use>
+                        <use href={`${svgAsset}#icon-play2`}></use>
                     </svg>
                     <div className="movieDetailHeader__media">
                       {videos.length !== 0 ? <h3 className="movieDetailHeader__title">Media</h3> : <h3 className="movieDetailHeader__title">No videos available</h3>}

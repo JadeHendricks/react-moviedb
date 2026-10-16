@@ -15,7 +15,7 @@ const HeaderState = props => {
   const [state, dispatch] = useReducer(ActorSummaryReducer, initialState);
 
   const getActor = async (id) => {
-    const response = await fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+    const response = await fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US`);
     const data = await response.json();
     data && dispatch({
       type: FETCH_ACTOR_ACTORSUMMARY,
@@ -24,7 +24,7 @@ const HeaderState = props => {
   }
 
   const getCredits = async (id) => {
-    const response = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+    const response = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US`);
     const data = await response.json();
 
     const sortByMostPopular = data.cast

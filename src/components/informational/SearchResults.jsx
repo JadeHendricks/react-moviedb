@@ -26,8 +26,8 @@ function SearchResults() {
   }
 
   const fetchMoviesAndSeries = async (query) => {
-    const responseMovies = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
-    const responseSeries = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
+    const responseMovies = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.REACT_APP_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
+    const responseSeries = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${import.meta.env.REACT_APP_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
 
     const dataMovies = await responseMovies.json();
     const dataSeries = await responseSeries.json();

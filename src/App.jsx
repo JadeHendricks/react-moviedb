@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router";
 import SideNavigation from "./components/layout/SideNavigation";
 import TopNavigation from "./components/layout/TopNavigation";
 import AccountSettings from "./components/informational/AccountSettings";
@@ -25,13 +25,13 @@ function App() {
           <SideNavigation />
             <div className="main-content">
               <TopNavigation />
-              <Switch>
-                <Route path="/accountSettings" component={AccountSettings} exact />
-                <Route path="/searchResults/:id" component={SearchResults} exact />
-                <Route path="/movieSummary/:id" component={MovieSummary} exact />
-                <Route path="/actorSummary/:id" component={AccountSummary} exact />
-                <Route path="/" component={MainContent} exact />
-              </Switch>
+              <Routes>
+                <Route path="/accountSettings" element={<AccountSettings />} />
+                <Route path="/searchResults/:id" element={<SearchResults />} />
+                <Route path="/movieSummary/:id" element={<MovieSummary />} />
+                <Route path="/actorSummary/:id" element={<AccountSummary />} />
+                <Route path="/" element={<MainContent />} />
+              </Routes>
             </div>
         </Fragment>
       </Router>

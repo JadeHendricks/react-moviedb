@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from 'react'
 import svgAssets from "../../images/sprite.svg";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import moment from "moment";
 import HeaderContext from "../../context/header/HeaderContext";
 import MainContentContext from "../../context/mainContent/MainContentContext";
@@ -30,9 +30,9 @@ const Header = () => {
   const playTrailer = async () => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
     const data = await response.json();
     const videoKey = data.results[0].key;
@@ -47,7 +47,7 @@ const Header = () => {
     <header className="movie-header" style={backgroundImage}>
       <div className="container-small">
           <svg className="movie-header__playicon" onClick={playTrailer}>
-              <use xlinkHref={`${svgAssets}#icon-play2`}>
+              <use href={`${svgAssets}#icon-play2`}>
                 <title>Play {title} trailer</title>
               </use>
           </svg>

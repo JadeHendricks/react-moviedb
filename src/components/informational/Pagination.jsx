@@ -5,7 +5,7 @@ function Pagination() {
   return (
     <div className="pagination">
       <svg className="pagination__arrow pagination__arrowLeft">
-          <use xlinkHref={`${svgAsset}#icon-chevron-left`}></use>
+          <use href={`${svgAsset}#icon-chevron-left`}></use>
       </svg>
 
       <div className="pagination__pill active">1</div>
@@ -17,7 +17,7 @@ function Pagination() {
       <div className="pagination__pill">7</div>
 
       <svg className="pagination__arrow pagination__arrowRight">
-          <use xlinkHref={`${svgAsset}#icon-chevron-right`}></use>
+          <use href={`${svgAsset}#icon-chevron-right`}></use>
       </svg>
     </div>
   )

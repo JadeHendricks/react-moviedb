@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import Rating from "../rating/Rating";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import moment from "moment";
 import MainContentContext from "../../context/mainContent/MainContentContext";
@@ -17,9 +17,9 @@ const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, vote_a
   const playTrailer = async (e) => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
     const data = await response.json();
     const videoKey = data.results[0].key;

@@ -1,11 +1,13 @@
 import React, {Fragment, useEffect, useContext, useState} from 'react';
+import { useParams } from "react-router";
 import MovieCardItem from '../cards/MovieCardItem';
 import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import ActorSummaryContext from "../../context/actorSummary/ActorSummaryContext";
 import Loader from "../layout/Loader";
 
-function ActorSummary({match}) {
+function ActorSummary() {
+  const params = useParams();
 
   const actorSummaryContext = useContext(ActorSummaryContext);
   const {getActor, getCredits, actor, credits} = actorSummaryContext;
@@ -13,8 +15,8 @@ function ActorSummary({match}) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getActor(match.params.id);
-    getCredits(match.params.id);
+    getActor(params.id);
+    getCredits(params.id);
     window.scrollTo(0, 0);
     addLoader();
 

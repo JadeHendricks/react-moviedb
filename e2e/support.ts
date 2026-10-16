@@ -1,13 +1,17 @@
 import { test as base, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+// package.json is "type": "module", so __dirname does not exist.
+const fixturesDir = fileURLToPath(new URL('./fixtures/', import.meta.url));
 
 export const DUMMY_API_KEY = 'e2e-dummy-key';
 // Fixed "now" so moment(undefined) (TV cards have no release_date) renders the same date every run.
 const FIXED_NOW = new Date('2026-01-15T12:00:00Z');
 
 export const fixture = (name: string) =>
-  JSON.parse(readFileSync(join(__dirname, 'fixtures', `${name}.json`), 'utf8'));
+  JSON.parse(readFileSync(join(fixturesDir, `${name}.json`), 'utf8'));
 
 // Maps a TMDB v3 path to a fixture file. Detail/review/credit/video/similar fixtures are shared
 // across ids on purpose: the screenshots only need one fixed payload per endpoint.

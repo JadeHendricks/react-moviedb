@@ -19,9 +19,9 @@ const MainContentState = props => {
   const InitialCardState = async () => {
     let response;
     if (state.appWideContent === "movies") {
-       response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+       response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-       response = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+       response = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
       const data = await response.json();
   
@@ -35,9 +35,9 @@ const MainContentState = props => {
     let requestName = e.currentTarget.getAttribute("data-content");
     let response;
     if (state.appWideContent === "movies") {
-       response = await fetch(`https://api.themoviedb.org/3/movie/${requestName}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+       response = await fetch(`https://api.themoviedb.org/3/movie/${requestName}?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-       response = await fetch(`https://api.themoviedb.org/3/tv/${requestName}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+       response = await fetch(`https://api.themoviedb.org/3/tv/${requestName}?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
     
       const data = await response.json();

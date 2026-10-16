@@ -19,7 +19,7 @@ const HeaderState = props => {
   const [state, dispatch] = useReducer(HeaderReducer, initialState);
 
   const setGenresArray = async (genre_ids) => {
-    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US`);
     const data = await response.json();
     if (genre_ids) {
       const genresArray = data.genres.filter(element => genre_ids.includes(element.id));
@@ -34,9 +34,9 @@ const HeaderState = props => {
   const getMostPopularMovie = async () => {
     let response;
     if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+      response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
     }
     const data = await response.json();
 
