@@ -3,6 +3,7 @@ import svgAsset from "../../images/sprite.svg";
 import { useNavigate } from "react-router";
 import ModalContext from "../../context/modal/ModalContext";
 import Modal from "../layout/Modal";
+import avatar from "../../images/x_03.jpg";
 
 function TopNavigation() {
   const navigate = useNavigate();
@@ -34,14 +35,13 @@ function TopNavigation() {
           </svg>
           <input className="searchForm__input" type="search" name="search" placeholder="Search for Movies or TV Series" value={search} onChange={updateSearch} />
       </form>
-      {/* `clas` is a typo kept as-is (B21, Phase 4); the spread keeps it out of the typed props. */}
-      <div {...{ clas: "userAuth" }}>
+      <div className="userAuth">
           <div className="topnav__buttons">
               <button className="button button--green button--skeleton" data-auth="login" onClick={authSelection}>Login</button>
               <button className="button button--green" data-auth="signup" onClick={authSelection}>Sign up</button>
           </div>
           <div className="topnav__account">
-              <img src="./assets/x_03.jpg" alt="person" title="person" />
+              <img src={avatar} alt="person" title="person" />
               <span>Kevin Adriana</span>
           </div>
       </div>
