@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment, useContext, useState} from 'react';
+import React, {useEffect, Fragment, useContext} from 'react';
 import { useParams } from "react-router";
 import Review from "../reviews/Review";
 import Rating from "../rating/Rating";
@@ -7,69 +7,41 @@ import MovieCardItem from '../cards/MovieCardItem';
 import CastCard from '../cards/CastCard';
 import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
-import MovieSummaryContext from "../../context/movieSummary/MovieSummaryContext";
-import MainContentContext from "../../context/mainContent/MainContentContext";
+import UiContext from "../../context/ui/UiContext";
+import { useCast, useDetails, useGenres, usePlayTrailer, useReviews, useSimilar, useVideos } from "../../api/queries";
+import { tmdbImage } from "../../api/tmdbClient";
+import { useTimedLoader } from "../../hooks/useTimedLoader";
+import type { MediaDetails } from "../../types/tmdb";
 import Loader from "../layout/Loader";
+
+const NO_DETAILS: MediaDetails = {};
+const NO_ITEMS: never[] = [];
 
 function MovieSummary() {
   const params = useParams();
 
-  const movieSummaryContext = useContext(MovieSummaryContext);
-  const {
-    setGenresArray, getMovie, getReviews, getCast, getVideos, 
-    getSimilarMovies, movie, reviews, cast, videos, 
-    similarMovies, genres} = movieSummaryContext;
+  const {appWideContent, mediaType} = useContext(UiContext);
 
-  const mainContentContext = useContext(MainContentContext);
-  const {appWideContent} = mainContentContext;
+  // Each section is its own query keyed by (type, id): changing the id refetches once, nothing loops (B1).
+  const {data: movie = NO_DETAILS} = useDetails(mediaType, params.id);
+  const {data: reviews = NO_ITEMS} = useReviews(mediaType, params.id);
+  const {data: cast = NO_ITEMS} = useCast(mediaType, params.id);
+  const {data: videos = NO_ITEMS} = useVideos(mediaType, params.id);
+  const {data: similarMovies = NO_ITEMS} = useSimilar(mediaType, params.id);
+  const {data: allGenres = NO_ITEMS} = useGenres(mediaType);
+  // Same selection as before: the genre list entries that the title carries.
+  const genres = movie.genres ? allGenres.filter(genreOne => movie.genres!.find(genreTwo => genreOne.id === genreTwo.id)) : NO_ITEMS;
 
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getMovie(params.id);
-    getReviews(params.id);
-    getCast(params.id);
-    getVideos(params.id);
-    getSimilarMovies(params.id);
-    setGenresArray(movie.genres);
-    // eslint-disable-next-line
-  }, [movie]);
+  const loading = useTimedLoader(4000);
 
   useEffect(() => {
-    addLoader();
     window.scrollTo(0, 0);
-
-    return () => {
-      // Passing the function is a no-op (B4), kept as-is until Phase 4; the cast only satisfies the types.
-      clearTimeout(addLoader as unknown as number);
-    }
-    // eslint-disable-next-line
   }, [params.id]);
 
-  const addLoader = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 4000);
-  }
-
-  const playTrailer = async () => {
-    let response;
-    if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${params.id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    }
-    const data = await response.json();
-    const videoKey = data.results[0].key;
-
-    window.open(
-      `https://www.youtube.com/watch?v=${videoKey}`,
-      `_blank`
-    );
-  }
+  const playTrailer = usePlayTrailer(mediaType, params.id);
 
   const backgroundImage = {
-    backgroundImage: movie.backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("")`,
+    backgroundImage: movie.backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(movie.backdrop_path, "original")})` : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("")`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "top center",
     backgroundSize: "cover"
@@ -85,7 +57,7 @@ function MovieSummary() {
             <div className="movieDetailSummary">
 
                 <div className="movieDetailSummary__imageContanier">
-                  {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} />}
+                  {movie.poster_path ? <img src={tmdbImage(movie.poster_path, "w500")} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} />}
                 </div>
 
                 <div className="movieDetailSummary__wrapper">

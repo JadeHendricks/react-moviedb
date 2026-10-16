@@ -1,45 +1,22 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {Fragment, useEffect} from 'react';
+import { useParams } from "react-router";
 import SearchCardItem from "../cards/SearchCardItem";
 import Loader from "../layout/Loader";
-import type { MediaListItem } from "../../types/tmdb";
+import { searchResultKey, useSearch } from "../../api/queries";
+import { useTimedLoader } from "../../hooks/useTimedLoader";
 
 function SearchResults() {
-  const query = decodeURI(window.location.href.split("/").pop()!);
+  // The router has already decoded the segment, so `&`, `#`, `/` and `%` in a search are safe (B6).
+  const query = useParams().id ?? "";
 
-  const [searchResults, setSearchResults] = useState<MediaListItem[]>([]);
-  // Starts as `[]` (truthy), so the loader shows first; kept as-is.
-  const [loading, setLoading] = useState<boolean | never[]>([]);
+  // Both searches run in parallel and are aborted when the query changes (B7).
+  const {data: searchResults} = useSearch(query);
+
+  const loading = useTimedLoader(3000);
 
   useEffect(() => {
-    fetchMoviesAndSeries(query);
     window.scrollTo(0, 0);
-    addLoader();
-
-    return () => {
-      // Passing the function is a no-op (B4), kept as-is until Phase 4; the cast only satisfies the types.
-      clearTimeout(addLoader as unknown as number);
-    }
-    // eslint-disable-next-line
   }, [query]);
-
-  const addLoader = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }
-
-  const fetchMoviesAndSeries = async (query: string) => {
-    const responseMovies = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.REACT_APP_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
-    const responseSeries = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${import.meta.env.REACT_APP_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
-
-    const dataMovies = await responseMovies.json();
-    const dataSeries = await responseSeries.json();
-
-    const resultsArray = [...dataMovies.results, ...dataSeries.results];
-    const mostPopluarOrder =  resultsArray.sort((a, b) => b.popularity - a.popularity);
-
-    setSearchResults(mostPopluarOrder);
-  }
 
   return (
     <Fragment>
@@ -48,7 +25,7 @@ function SearchResults() {
         <div className="container">
             <h2 className="searchResults__title">Search results for <span>{`${query}`}</span></h2>
             <div className="searchResults__wrapper">
-              {searchResults.map(result => <SearchCardItem key={result.id} movie={result}/>)}
+              {searchResults.map(result => <SearchCardItem key={searchResultKey(result)} movie={result}/>)}
             </div>
         </div>
       </section>

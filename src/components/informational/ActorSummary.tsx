@@ -1,39 +1,29 @@
-import React, {Fragment, useEffect, useContext, useState} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import { useParams } from "react-router";
 import MovieCardItem from '../cards/MovieCardItem';
 import moment from "moment";
 import imageNotFound from "../../images/imageNotFound.jpg";
-import ActorSummaryContext from "../../context/actorSummary/ActorSummaryContext";
+import { usePerson, usePersonMovieCredits } from "../../api/queries";
+import { tmdbImage } from "../../api/tmdbClient";
+import { useTimedLoader } from "../../hooks/useTimedLoader";
+import type { Person } from "../../types/tmdb";
 import Loader from "../layout/Loader";
+
+const NO_ACTOR: Partial<Person> = {};
+const NO_CREDITS: never[] = [];
 
 function ActorSummary() {
   const params = useParams();
 
-  const actorSummaryContext = useContext(ActorSummaryContext);
-  const {getActor, getCredits, actor, credits} = actorSummaryContext;
+  // Keyed by the route id, so opening another actor refetches once and never loops.
+  const {data: actor = NO_ACTOR} = usePerson(params.id);
+  const {data: credits = NO_CREDITS} = usePersonMovieCredits(params.id);
 
-  const [loading, setLoading] = useState(true);
+  const loading = useTimedLoader(3000);
 
   useEffect(() => {
-    getActor(params.id);
-    getCredits(params.id);
     window.scrollTo(0, 0);
-    addLoader();
-
-    return () => {
-      // Passing the function is a no-op (B4), kept as-is until Phase 4; the cast only satisfies the types.
-      clearTimeout(addLoader as unknown as number);
-    }
-    // eslint-disable-next-line
-  }, []);
-
-  const addLoader = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }
-
-
+  }, [params.id]);
   const genderChecker = (gender: number | undefined) => {
     return gender === 2 ? "Male" : "Female";
   }
@@ -45,7 +35,7 @@ function ActorSummary() {
       <div className="movieDetails__wrapper">
       <div className="movieDetailSummary actorDetailSummary">
           <div className="actorDetailSummary__imageContanier">
-              {actor.profile_path ? <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} className="movieDetailSummary__image" alt={actor.name} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={actor.name} />}
+              {actor.profile_path ? <img src={tmdbImage(actor.profile_path, "w500")} className="movieDetailSummary__image" alt={actor.name} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={actor.name} />}
               <span className="actorDetailSummary__name">{actor.name}</span>
           </div>
           <div className="movieDetailSummary__wrapper">

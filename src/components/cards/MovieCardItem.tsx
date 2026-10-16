@@ -3,39 +3,26 @@ import Rating from "../rating/Rating";
 import { Link } from "react-router";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import moment from "moment";
-import MainContentContext from "../../context/mainContent/MainContentContext";
+import UiContext from "../../context/ui/UiContext";
+import { usePlayTrailer } from "../../api/queries";
+import { tmdbImage } from "../../api/tmdbClient";
 import type { MediaListItem } from "../../types/tmdb";
 
 const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, vote_average, id}}: {movie: MediaListItem}) => {
 
-  const mainContentContext = useContext(MainContentContext);
-  const {appWideContent} = mainContentContext;
+  const {mediaType} = useContext(UiContext);
 
   const contentTrimmer = (content: string, number: number) => {
     return content.length > number ? content.slice(0, number) + "..." : content;
   }
 
-  const playTrailer = async () => {
-    let response;
-    if (appWideContent === "movies") {
-      response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    } else {
-      response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);
-    }
-    const data = await response.json();
-    const videoKey = data.results[0].key;
-
-    window.open(
-      `https://www.youtube.com/watch?v=${videoKey}`,
-      `_blank`
-    );
-  }
+  const playTrailer = usePlayTrailer(mediaType, id);
 
   return (
     <div className="card movieCard">
       <Link to={`/movieSummary/${id}`}>
         <div className="movieCard__image">
-            {backdrop_path ? <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} className="movieCard__imagesrc" alt={title}/> : <img src={imageNotFound} className="movieCard__imagesrc" alt={title}/>}
+            {backdrop_path ? <img src={tmdbImage(backdrop_path, "w500")} className="movieCard__imagesrc" alt={title}/> : <img src={imageNotFound} className="movieCard__imagesrc" alt={title}/>}
         </div>
       </Link>
       <div className="movieCard__information">
