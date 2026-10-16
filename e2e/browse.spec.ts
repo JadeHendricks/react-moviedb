@@ -38,7 +38,7 @@ test.describe('movies', () => {
 test.describe('series', () => {
   test('switch to series, every side-nav category', async ({ page }) => {
     await gotoHome(page);
-    await page.locator('.switchTabs__tab[data-content="series"]').click();
+    await page.locator('.switch-tabs__tab[data-content="series"]').click();
     await expect(page.locator('.movieCard__title').first()).toHaveText(firstTitle('tv-on_the_air'));
     await expect(page.locator('.movie-header__title')).toHaveText(mostPopularTitle('tv-popular'));
     await expect(page.locator('.navigation__node', { hasText: 'Upcoming' })).toHaveCount(0);
@@ -67,7 +67,7 @@ test.describe('details', () => {
 
   test('series detail, reached from the series list', async ({ page }) => {
     await gotoHome(page);
-    await page.locator('.switchTabs__tab[data-content="series"]').click();
+    await page.locator('.switch-tabs__tab[data-content="series"]').click();
     await expect(page.locator('.movieCard__title').first()).toHaveText(firstTitle('tv-on_the_air'));
     // A series card links to its own route, so the page picks the tv endpoints from the URL (D1, B9).
     await page.locator('.movieCard').first().getByRole('link', { name: 'View More' }).click();

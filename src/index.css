@@ -1200,53 +1200,6 @@ textarea {
     line-height: 2.5rem;
   }
 }
-.switchTabs {
-  display: flex;
-  justify-content: flex-start;
-  margin: 2rem 0 8rem 0;
-}
-.switchTabs__tab {
-  position: relative;
-  border-radius: 0.6rem;
-  background-color: #ffffff;
-  background-clip: padding-box;
-  flex: 1;
-  border: 0.2rem solid #3cb13e;
-  padding: 1.2rem 2rem;
-  margin-right: 4rem;
-  font-size: 1.8rem;
-  color: #3cb13e;
-  text-align: center;
-  text-transform: uppercase;
-  transition: all 0.4s;
-  font-weight: 700;
-  cursor: pointer;
-}
-.switchTabs__tab:hover {
-  background: linear-gradient(to bottom right, #3cb13e, #059307);
-  color: #ffffff;
-}
-.switchTabs__tab.active {
-  background: linear-gradient(to bottom right, #3cb13e, #059307);
-  color: #ffffff;
-}
-.switchTabs__tab:last-child {
-  margin-right: 0;
-}
-@media screen and (max-width: 520px) {
-  .switchTabs {
-    margin: 0 0 4rem 0;
-  }
-  .switchTabs__tab {
-    flex: 1;
-    border: 0.1rem solid #3cb13e;
-    padding: 1rem 1.5rem;
-    margin-right: 2rem;
-    font-size: 1.4rem;
-    color: #3cb13e;
-    cursor: pointer;
-  }
-}
 .navigation {
   flex: 0 0 16rem;
   background-color: #ffffff;
