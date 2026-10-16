@@ -4,13 +4,14 @@ import {Link} from "react-router";
 import MediaImage from "../media/MediaImage";
 import type { MediaListItem } from "../../types/tmdb";
 import { truncate } from "../../utils/truncate";
+import { detailPath, mediaTypeOf } from "../../utils/routes";
 
-function SearchCardItem({movie: {id, title, name, vote_average, overview, poster_path}}: {movie: MediaListItem}) {
+function SearchCardItem({movie: {id, title, name, vote_average, overview, poster_path, media_type}}: {movie: MediaListItem}) {
 
 
   return (
     <div className="card cardSearch">
-       <Link to={`/movieSummary/${id}`}>
+       <Link to={detailPath(mediaTypeOf({media_type}), id)}>
         <div className="cardSearch__imageholder">
           <MediaImage path={poster_path} className="cardSearch__image" alt={title ? title : name} />
         </div>

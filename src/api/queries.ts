@@ -32,10 +32,17 @@ export const tmdbKeys = {
   search: (kind: MediaType, query: string) => ['tmdb', 'search', kind, query] as const,
 };
 
+// Tag each row with its media type so a card links to the right detail route (B9). Done in the queryFn, not in
+// select, so rows kept as placeholder data while another type loads keep the type they came from.
+const tagged = async (page: Promise<Paged<MediaListItem>>, type: MediaType): Promise<Paged<MediaListItem>> => {
+  const data = await page;
+  return { ...data, results: data.results.map((result) => ({ ...result, media_type: type })) };
+};
+
 export const useMediaList = (type: MediaType, category: Category) =>
   useQuery({
     queryKey: tmdbKeys.list(type, category),
-    queryFn: ({ signal }) => tmdbGet<Paged<MediaListItem>>(listPath(type, category), { page: 1 }, signal),
+    queryFn: ({ signal }) => tagged(tmdbGet<Paged<MediaListItem>>(listPath(type, category), { page: 1 }, signal), type),
     select: (data) => data.results,
     // Keep showing the old cards until the new category lands, as the old context did.
     placeholderData: keepPreviousData,
@@ -45,7 +52,7 @@ export const useMediaList = (type: MediaType, category: Category) =>
 export const useMostPopular = (type: MediaType) =>
   useQuery({
     queryKey: tmdbKeys.mostPopular(type),
-    queryFn: ({ signal }) => tmdbGet<Paged<MediaListItem>>(`${type}/popular`, { page: 1 }, signal),
+    queryFn: ({ signal }) => tagged(tmdbGet<Paged<MediaListItem>>(`${type}/popular`, { page: 1 }, signal), type),
     // Sort a copy: `select` must not mutate the cached response.
     select: (data) => [...data.results].sort((a, b) => b.popularity - a.popularity)[0],
     placeholderData: keepPreviousData,
@@ -98,7 +105,7 @@ export const useSimilar = (type: MediaType, id: Id) =>
   useQuery({
     queryKey: tmdbKeys.similar(type, id),
     queryFn: ({ signal }) => tmdbGet<Paged<MediaListItem>>(`${type}/${id}/similar`, { page: 1 }, signal),
-    select: (data) => data.results,
+    select: (data) => data.results.map((result) => ({ ...result, media_type: type })),
     enabled: id !== undefined,
   });
 
@@ -118,7 +125,9 @@ export const usePersonMovieCredits = (id: Id) =>
       [...data.cast]
         .sort((a, b) => b.vote_average - a.vote_average)
         .filter((movie) => movie.poster_path !== null)
-        .slice(0, 24),
+        .slice(0, 24)
+        // Person credits are always movies, whatever tab is open (B9).
+        .map((movie) => ({ ...movie, media_type: 'movie' })),
     enabled: id !== undefined,
   });
 

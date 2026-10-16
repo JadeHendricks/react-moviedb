@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment, useContext} from 'react';
+import React, {useEffect, Fragment} from 'react';
 import { useParams } from "react-router";
 import Review from "../reviews/Review";
 import Rating from "../rating/Rating";
@@ -8,8 +8,8 @@ import CastCard from '../cards/CastCard';
 import { releaseDateOf } from "../../utils/formatDate";
 import { runtimeLabel } from "../../utils/runtime";
 import MediaImage from "../media/MediaImage";
-import UiContext from "../../context/ui/UiContext";
-import { useCast, useDetails, useGenres, useReviews, useSimilar, useVideos } from "../../api/queries";
+import type { MediaType } from "../../api/queries";
+import { useCast, useDetails, useReviews, useSimilar, useVideos } from "../../api/queries";
 import { useTrailer } from "../../hooks/useTrailer";
 import { tmdbImage } from "../../api/tmdbClient";
 import { useTimedLoader } from "../../hooks/useTimedLoader";
@@ -19,20 +19,18 @@ import Loader from "../layout/Loader";
 const NO_DETAILS: MediaDetails = {};
 const NO_ITEMS: never[] = [];
 
-function MovieSummary() {
+function MovieSummary({type}: {type: MediaType}) {
   const params = useParams();
 
-  const {appWideContent, mediaType} = useContext(UiContext);
 
   // Each section is its own query keyed by (type, id): changing the id refetches once, nothing loops (B1).
-  const {data: movie = NO_DETAILS} = useDetails(mediaType, params.id);
-  const {data: reviews = NO_ITEMS} = useReviews(mediaType, params.id);
-  const {data: cast = NO_ITEMS} = useCast(mediaType, params.id);
-  const {data: videos = NO_ITEMS} = useVideos(mediaType, params.id);
-  const {data: similarMovies = NO_ITEMS} = useSimilar(mediaType, params.id);
-  const {data: allGenres = NO_ITEMS} = useGenres(mediaType);
-  // Same selection as before: the genre list entries that the title carries.
-  const genres = movie.genres ? allGenres.filter(genreOne => movie.genres!.find(genreTwo => genreOne.id === genreTwo.id)) : NO_ITEMS;
+  const {data: movie = NO_DETAILS} = useDetails(type, params.id);
+  const {data: reviews = NO_ITEMS} = useReviews(type, params.id);
+  const {data: cast = NO_ITEMS} = useCast(type, params.id);
+  const {data: videos = NO_ITEMS} = useVideos(type, params.id);
+  const {data: similarMovies = NO_ITEMS} = useSimilar(type, params.id);
+  // The title already carries its genre names, so no genre-list request and no stale genres from the previous title (B15).
+  const genres = movie.genres ?? NO_ITEMS;
 
   const loading = useTimedLoader(4000);
 
@@ -40,7 +38,7 @@ function MovieSummary() {
     window.scrollTo(0, 0);
   }, [params.id]);
 
-  const trailer = useTrailer(mediaType, params.id);
+  const trailer = useTrailer(type, params.id);
 
   const backgroundImage = {
     backgroundImage: movie.backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(movie.backdrop_path, "original")})` : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("")`,
@@ -63,7 +61,7 @@ function MovieSummary() {
                 </div>
 
                 <div className="movieDetailSummary__wrapper">
-                    <h3 className="movieDetails__title">{appWideContent === "movies" ? "Movie Details" : "Series Details"}</h3>
+                    <h3 className="movieDetails__title">{type === "movie" ? "Movie Details" : "Series Details"}</h3>
                     <div className="category">
                         <div className="movieDetails__title movieDetails__title--smaller">Category</div>
                         <div className="category__wrapper">
@@ -80,7 +78,7 @@ function MovieSummary() {
                           <div className="movieDetails__title movieDetails__title--smaller">Runtime</div>
                           <p className="misc__info">{runtimeLabel(movie)}</p>
                       </div>
-                      { appWideContent === "series" ? 
+                      { type === "tv" ? 
                       <Fragment>
                       <div className="misc__box">
                           <div className="movieDetails__title movieDetails__title--smaller">Number of seasons</div>
@@ -141,7 +139,7 @@ function MovieSummary() {
                   </div>
 
                   <section className="moreMovies">
-                      <h3 className="moreMovies__title">{appWideContent === "series" ? "Similar Series" : "Similar Movies"}</h3>
+                      <h3 className="moreMovies__title">{type === "tv" ? "Similar Series" : "Similar Movies"}</h3>
                       <div className="moreMovies__titles">
                         {similarMovies && similarMovies.slice(0, 12).map(movie => <MovieCardItem key={movie.id} movie={movie} />)}
                       </div>
