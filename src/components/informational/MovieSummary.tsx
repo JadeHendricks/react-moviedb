@@ -5,7 +5,7 @@ import Rating from "../rating/Rating";
 import svgAsset from "../../images/sprite.svg";
 import MovieCardItem from '../cards/MovieCardItem';
 import CastCard from '../cards/CastCard';
-import moment from "moment";
+import { formatDate, releaseDateOf } from "../../utils/formatDate";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import UiContext from "../../context/ui/UiContext";
 import { useCast, useDetails, useGenres, usePlayTrailer, useReviews, useSimilar, useVideos } from "../../api/queries";
@@ -71,7 +71,7 @@ function MovieSummary() {
                     <div className="misc">
                       <div className="misc__box">
                           <div className="movieDetails__title movieDetails__title--smaller">Initial release date</div>
-                          <p className="misc__info">{ moment(movie.release_date ? movie.release_date : movie.first_air_date).format("DD MMM YYYY") }</p>
+                          <p className="misc__info">{ releaseDateOf(movie) }</p>
                       </div>
 
                       <div className="misc__box">
@@ -125,7 +125,7 @@ function MovieSummary() {
 
                 <main className="movieMain">
                   <Rating rating={movie.vote_average} />
-                  <h2 className="movieMain__title">{movie.title ? movie.title : movie.name} <span>({ moment(movie.release_date).format("DD MMM YYYY") })</span></h2>
+                  <h2 className="movieMain__title">{movie.title ? movie.title : movie.name} <span>({ releaseDateOf(movie) })</span></h2>
                   <div className="movieMain__storyline">
                       <h3 className="marginBottom10">Storyline</h3>
                       <p>{movie.overview}</p>

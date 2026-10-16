@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import svgAssets from "../../images/sprite.svg";
 import { Link } from "react-router";
-import moment from "moment";
+import { releaseDateOf } from "../../utils/formatDate";
 import UiContext from "../../context/ui/UiContext";
 import { useGenres, useMostPopular, usePlayTrailer } from "../../api/queries";
 import { tmdbImage } from "../../api/tmdbClient";
@@ -15,7 +15,7 @@ const Header = () => {
 
   // The hero is keyed by media type, so switching Movies/Series refetches it (B2).
   const {data: mostPopularMovie = NO_MOST_POPULAR} = useMostPopular(mediaType);
-  const {backdrop_path, title, name, overview, release_date, id, genre_ids} = mostPopularMovie;
+  const {backdrop_path, title, name, overview, id, genre_ids} = mostPopularMovie;
 
   // Pills always come from the movie genre list, as before (series genres are B14, Phase 4).
   const {data: allGenres} = useGenres("movie");
@@ -45,7 +45,7 @@ const Header = () => {
               </div>
           </div>
           <h1 className="movie-header__title">{ title ? title : name }</h1>
-          <span className="movie-header__date">Release date: { moment(release_date).format("DD MMM YYYY") }</span>
+          <span className="movie-header__date">Release date: { releaseDateOf(mostPopularMovie) }</span>
           <p className="movie-header__description">
             { overview }
           </p>

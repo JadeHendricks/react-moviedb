@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect} from 'react';
 import { useParams } from "react-router";
 import MovieCardItem from '../cards/MovieCardItem';
-import moment from "moment";
+import { formatDate } from "../../utils/formatDate";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import { usePerson, usePersonMovieCredits } from "../../api/queries";
 import { tmdbImage } from "../../api/tmdbClient";
@@ -60,7 +60,7 @@ function ActorSummary() {
 
                   <div className="misc__box">
                       <div className="movieDetails__title movieDetails__title--smaller">Date of birth</div>
-                      <p className="misc__info">{ moment(actor.birthday as string | undefined).format("DD MMM YYYY") }</p>
+                      <p className="misc__info">{ formatDate(actor.birthday) }</p>
                   </div>
 
                   <div className="misc__box">
