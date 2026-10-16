@@ -7,7 +7,7 @@ import MovieCardItem from '../cards/MovieCardItem';
 import CastCard from '../cards/CastCard';
 import { releaseDateOf } from "../../utils/formatDate";
 import { runtimeLabel } from "../../utils/runtime";
-import imageNotFound from "../../images/imageNotFound.jpg";
+import MediaImage from "../media/MediaImage";
 import UiContext from "../../context/ui/UiContext";
 import { useCast, useDetails, useGenres, usePlayTrailer, useReviews, useSimilar, useVideos } from "../../api/queries";
 import { tmdbImage } from "../../api/tmdbClient";
@@ -58,7 +58,7 @@ function MovieSummary() {
             <div className="movieDetailSummary">
 
                 <div className="movieDetailSummary__imageContanier">
-                  {movie.poster_path ? <img src={tmdbImage(movie.poster_path, "w500")} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} />}
+                  <MediaImage path={movie.poster_path} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} />
                 </div>
 
                 <div className="movieDetailSummary__wrapper">

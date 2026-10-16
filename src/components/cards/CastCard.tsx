@@ -1,7 +1,6 @@
 import React from 'react';
-import { tmdbImage } from "../../api/tmdbClient";
 import { Link } from "react-router";
-import imageNotFound from "../../images/imageNotFound.jpg";
+import MediaImage from "../media/MediaImage";
 import type { Credit } from "../../types/tmdb";
 
 function CastCard({cast: {id, character, name, profile_path}}: {cast: Credit}) {
@@ -9,7 +8,7 @@ function CastCard({cast: {id, character, name, profile_path}}: {cast: Credit}) {
     <div className="card castCard">
       <div className="castCard__imageholder">
         <Link to={`/actorSummary/${id}`}>
-          {profile_path ? <img src={tmdbImage(profile_path, "w500")} className="castCard__image" alt={name}/> : <img src={imageNotFound} className="castCard__image" alt={name}/>}
+          <MediaImage path={profile_path} className="castCard__image" alt={name} />
         </Link>
       </div>
       <div className="castCard__info">

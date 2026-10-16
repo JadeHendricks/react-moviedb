@@ -1,11 +1,10 @@
 import React, {useContext} from 'react';
 import Rating from "../rating/Rating";
 import { Link } from "react-router";
-import imageNotFound from "../../images/imageNotFound.jpg";
+import MediaImage from "../media/MediaImage";
 import { releaseDateOf } from "../../utils/formatDate";
 import UiContext from "../../context/ui/UiContext";
 import { usePlayTrailer } from "../../api/queries";
-import { tmdbImage } from "../../api/tmdbClient";
 import type { MediaListItem } from "../../types/tmdb";
 import { truncate } from "../../utils/truncate";
 
@@ -20,7 +19,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, first_
     <div className="card movieCard">
       <Link to={`/movieSummary/${id}`}>
         <div className="movieCard__image">
-            {backdrop_path ? <img src={tmdbImage(backdrop_path, "w500")} className="movieCard__imagesrc" alt={title}/> : <img src={imageNotFound} className="movieCard__imagesrc" alt={title}/>}
+            <MediaImage path={backdrop_path} className="movieCard__imagesrc" alt={title ? title : name} />
         </div>
       </Link>
       <div className="movieCard__information">

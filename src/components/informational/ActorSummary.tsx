@@ -3,9 +3,8 @@ import { useParams } from "react-router";
 import MovieCardItem from '../cards/MovieCardItem';
 import { formatDate } from "../../utils/formatDate";
 import { genderLabel } from "../../utils/gender";
-import imageNotFound from "../../images/imageNotFound.jpg";
+import MediaImage from "../media/MediaImage";
 import { usePerson, usePersonMovieCredits } from "../../api/queries";
-import { tmdbImage } from "../../api/tmdbClient";
 import { useTimedLoader } from "../../hooks/useTimedLoader";
 import type { Person } from "../../types/tmdb";
 import Loader from "../layout/Loader";
@@ -33,7 +32,7 @@ function ActorSummary() {
       <div className="movieDetails__wrapper">
       <div className="movieDetailSummary actorDetailSummary">
           <div className="actorDetailSummary__imageContanier">
-              {actor.profile_path ? <img src={tmdbImage(actor.profile_path, "w500")} className="movieDetailSummary__image" alt={actor.name} /> : <img src={imageNotFound} className="movieDetailSummary__image" alt={actor.name} />}
+              <MediaImage path={actor.profile_path} className="movieDetailSummary__image" alt={actor.name} />
               <span className="actorDetailSummary__name">{actor.name}</span>
           </div>
           <div className="movieDetailSummary__wrapper">

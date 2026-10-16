@@ -1,8 +1,7 @@
 import React from 'react';
 import Rating from "../rating/Rating";
 import {Link} from "react-router";
-import imageNotFound from "../../images/imageNotFound.jpg";
-import { tmdbImage } from "../../api/tmdbClient";
+import MediaImage from "../media/MediaImage";
 import type { MediaListItem } from "../../types/tmdb";
 import { truncate } from "../../utils/truncate";
 
@@ -13,7 +12,7 @@ function SearchCardItem({movie: {id, title, name, vote_average, overview, poster
     <div className="card cardSearch">
        <Link to={`/movieSummary/${id}`}>
         <div className="cardSearch__imageholder">
-          {poster_path ? <img src={tmdbImage(poster_path, "w500")} className="castCard__image" alt={title}/> : <img src={imageNotFound} className="castCard__image" alt={title}/>}
+          <MediaImage path={poster_path} className="cardSearch__image" alt={title ? title : name} />
         </div>
       </Link>
       <div className="cardSearch__info">
