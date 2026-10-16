@@ -1,10 +1,11 @@
 import React, { type ReactElement } from 'react';
 import { render } from '@testing-library/react';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter, RouterProvider, createMemoryRouter } from 'react-router';
 import { createQueryClient } from '../api/queryClient';
 import UiState from '../context/ui/UiState';
 import ModalState from '../context/modal/ModalState';
+import { routes } from '../routes';
 
 /** Renders under the same providers as the app, with a fresh query cache and retries off. */
 export const renderWithProviders = (ui: ReactElement, { route = '/' }: { route?: string } = {}) => {
@@ -17,6 +18,26 @@ export const renderWithProviders = (ui: ReactElement, { route = '/' }: { route?:
         <UiState>
           <ModalState>
             <MemoryRouter initialEntries={[route]}>{ui}</MemoryRouter>
+          </ModalState>
+        </UiState>
+      </QueryClientProvider>,
+    ),
+  };
+};
+
+/** Renders the whole app (side and top navigation plus the routes) at `route`. */
+export const renderApp = (route: string) => {
+  const queryClient = createQueryClient();
+  queryClient.setDefaultOptions({ queries: { retry: false, gcTime: Infinity } });
+  const router = createMemoryRouter(routes, { initialEntries: [route] });
+  return {
+    queryClient,
+    router,
+    ...render(
+      <QueryClientProvider client={queryClient}>
+        <UiState>
+          <ModalState>
+            <RouterProvider router={router} />
           </ModalState>
         </UiState>
       </QueryClientProvider>,

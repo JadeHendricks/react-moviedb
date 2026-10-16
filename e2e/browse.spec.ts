@@ -69,9 +69,9 @@ test.describe('details', () => {
     await gotoHome(page);
     await page.locator('.switchTabs__tab[data-content="series"]').click();
     await expect(page.locator('.movieCard__title').first()).toHaveText(firstTitle('tv-on_the_air'));
-    // Client-side navigation keeps the "series" mode, which picks the tv endpoints.
+    // A series card links to its own route, so the page picks the tv endpoints from the URL (D1, B9).
     await page.locator('.movieCard').first().getByRole('link', { name: 'View More' }).click();
-    await expect(page).toHaveURL(/\/movieSummary\/200$/);
+    await expect(page).toHaveURL(/\/seriesSummary\/200$/);
     await waitForLoaderGone(page);
     await expect(page.locator('.movieMain__title')).toContainText(fixture('tv-detail').name);
     await expect(page.locator('.movieDetails__title', { hasText: 'Series Details' })).toBeVisible();
