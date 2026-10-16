@@ -4,17 +4,18 @@ import { Link } from "react-router";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import moment from "moment";
 import MainContentContext from "../../context/mainContent/MainContentContext";
+import type { MediaListItem } from "../../types/tmdb";
 
-const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, vote_average, id}}) => {
+const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, vote_average, id}}: {movie: MediaListItem}) => {
 
   const mainContentContext = useContext(MainContentContext);
   const {appWideContent} = mainContentContext;
 
-  const contentTrimmer = (content, number) => {
+  const contentTrimmer = (content: string, number: number) => {
     return content.length > number ? content.slice(0, number) + "..." : content;
   }
 
-  const playTrailer = async (e) => {
+  const playTrailer = async () => {
     let response;
     if (appWideContent === "movies") {
       response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${import.meta.env.REACT_APP_API_KEY}&language=en-US&page=1`);

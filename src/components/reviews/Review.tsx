@@ -1,8 +1,9 @@
 import React from 'react';
+import type { Review as ReviewData } from "../../types/tmdb";
 
-function Review({review: {author, content, url}}) {
+function Review({review: {author, content, url}}: {review: ReviewData}) {
 
-  const contentTrimmer = (content, number) => {
+  const contentTrimmer = (content: string, number: number) => {
     return content.length > number ? content.slice(0, number) + "..." : content;
   }
 

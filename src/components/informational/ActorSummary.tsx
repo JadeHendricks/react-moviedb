@@ -21,7 +21,8 @@ function ActorSummary() {
     addLoader();
 
     return () => {
-      clearTimeout(addLoader);
+      // Passing the function is a no-op (B4), kept as-is until Phase 4; the cast only satisfies the types.
+      clearTimeout(addLoader as unknown as number);
     }
     // eslint-disable-next-line
   }, []);
@@ -33,7 +34,7 @@ function ActorSummary() {
   }
 
 
-  const genderChecker = (gender) => {
+  const genderChecker = (gender: number | undefined) => {
     return gender === 2 ? "Male" : "Female";
   }
 
@@ -69,7 +70,7 @@ function ActorSummary() {
 
                   <div className="misc__box">
                       <div className="movieDetails__title movieDetails__title--smaller">Date of birth</div>
-                      <p className="misc__info">{ moment(actor.birthday).format("DD MMM YYYY") }</p>
+                      <p className="misc__info">{ moment(actor.birthday as string | undefined).format("DD MMM YYYY") }</p>
                   </div>
 
                   <div className="misc__box">

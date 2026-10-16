@@ -11,7 +11,8 @@ function Modal() {
     closeModal();
 
     return () => {
-        clearTimeout(closeModal);
+        // Passing the function is a no-op (B3), kept as-is until Phase 4; the cast only satisfies the types.
+        clearTimeout(closeModal as unknown as number);
     }
     // eslint-disable-next-line
   }, [])

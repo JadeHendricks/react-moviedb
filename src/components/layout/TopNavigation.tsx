@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, Fragment} from 'react';
+import React, {useState, useEffect, useContext, Fragment, type FormEvent, type ChangeEvent} from 'react';
 import svgAsset from "../../images/sprite.svg";
 import { useNavigate } from "react-router";
 import ModalContext from "../../context/modal/ModalContext";
@@ -23,7 +23,7 @@ function TopNavigation() {
     // eslint-disable-next-line
   }, [query]);
 
-  const initSearch = e => {
+  const initSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setQuery(search.toLowerCase());
     setSearch("");
@@ -31,7 +31,7 @@ function TopNavigation() {
     search === "" ?  alert("Please insert a search term") : setRedirect(true);
   }
 
-  const updateSearch = e => {
+  const updateSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   }
 
@@ -45,7 +45,8 @@ function TopNavigation() {
           </svg>
           <input className="searchForm__input" type="search" name="search" placeholder="Search for Movies or TV Series" value={search} onChange={updateSearch} />
       </form>
-      <div clas="userAuth">
+      {/* `clas` is a typo kept as-is (B21, Phase 4); the spread keeps it out of the typed props. */}
+      <div {...{ clas: "userAuth" }}>
           <div className="topnav__buttons">
               <button className="button button--green button--skeleton" data-auth="login" onClick={authSelection}>Login</button>
               <button className="button button--green" data-auth="signup" onClick={authSelection}>Sign up</button>

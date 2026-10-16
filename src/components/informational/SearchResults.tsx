@@ -1,12 +1,14 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import SearchCardItem from "../cards/SearchCardItem";
 import Loader from "../layout/Loader";
+import type { MediaListItem } from "../../types/tmdb";
 
 function SearchResults() {
-  const query = decodeURI(window.location.href.split("/").pop());
+  const query = decodeURI(window.location.href.split("/").pop()!);
 
-  const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState([]);
+  const [searchResults, setSearchResults] = useState<MediaListItem[]>([]);
+  // Starts as `[]` (truthy), so the loader shows first; kept as-is.
+  const [loading, setLoading] = useState<boolean | never[]>([]);
 
   useEffect(() => {
     fetchMoviesAndSeries(query);
@@ -14,7 +16,8 @@ function SearchResults() {
     addLoader();
 
     return () => {
-      clearTimeout(addLoader);
+      // Passing the function is a no-op (B4), kept as-is until Phase 4; the cast only satisfies the types.
+      clearTimeout(addLoader as unknown as number);
     }
     // eslint-disable-next-line
   }, [query]);
@@ -25,7 +28,7 @@ function SearchResults() {
     }, 3000);
   }
 
-  const fetchMoviesAndSeries = async (query) => {
+  const fetchMoviesAndSeries = async (query: string) => {
     const responseMovies = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.REACT_APP_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
     const responseSeries = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${import.meta.env.REACT_APP_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`);
 

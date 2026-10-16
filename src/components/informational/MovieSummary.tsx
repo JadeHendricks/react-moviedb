@@ -40,7 +40,8 @@ function MovieSummary() {
     window.scrollTo(0, 0);
 
     return () => {
-      clearTimeout(addLoader);
+      // Passing the function is a no-op (B4), kept as-is until Phase 4; the cast only satisfies the types.
+      clearTimeout(addLoader as unknown as number);
     }
     // eslint-disable-next-line
   }, [params.id]);

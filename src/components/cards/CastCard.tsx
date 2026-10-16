@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from "react-router";
 import imageNotFound from "../../images/imageNotFound.jpg";
+import type { Credit } from "../../types/tmdb";
 
-function CastCard({cast: {id, character, name, profile_path}}) {
+function CastCard({cast: {id, character, name, profile_path}}: {cast: Credit}) {
   return (
     <div className="card castCard">
       <div className="castCard__imageholder">

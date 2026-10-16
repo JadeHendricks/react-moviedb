@@ -2,10 +2,11 @@ import React from 'react';
 import Rating from "../rating/Rating";
 import {Link} from "react-router";
 import imageNotFound from "../../images/imageNotFound.jpg";
+import type { MediaListItem } from "../../types/tmdb";
 
-function SearchCardItem({movie: {id, title, name, vote_average, overview, poster_path}}) {
+function SearchCardItem({movie: {id, title, name, vote_average, overview, poster_path}}: {movie: MediaListItem}) {
 
-  const contentTrimmer = (content, number) => {
+  const contentTrimmer = (content: string, number: number) => {
     return content.length > number ? content.slice(0, number) + "..." : content;
   }
 

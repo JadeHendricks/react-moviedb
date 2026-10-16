@@ -9,7 +9,7 @@ export default defineConfig({
   envPrefix: ['VITE_', 'REACT_APP_'],
   test: {
     environment: 'jsdom',
-    setupFiles: ['./src/test/setup.js'],
+    setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.test.{js,jsx,ts,tsx}'],
     css: false,
   },
