@@ -1,0 +1,35 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// Text that names a field or explains a problem with it. The variant sets the look:
+//   --caps   small bold capitals (login and sign-up)
+//   --block  its own line above a field (account form)
+//   --error  a red message under a field
+.label {
+  color: currentColor;
+}
+
+.label--caps {
+  margin-bottom: $space-12;
+  text-transform: uppercase;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-14;
+
+  @include respond-to(sm) {
+    font-size: $font-size-12;
+  }
+}
+
+.label--block {
+  display: block;
+  font-size: $font-size-18;
+  margin-bottom: $space-10;
+}
+
+.label--error {
+  font-size: $font-size-14;
+  color: $color-error;
+  display: block;
+  width: 100%;
+  margin-top: $space-5;
+}
