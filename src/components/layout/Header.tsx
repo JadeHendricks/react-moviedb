@@ -1,4 +1,6 @@
 import React, {useContext} from 'react'
+import '../../styles/organisms/hero.scss';
+import '../../styles/atoms/icon.scss';
 import '../../styles/molecules/category.scss';
 import '../../styles/atoms/pill.scss';
 import '../../styles/atoms/button.scss';
@@ -39,25 +41,25 @@ const Header = () => {
   }
 
   return (
-    <header className="movie-header" style={backgroundImage}>
+    <header className="hero" style={backgroundImage}>
       <div className="container-small">
-          <svg className="movie-header__playicon" {...trailer}>
+          <svg className="icon icon--play hero__play" {...trailer}>
               <use href={`${svgAssets}#icon-play2`}>
                 <title>Play {title} trailer</title>
               </use>
           </svg>
-          <h4 className="movie-header__slug">Most Popular</h4>
+          <h4 className="hero__slug">Most Popular</h4>
           <div className="category">
               <div className="category__wrapper">
                 {genres.slice(0, 3).map(genre => <div key={genre.id} className="pill pill--large pill--white">{genre.name}</div>)}
               </div>
           </div>
-          <h1 className="movie-header__title">{ title ? title : name }</h1>
-          <span className="movie-header__date">Release date: { releaseDateOf(mostPopularMovie) }</span>
-          <p className="movie-header__description">
+          <h1 className="hero__title">{ title ? title : name }</h1>
+          <span className="hero__date">Release date: { releaseDateOf(mostPopularMovie) }</span>
+          <p className="hero__description">
             { overview }
           </p>
-          <Link to={detailPath(heroType, id)}><button className="button button--green marginBottom20">View More</button></Link>
+          <Link to={detailPath(heroType, id)}><button className="button button--green hero__cta">View More</button></Link>
       </div>
     </header>
   )

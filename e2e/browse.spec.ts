@@ -19,9 +19,9 @@ const openCategory = async (page: import('@playwright/test').Page, label: string
 test.describe('movies', () => {
   test('home, every side-nav category', async ({ page }) => {
     await gotoHome(page);
-    await expect(page.locator('.movie-header__title')).toHaveText(mostPopularTitle('movie-popular'));
+    await expect(page.locator('.hero__title')).toHaveText(mostPopularTitle('movie-popular'));
     await expect(page.locator('.movie-card__title').first()).toHaveText(firstTitle('movie-now_playing'));
-    await expect(page.locator('.movie-header .pill').first()).toBeVisible();
+    await expect(page.locator('.hero .pill').first()).toBeVisible();
     await snap(page, 'movies-now-playing');
 
     await openCategory(page, 'Top Rated', 'Top rated', 'movie-top_rated');
@@ -40,7 +40,7 @@ test.describe('series', () => {
     await gotoHome(page);
     await page.locator('.switch-tabs__tab[data-content="series"]').click();
     await expect(page.locator('.movie-card__title').first()).toHaveText(firstTitle('tv-on_the_air'));
-    await expect(page.locator('.movie-header__title')).toHaveText(mostPopularTitle('tv-popular'));
+    await expect(page.locator('.hero__title')).toHaveText(mostPopularTitle('tv-popular'));
     await expect(page.locator('.side-nav__item', { hasText: 'Upcoming' })).toHaveCount(0);
     await snap(page, 'series-on-the-air');
 

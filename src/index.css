@@ -280,9 +280,6 @@
 .marginBottom15 {
   margin-bottom: 1.5rem !important;
 }
-.marginBottom20 {
-  margin-bottom: 2rem !important;
-}
 .marginBottom25 {
   margin-bottom: 2.5rem !important;
 }
@@ -685,117 +682,5 @@
     height: 2.5rem;
     width: 2.5rem;
     line-height: 2.5rem;
-  }
-}
-.movie-header {
-  height: 72rem;
-  background: #333
-    url('https://2l7g9kgsh281akevs49v281d-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/Dunkirk-movie-banner.jpg')
-    no-repeat top left;
-  background-size: cover;
-  color: #ffffff;
-  position: relative;
-  padding: 10rem;
-  line-height: 1;
-}
-.movie-header__date {
-  font-size: 1.4rem;
-  display: block;
-  margin-bottom: 2rem;
-  font-weight: 700;
-}
-.movie-header__slug {
-  font-size: 3.4rem;
-  font-weight: 400;
-  line-height: 1;
-  text-transform: uppercase;
-}
-.movie-header__title {
-  line-height: 1;
-  margin: 3rem 0 0.5rem 0;
-}
-.movie-header__description {
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-}
-.movie-header__playicon {
-  fill: #ffffff;
-  width: 22rem;
-  height: 22rem;
-  position: absolute;
-  top: 50%;
-  right: 20%;
-  transform: translate(-50%, -50%);
-  transition: all 0.5s;
-}
-.movie-header__playicon:hover {
-  fill: #3cb13e;
-  transform: translate(-50%, -50%) scale(1.3) rotate(360deg);
-  cursor: pointer;
-}
-.movie-header .rating {
-  position: absolute;
-  bottom: 10rem;
-  right: 10rem;
-}
-.movie-header button {
-  box-shadow: 0 12px 28px rgba(61, 177, 61, 0.38);
-}
-.movie-header button:hover {
-  box-shadow: none;
-}
-.movie-header-starring {
-  color: #ffffff;
-}
-.movie-header-starring__title {
-  font-size: 1.8rem;
-  text-transform: uppercase;
-}
-.movie-header-starring__wrapper {
-  display: flex;
-  margin-top: 1.5rem;
-}
-.movie-header-starring__image {
-  margin-right: 1.5rem;
-  border-radius: 3rem;
-}
-@media screen and (max-width: 1660px) {
-  .movie-header {
-    height: 72rem;
-    background-size: cover;
-    color: #ffffff;
-    position: relative;
-    padding: 10rem;
-    line-height: 1;
-  }
-  .movie-header__playicon {
-    display: none;
-  }
-}
-@media screen and (max-width: 520px) {
-  .movie-header {
-    height: 60rem;
-    padding: 4rem 3rem;
-    text-align: center;
-  }
-  .movie-header__date {
-    font-size: 1.2rem;
-  }
-  .movie-header__slug {
-    font-size: 2.4rem;
-  }
-  .movie-header__title {
-    font-size: 3rem;
-    margin: 3rem 0 1rem 0;
-  }
-  .movie-header__description {
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-  .movie-header__playicon {
-    display: none;
-  }
-  .movie-header-starring__wrapper {
-    justify-content: center;
   }
 }

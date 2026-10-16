@@ -123,6 +123,6 @@ export const snap = async (page: Page, name: string, options: { fullPage?: boole
 export const gotoHome = async (page: Page) => {
   await page.goto('/');
   await waitForLoaderGone(page);
-  await expect(page.locator('.movie-header__title')).not.toHaveText('');
+  await expect(page.locator('.hero__title')).not.toHaveText('');
   await expect(page.locator('.movie-card').first()).toBeVisible();
 };
