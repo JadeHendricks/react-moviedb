@@ -1,4 +1,5 @@
 import React, {Fragment, useContext} from 'react';
+import '../../styles/layout/container.scss';
 import MovieCardItem from "../cards/MovieCardItem";
 import SwitchTabs from "../layout/SwitchTabs";
 import Header from './Header';

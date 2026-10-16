@@ -1,4 +1,4 @@
-﻿// Enforces the Phase 5 styling rules on every Sass partial: strict BEM, one class per selector,
+// Enforces the Phase 5 styling rules on every Sass partial: strict BEM, one class per selector,
 // no ids, no !important, no combinators, so every rule stays at specificity 0,1,0.
 const BEM = String.raw`^[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:__[a-z0-9]+(?:-[a-z0-9]+)*)?(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$`;
 

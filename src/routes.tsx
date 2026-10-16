@@ -16,7 +16,7 @@ function Layout() {
   return (
     <>
       <SideNavigation />
-      <div className="main-content">
+      <div className="app__main">
         <TopNavigation />
         {/* While a page chunk loads the same full-screen loader the pages use is shown. */}
         <Suspense fallback={<Loader />}>

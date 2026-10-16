@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, isRouteErrorResponse, useRouteError } from 'react-router';
+import '../../styles/layout/container.scss';
 
 /** Router error boundary: a page that throws, or a chunk that fails to load, ends up here instead of a white screen. */
 function RouteError() {

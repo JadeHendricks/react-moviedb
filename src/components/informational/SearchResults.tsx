@@ -1,5 +1,6 @@
 import React, {Fragment, useEffect} from 'react';
 import { useParams } from "react-router";
+import '../../styles/layout/container.scss';
 import SearchCardItem from "../cards/SearchCardItem";
 import Loader from "../layout/Loader";
 import { searchResultKey, useSearch } from "../../api/queries";
