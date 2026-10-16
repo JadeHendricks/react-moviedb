@@ -1,0 +1,25 @@
+{
+  "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots. A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+  "backdrop_path": "/bd-detail.jpg",
+  "poster_path": "/po-detail.jpg",
+  "vote_average": 7.6,
+  "popularity": 88.8,
+  "genres": [
+    {
+      "id": 28,
+      "name": "Action"
+    },
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    },
+    {
+      "id": 18,
+      "name": "Drama"
+    }
+  ],
+  "id": 101,
+  "title": "The Last Lighthouse",
+  "release_date": "2025-03-14",
+  "runtime": 128
+}

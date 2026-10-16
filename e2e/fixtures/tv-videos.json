@@ -1,0 +1,26 @@
+{
+  "id": 101,
+  "results": [
+    {
+      "id": "v1",
+      "key": "fixturekey1",
+      "name": "Trailer 1",
+      "site": "YouTube",
+      "type": "Trailer"
+    },
+    {
+      "id": "v2",
+      "key": "fixturekey2",
+      "name": "Trailer 2",
+      "site": "YouTube",
+      "type": "Trailer"
+    },
+    {
+      "id": "v3",
+      "key": "fixturekey3",
+      "name": "Trailer 3",
+      "site": "YouTube",
+      "type": "Trailer"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 6,
+  "results": [
+    {
+      "id": 300,
+      "title": "Echo Park",
+      "original_title": "Echo Park",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd300.jpg",
+      "poster_path": "/po300.jpg",
+      "release_date": "2025-01-10",
+      "vote_average": 8.4,
+      "popularity": 100,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 301,
+      "title": "Winter Garden",
+      "original_title": "Winter Garden",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd301.jpg",
+      "poster_path": "/po301.jpg",
+      "release_date": "2025-02-11",
+      "vote_average": 6.2,
+      "popularity": 93,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 302,
+      "title": "Slow Burn",
+      "original_title": "Slow Burn",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd302.jpg",
+      "poster_path": "/po302.jpg",
+      "release_date": "2025-03-12",
+      "vote_average": 4.1,
+      "popularity": 86,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 303,
+      "title": "The Understory",
+      "original_title": "The Understory",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd303.jpg",
+      "poster_path": "/po303.jpg",
+      "release_date": "2025-04-13",
+      "vote_average": 7.5,
+      "popularity": 79,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 304,
+      "title": "Copper Sky",
+      "original_title": "Copper Sky",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd304.jpg",
+      "poster_path": "/po304.jpg",
+      "release_date": "2025-05-14",
+      "vote_average": 5.8,
+      "popularity": 72,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 305,
+      "title": "Distant Shore",
+      "original_title": "Distant Shore",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd305.jpg",
+      "poster_path": "/po305.jpg",
+      "release_date": "2025-06-15",
+      "vote_average": 9,
+      "popularity": 65,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    }
+  ]
+}

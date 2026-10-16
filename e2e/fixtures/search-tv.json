@@ -1,0 +1,67 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 4,
+  "results": [
+    {
+      "id": 650,
+      "name": "Matrix Mysteries",
+      "original_name": "Matrix Mysteries",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd650.jpg",
+      "poster_path": "/po650.jpg",
+      "first_air_date": "2024-10-01",
+      "vote_average": 4.1,
+      "popularity": 90,
+      "genre_ids": [
+        18,
+        35
+      ]
+    },
+    {
+      "id": 651,
+      "name": "Inside the Matrix",
+      "original_name": "Inside the Matrix",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd651.jpg",
+      "poster_path": "/po651.jpg",
+      "first_air_date": "2024-11-02",
+      "vote_average": 7.5,
+      "popularity": 84,
+      "genre_ids": [
+        10759,
+        10765
+      ]
+    },
+    {
+      "id": 652,
+      "name": "Matrix Nights",
+      "original_name": "Matrix Nights",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd652.jpg",
+      "poster_path": "/po652.jpg",
+      "first_air_date": "2024-12-03",
+      "vote_average": 5.8,
+      "popularity": 78,
+      "genre_ids": [
+        18,
+        35
+      ]
+    },
+    {
+      "id": 653,
+      "name": "Matrix Academy",
+      "original_name": "Matrix Academy",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd653.jpg",
+      "poster_path": "/po653.jpg",
+      "first_air_date": "2024-10-04",
+      "vote_average": 9,
+      "popularity": 72,
+      "genre_ids": [
+        10759,
+        10765
+      ]
+    }
+  ]
+}

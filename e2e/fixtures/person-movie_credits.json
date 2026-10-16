@@ -1,0 +1,126 @@
+{
+  "id": 501,
+  "cast": [
+    {
+      "id": 400,
+      "title": "Role Model",
+      "original_title": "Role Model",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd400.jpg",
+      "poster_path": "/po400.jpg",
+      "release_date": "2025-01-10",
+      "vote_average": 8.4,
+      "popularity": 100,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 401,
+      "title": "The Understudy Returns",
+      "original_title": "The Understudy Returns",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd401.jpg",
+      "poster_path": "/po401.jpg",
+      "release_date": "2025-02-11",
+      "vote_average": 6.2,
+      "popularity": 93,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 402,
+      "title": "Quiet Streets",
+      "original_title": "Quiet Streets",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd402.jpg",
+      "poster_path": "/po402.jpg",
+      "release_date": "2025-03-12",
+      "vote_average": 4.1,
+      "popularity": 86,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 403,
+      "title": "Borrowed Time",
+      "original_title": "Borrowed Time",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd403.jpg",
+      "poster_path": "/po403.jpg",
+      "release_date": "2025-04-13",
+      "vote_average": 7.5,
+      "popularity": 79,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 404,
+      "title": "Fault Lines",
+      "original_title": "Fault Lines",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd404.jpg",
+      "poster_path": "/po404.jpg",
+      "release_date": "2025-05-14",
+      "vote_average": 5.8,
+      "popularity": 72,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 405,
+      "title": "Homecoming",
+      "original_title": "Homecoming",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd405.jpg",
+      "poster_path": "/po405.jpg",
+      "release_date": "2025-06-15",
+      "vote_average": 9,
+      "popularity": 65,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 406,
+      "title": "Night Owls",
+      "original_title": "Night Owls",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd406.jpg",
+      "poster_path": "/po406.jpg",
+      "release_date": "2025-07-16",
+      "vote_average": 3.3,
+      "popularity": 58,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 407,
+      "title": "No Artwork Film",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": null,
+      "poster_path": "/po407.jpg",
+      "release_date": "2020-02-02",
+      "vote_average": 6.6,
+      "popularity": 5,
+      "genre_ids": [
+        18
+      ]
+    }
+  ]
+}
