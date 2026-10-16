@@ -125,16 +125,6 @@
 .movieMain__storyline {
   margin-top: 4rem;
 }
-.movieMain .rating {
-  position: absolute;
-  right: 10rem;
-  top: 4rem;
-  height: 6rem;
-  width: 6rem;
-}
-.movieMain .rating__number {
-  font-size: 1.8rem;
-}
 .misc {
   font-size: 1.4rem;
   color: #333333;
@@ -203,16 +193,6 @@
 @media screen and (max-width: 991px) {
   .movieMain__title {
     padding-right: 7rem;
-  }
-  .movieMain .rating {
-    position: absolute;
-    right: 2rem;
-    top: 2rem;
-    height: 5rem;
-    width: 5rem;
-  }
-  .movieMain .rating__number {
-    font-size: 1.4rem;
   }
   .movieDetailSummary__image {
     -o-object-fit: contain;
@@ -395,60 +375,6 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.card {
-  border-radius: 0.6rem;
-  box-shadow:
-    0 1rem 3rem rgba(0, 0, 0, 0.05),
-    0 0.5rem 1rem rgba(0, 0, 0, 0.12);
-  flex: 0 1 18%;
-}
-.movieCard {
-  margin-bottom: 2.5rem;
-  background-color: #ffffff;
-  font-size: 1.4rem;
-}
-.movieCard__image {
-  height: 32rem;
-}
-.movieCard__information {
-  padding: 1.5rem;
-  position: relative;
-}
-.movieCard__buttons {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-}
-.movieCard__buttons button,
-.movieCard__buttons a {
-  padding: 1rem 0.8rem;
-  width: 48%;
-  font-size: 1.2rem;
-  text-decoration: none;
-  text-align: center;
-}
-.movieCard__buttons button:last-child,
-.movieCard__buttons a:last-child {
-  margin-right: 0;
-}
-.movieCard__title {
-  margin: 0 4rem 1.5rem 0;
-  height: 4.5rem;
-}
-.movieCard .rating {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-.movieCard__imagesrc {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  border-radius: 0.6rem;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
 .cast {
   margin: 7rem 0;
 }
@@ -468,93 +394,12 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.moreMovies .movieCard {
-  flex: 0 1 23%;
-  margin-bottom: 2.5rem;
-}
-.moreMovies .movieCard__title {
-  font-size: 1.4rem;
-}
-.moreMovies .movieCard__buttons {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-}
-.moreMovies .movieCard__buttons button,
-.moreMovies .movieCard__buttons a {
-  padding: 1rem 0.5rem;
-  width: 49%;
-  font-size: 1.2rem;
-}
-.moreMovies .movieCard__buttons button:last-child,
-.moreMovies .movieCard__buttons a:last-child {
-  margin-right: 0;
-}
-.moreMovies .movieCard__information {
-  padding: 1rem;
-}
-.moreMovies .rating {
-  height: 3rem;
-  width: 3rem;
-}
-.moreMovies .rating__number {
-  font-size: 1.2rem;
-}
 @media screen and (max-width: 1660px) {
   .movieSection {
     padding: 6rem 2rem;
   }
-  .movieCard {
-    flex: 0 1 22%;
-    margin-bottom: 4rem;
-    font-size: 1.2rem;
-  }
-  .movieCard__image {
-    height: 28rem;
-  }
-  .movieCard__information {
-    padding: 1rem;
-  }
-  .movieCard__buttons {
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-  }
-  .movieCard__buttons button,
-  .movieCard__buttons a {
-    width: 49%;
-    font-size: 1rem;
-  }
-  .movieCard__title {
-    margin: 0 4.5rem 2rem 0;
-    height: 6rem;
-  }
   .movieMain {
     padding: 4rem;
-  }
-  .moreMovies .movieCard {
-    flex: 0 1 30%;
-    margin-bottom: 2.5rem;
-  }
-  .moreMovies .movieCard__title {
-    font-size: 1.4rem;
-  }
-  .moreMovies .movieCard__image {
-    height: 24rem;
-  }
-  .moreMovies .movieCard__buttons button,
-  .moreMovies .movieCard__buttons a {
-    font-size: 1rem;
-  }
-  .moreMovies .movieCard__information {
-    padding: 1rem;
-  }
-  .moreMovies .rating {
-    height: 2.5rem;
-    width: 2.5rem;
-  }
-  .moreMovies .rating__number {
-    font-size: 1rem;
   }
   .cast {
     margin: 7rem 0;
@@ -569,33 +414,8 @@
   }
 }
 @media screen and (max-width: 1200px) {
-  .movieCard {
-    flex: 0 1 32%;
-    margin-bottom: 2rem;
-    font-size: 1rem;
-  }
-  .movieCard__image {
-    height: 20rem;
-  }
   .movieMain {
     padding: 2rem;
-  }
-  .moreMovies .movieCard {
-    flex: 0 1 48%;
-    margin-bottom: 3rem;
-  }
-  .moreMovies .movieCard__title {
-    font-size: 1.6rem;
-  }
-  .moreMovies .movieCard__image {
-    height: 28rem;
-  }
-  .moreMovies .rating {
-    height: 3.5rem;
-    width: 3.5rem;
-  }
-  .moreMovies .rating__number {
-    font-size: 1.2rem;
   }
 }
 @media screen and (max-width: 991px) {
@@ -610,38 +430,12 @@
     min-height: auto;
   }
 }
-@media screen and (max-width: 767px) {
-  .movieCard {
-    flex: 0 1 48%;
-    margin-bottom: 3rem;
-  }
-  .movieCard__image {
-    height: 20rem;
-  }
-}
 @media screen and (max-width: 520px) {
   .movieSection__titles {
     flex-direction: column;
   }
-  .movieCard {
-    flex: 1;
-    margin-bottom: 2rem;
-  }
-  .movieCard__image {
-    height: 22rem;
-  }
   .moreMovies__titles {
     flex-direction: column;
-  }
-  .moreMovies .movieCard {
-    flex: 1;
-    margin-bottom: 3rem;
-  }
-  .moreMovies .movieCard__image {
-    height: 28rem;
-  }
-  .moreMovies .movieCard__buttons button {
-    font-size: 1.2rem;
   }
   .actorDetailSummary__image {
     -o-object-fit: cover;

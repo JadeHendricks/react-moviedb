@@ -13,14 +13,14 @@ const mostPopularTitle = (name: string) => {
 const openCategory = async (page: import('@playwright/test').Page, label: string, heading: string, fixtureName: string) => {
   await page.locator('.navigation__node', { hasText: label }).click();
   await expect(page.locator('.movieSection__title')).toHaveText(heading);
-  await expect(page.locator('.movieCard__title').first()).toHaveText(firstTitle(fixtureName));
+  await expect(page.locator('.movie-card__title').first()).toHaveText(firstTitle(fixtureName));
 };
 
 test.describe('movies', () => {
   test('home, every side-nav category', async ({ page }) => {
     await gotoHome(page);
     await expect(page.locator('.movie-header__title')).toHaveText(mostPopularTitle('movie-popular'));
-    await expect(page.locator('.movieCard__title').first()).toHaveText(firstTitle('movie-now_playing'));
+    await expect(page.locator('.movie-card__title').first()).toHaveText(firstTitle('movie-now_playing'));
     await expect(page.locator('.movie-header .pill').first()).toBeVisible();
     await snap(page, 'movies-now-playing');
 
@@ -39,7 +39,7 @@ test.describe('series', () => {
   test('switch to series, every side-nav category', async ({ page }) => {
     await gotoHome(page);
     await page.locator('.switch-tabs__tab[data-content="series"]').click();
-    await expect(page.locator('.movieCard__title').first()).toHaveText(firstTitle('tv-on_the_air'));
+    await expect(page.locator('.movie-card__title').first()).toHaveText(firstTitle('tv-on_the_air'));
     await expect(page.locator('.movie-header__title')).toHaveText(mostPopularTitle('tv-popular'));
     await expect(page.locator('.navigation__node', { hasText: 'Upcoming' })).toHaveCount(0);
     await snap(page, 'series-on-the-air');
@@ -60,7 +60,7 @@ test.describe('details', () => {
     await expect(page.locator('.movieDetailSummary .pill').first()).toBeVisible();
     await expect(page.locator('.review')).toHaveCount(2);
     await expect(page.locator('.cast-card')).toHaveCount(12);
-    await expect(page.locator('.moreMovies .movieCard')).toHaveCount(6);
+    await expect(page.locator('.moreMovies .movie-card')).toHaveCount(6);
     await expect(page.locator('.movieDetailHeader__videos iframe')).toHaveCount(3);
     await snap(page, 'movie-detail');
   });
@@ -68,9 +68,9 @@ test.describe('details', () => {
   test('series detail, reached from the series list', async ({ page }) => {
     await gotoHome(page);
     await page.locator('.switch-tabs__tab[data-content="series"]').click();
-    await expect(page.locator('.movieCard__title').first()).toHaveText(firstTitle('tv-on_the_air'));
+    await expect(page.locator('.movie-card__title').first()).toHaveText(firstTitle('tv-on_the_air'));
     // A series card links to its own route, so the page picks the tv endpoints from the URL (D1, B9).
-    await page.locator('.movieCard').first().getByRole('link', { name: 'View More' }).click();
+    await page.locator('.movie-card').first().getByRole('link', { name: 'View More' }).click();
     await expect(page).toHaveURL(/\/seriesSummary\/200$/);
     await waitForLoaderGone(page);
     await expect(page.locator('.movieMain__title')).toContainText(fixture('tv-detail').name);
@@ -84,7 +84,7 @@ test.describe('details', () => {
     await page.goto('/actorSummary/501');
     await waitForLoaderGone(page);
     await expect(page.locator('.actorDetailSummary__name')).toHaveText(fixture('person').name);
-    await expect(page.locator('.moreMovies .movieCard')).toHaveCount(fixture('person-movie_credits').cast.length);
+    await expect(page.locator('.moreMovies .movie-card')).toHaveCount(fixture('person-movie_credits').cast.length);
     await snap(page, 'actor');
   });
 });

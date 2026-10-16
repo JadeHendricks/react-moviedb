@@ -114,7 +114,7 @@ describe('home hero', () => {
     expect(await within(hero).findByText('Sci-Fi & Fantasy')).toBeInTheDocument();
     expect(within(hero).getByText('Release date: 02 Oct 2024')).toBeInTheDocument();
     // The series card link goes to the series route even though it was reached from the home page.
-    const card = (await screen.findByText('Airing Show')).closest('.movieCard') as HTMLElement;
+    const card = (await screen.findByText('Airing Show')).closest('.movie-card') as HTMLElement;
     expect(within(card).getByRole('link', { name: 'View More' })).toHaveAttribute('href', '/seriesSummary/6');
     expect(within(hero).getByRole('link', { name: 'View More' })).toHaveAttribute('href', '/seriesSummary/5');
   });

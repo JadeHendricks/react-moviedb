@@ -39,7 +39,7 @@ test.describe('TMDB request count per page', () => {
     const paths = trackTmdbRequests(page);
     await gotoHome(page);
     await page.locator('.switch-tabs__tab[data-content="series"]').click();
-    await expect(page.locator('.movieCard').first()).toBeVisible();
+    await expect(page.locator('.movie-card').first()).toBeVisible();
     // 6: the series hero now loads the series genre list too (B14), which it used to skip.
     await expectStableCount(page, paths, 6, 'home series (after movies)');
   });

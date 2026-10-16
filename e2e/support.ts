@@ -124,5 +124,5 @@ export const gotoHome = async (page: Page) => {
   await page.goto('/');
   await waitForLoaderGone(page);
   await expect(page.locator('.movie-header__title')).not.toHaveText('');
-  await expect(page.locator('.movieCard').first()).toBeVisible();
+  await expect(page.locator('.movie-card').first()).toBeVisible();
 };

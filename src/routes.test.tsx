@@ -74,7 +74,7 @@ describe('routes', () => {
 
     renderApp('/actorSummary/5');
 
-    const card = (await screen.findByText('Credit Movie')).closest('.movieCard') as HTMLElement;
+    const card = (await screen.findByText('Credit Movie')).closest('.movie-card') as HTMLElement;
     expect(within(card).getByRole('link', { name: 'View More' })).toHaveAttribute('href', '/movieSummary/33');
   });
 

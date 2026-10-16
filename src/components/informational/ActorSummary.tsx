@@ -73,7 +73,7 @@ function ActorSummary() {
               <section className="moreMovies">
                   <h3 className="moreMovies__title">Popular Roles</h3>
                   <div className="moreMovies__titles">
-                    {credits && credits.map(movie => <MovieCardItem key={movie.id} movie={movie} />)}
+                    {credits && credits.map(movie => <MovieCardItem key={movie.id} movie={movie} compact />)}
                   </div>
               </section>
             </main>

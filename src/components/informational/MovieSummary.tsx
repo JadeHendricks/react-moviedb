@@ -1,4 +1,5 @@
 import React, {useEffect, Fragment} from 'react';
+import '../../styles/organisms/movie-main.scss';
 import '../../styles/molecules/review.scss';
 import '../../styles/molecules/category.scss';
 import '../../styles/atoms/pill.scss';
@@ -128,7 +129,7 @@ function MovieSummary({type}: {type: MediaType}) {
                 </header>
 
                 <main className="movieMain">
-                  <Rating rating={movie.vote_average} />
+                  <Rating rating={movie.vote_average} className="movie-main__rating" />
                   <h2 className="movieMain__title">{movie.title ? movie.title : movie.name} <span>({ releaseDateOf(movie) })</span></h2>
                   <div className="movieMain__storyline">
                       <h3 className="marginBottom10">Storyline</h3>
@@ -145,7 +146,7 @@ function MovieSummary({type}: {type: MediaType}) {
                   <section className="moreMovies">
                       <h3 className="moreMovies__title">{type === "tv" ? "Similar Series" : "Similar Movies"}</h3>
                       <div className="moreMovies__titles">
-                        {similarMovies && similarMovies.slice(0, 12).map(movie => <MovieCardItem key={movie.id} movie={movie} />)}
+                        {similarMovies && similarMovies.slice(0, 12).map(movie => <MovieCardItem key={movie.id} movie={movie} compact />)}
                       </div>
                   </section>
 

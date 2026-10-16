@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/molecules/movie-card.scss';
 import '../../styles/atoms/button.scss';
 import Rating from "../rating/Rating";
 import { Link } from "react-router";
@@ -9,28 +10,30 @@ import type { MediaListItem } from "../../types/tmdb";
 import { truncate } from "../../utils/truncate";
 import { detailPath, mediaTypeOf } from "../../utils/routes";
 
-const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, first_air_date, vote_average, id, media_type}}: {movie: MediaListItem}) => {
+const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, first_air_date, vote_average, id, media_type}, compact = false}: {movie: MediaListItem, compact?: boolean}) => {
 
   // The row says what it is, so a series opens a series even from the Movies tab or an actor page (B9).
 
 
   const mediaType = mediaTypeOf({media_type});
   const trailer = useTrailer(mediaType, id);
+  // Cards in the similar / popular roles strips are the compact variant: each part that differs adds its --compact modifier.
+  const part = (name: string) => (compact ? `${name} ${name}--compact` : name);
 
   return (
-    <div className="card movieCard">
+    <div className={part("movie-card")}>
       <Link to={detailPath(mediaType, id)}>
-        <div className="movieCard__image">
-            <MediaImage path={backdrop_path} className="movieCard__imagesrc" alt={title ? title : name} />
+        <div className={part("movie-card__media")}>
+            <MediaImage path={backdrop_path} className="movie-card__image" alt={title ? title : name} />
         </div>
       </Link>
-      <div className="movieCard__information">
-          <h5 className="movieCard__title">{truncate(title ? title : name, 45)}</h5>
-          <Rating rating={vote_average} />
-          <p className="movieCard__date">Release date: {releaseDateOf({release_date, first_air_date})}</p>
-          <div className="movieCard__buttons">
-            <button {...trailer} className="button button--green">Watch Trailer</button>
-            <Link to={detailPath(mediaType, id)} className="button button--skeleton">View More</Link>
+      <div className={part("movie-card__info")}>
+          <h5 className={part("movie-card__title")}>{truncate(title ? title : name, 45)}</h5>
+          <Rating rating={vote_average} className={part("movie-card__rating")} />
+          <p className="movie-card__date">Release date: {releaseDateOf({release_date, first_air_date})}</p>
+          <div className="movie-card__buttons">
+            <button {...trailer} className={`button button--green ${part("movie-card__button")}${compact ? " movie-card__button--compact-trailer" : ""}`}>Watch Trailer</button>
+            <Link to={detailPath(mediaType, id)} className={`button button--skeleton ${part("movie-card__button")}`}>View More</Link>
           </div>
       </div>
     </div>

@@ -33,7 +33,7 @@ describe('card images and text for series (B23)', () => {
 
   it('MovieCardItem alt falls back to the series name', () => {
     renderWithProviders(<MovieCardItem movie={series} />);
-    expect(screen.getByAltText('The Night Shift')).toHaveClass('movieCard__imagesrc');
+    expect(screen.getByAltText('The Night Shift')).toHaveClass('movie-card__image');
   });
 
   it('SearchCardItem alt falls back to the name and uses its own image class', () => {
