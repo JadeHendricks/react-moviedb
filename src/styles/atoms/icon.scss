@@ -1,0 +1,28 @@
+@use '../tokens' as *;
+
+// An icon from the SVG sprite. The element that places it sets the hooks:
+//   --icon-size  width and height
+//   --icon-fill  colour (defaults to the surrounding text colour)
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  fill: var(--icon-fill, currentColor);
+}
+
+// An icon that acts as a button.
+.icon--clickable {
+  cursor: pointer;
+}
+
+// The big play symbol on the hero and the details header: white, turns green on hover.
+// The caller positions it and says how it moves on hover.
+.icon--play {
+  fill: $color-white;
+  position: absolute;
+  transition: $transition-slow;
+}
+
+.icon--play:hover {
+  fill: $color-green;
+  cursor: pointer;
+}
