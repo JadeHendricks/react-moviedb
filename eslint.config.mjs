@@ -39,6 +39,17 @@ export default tseslint.config(
     },
   },
   {
+    // TypeScript sources: the core rule cannot read type positions (function type params, type imports),
+    // so the typescript-eslint version takes over.
+    files: ['src/**/*.{ts,tsx}'],
+    rules: {
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^React$' }],
+      // Statements like `cond && dispatch(...)` and the search ternary are existing code; Phases 3 and 4 remove them.
+      '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
+    },
+  },
+  {
     files: ['**/*.test.{js,jsx,ts,tsx}', 'src/test/**'],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
