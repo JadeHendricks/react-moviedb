@@ -1,21 +1,11 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import svgAsset from "../../images/sprite.svg";
 import ModalContext from "../../context/modal/ModalContext";
 
 function Modal() {
 
   const modalContext = useContext(ModalContext);
-  const {authSelection, showPassword, activity, closeModal, authFailure} = modalContext;
-
-  useEffect(() => {
-    closeModal();
-
-    return () => {
-        // Passing the function is a no-op (B3), kept as-is until Phase 4; the cast only satisfies the types.
-        clearTimeout(closeModal as unknown as number);
-    }
-    // eslint-disable-next-line
-  }, [])
+  const {authSelection, showPassword, activity, authFailure} = modalContext;
 
   return (
     <div className="overlay">

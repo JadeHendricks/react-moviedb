@@ -1,73 +1,55 @@
-import React, {useReducer, type ReactNode, type MouseEvent} from "react";
-import ModalContext from './ModalContext';
-import ModalReducer, { type ModalStateShape } from './ModalReducer';
+import React, { useCallback, useEffect, useMemo, useState, type ReactNode, type MouseEvent } from "react";
+import ModalContext, { type ModalContextValue } from "./ModalContext";
 import svgAsset from "../../images/sprite.svg";
-import { 
-  MODAL_VISIBILITY,
-  SET_ACTIVITY } from '../types';
 
 const ModalState = (props: { children?: ReactNode }) => {
-  const initialState: ModalStateShape = {
-    activity: null,
-    modalShow: false
-  };
-  const [state, dispatch] = useReducer(ModalReducer, initialState);
+  const [activity, setActivity] = useState<string | null>(null);
+  const [modalShow, setModalShow] = useState(false);
 
-  const authSelection = (e: MouseEvent<HTMLElement>) => {
-    const buttonClicked = (e.target as HTMLElement).getAttribute("data-auth");
-    dispatch({
-      type: MODAL_VISIBILITY,
-      payload: true
-    })
-    buttonClicked && dispatch({
-      type: SET_ACTIVITY,
-      payload: buttonClicked
-    });
-  }
-
-  const closeModal = () => {
-    window.addEventListener("click", (e) => {
+  // One window listener, only while the modal is open, removed on close and unmount (B3).
+  // A click on the dimmed overlay closes the modal, as before.
+  useEffect(() => {
+    if (!modalShow) return;
+    const closeOnOverlayClick = (e: globalThis.MouseEvent) => {
       if ((e.target as HTMLElement).classList.contains("overlay")) {
-        dispatch({
-          type: MODAL_VISIBILITY,
-          payload: false
-        })
+        setModalShow(false);
       }
-      return;
-    });
-  }
+    };
+    window.addEventListener("click", closeOnOverlayClick);
+    return () => window.removeEventListener("click", closeOnOverlayClick);
+  }, [modalShow]);
 
-  const authFailure = (e: MouseEvent<HTMLElement>) => {
+  const authSelection = useCallback((e: MouseEvent<HTMLElement>) => {
+    const buttonClicked = (e.target as HTMLElement).getAttribute("data-auth");
+    setModalShow(true);
+    if (buttonClicked) setActivity(buttonClicked);
+  }, []);
+
+  const authFailure = useCallback((e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    alert("This will work in due time")
-  }
+    alert("This will work in due time");
+  }, []);
 
-  const showPassword = (e: MouseEvent<SVGSVGElement>) => {
+  const showPassword = useCallback((e: MouseEvent<SVGSVGElement>) => {
     // The icon is the first child and the input is the previous sibling in the Modal markup.
     const eyeElement = e.currentTarget.children[0]!;
     const passwordInput = e.currentTarget.previousSibling as HTMLInputElement;
     if (passwordInput.getAttribute("type") === "password") {
       passwordInput.setAttribute("type", "text");
-      // Sprite URL comes from the bundler; the old hard-coded CRA path (/static/media/sprite.<hash>.svg) no longer exists.
-      eyeElement.setAttribute("href", `${svgAsset}#icon-eye-blocked`)
+      eyeElement.setAttribute("href", `${svgAsset}#icon-eye-blocked`);
     } else {
       passwordInput.setAttribute("type", "password");
-      eyeElement.setAttribute("href", `${svgAsset}#icon-eye`)
+      eyeElement.setAttribute("href", `${svgAsset}#icon-eye`);
     }
-  }
+  }, []);
 
-  return (
-    <ModalContext.Provider value={{
-      authSelection,
-      showPassword,
-      closeModal,
-      authFailure,
-      activity: state.activity,
-      modalShow: state.modalShow
-    }}>
-      {props.children}
-    </ModalContext.Provider>
-  )
-}
+  // Memoized so consumers only re-render when the modal state changes (B25).
+  const value = useMemo<ModalContextValue>(
+    () => ({ authSelection, showPassword, authFailure, activity, modalShow }),
+    [authSelection, showPassword, authFailure, activity, modalShow],
+  );
+
+  return <ModalContext.Provider value={value}>{props.children}</ModalContext.Provider>;
+};
 
 export default ModalState;
