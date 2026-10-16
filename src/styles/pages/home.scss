@@ -1,0 +1,15 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The home page below the hero: Movies / Series switch, category heading and the card list.
+.home {
+  padding: $space-60;
+
+  @include respond-to(xl) {
+    padding: $space-60 $space-20;
+  }
+}
+
+.home__title {
+  margin-bottom: $space-25;
+}

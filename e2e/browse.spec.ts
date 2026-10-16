@@ -12,7 +12,7 @@ const mostPopularTitle = (name: string) => {
 // Clicks a side-nav entry and waits until the heading and first card show that category.
 const openCategory = async (page: import('@playwright/test').Page, label: string, heading: string, fixtureName: string) => {
   await page.locator('.side-nav__item', { hasText: label }).click();
-  await expect(page.locator('.movieSection__title')).toHaveText(heading);
+  await expect(page.locator('.home__title')).toHaveText(heading);
   await expect(page.locator('.movie-card__title').first()).toHaveText(firstTitle(fixtureName));
 };
 

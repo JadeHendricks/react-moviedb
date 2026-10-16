@@ -1,4 +1,6 @@
 import React, {Fragment, useContext} from 'react';
+import '../../styles/organisms/media-strip.scss';
+import '../../styles/pages/home.scss';
 import '../../styles/layout/container.scss';
 import MovieCardItem from "../cards/MovieCardItem";
 import SwitchTabs from "../layout/SwitchTabs";
@@ -23,11 +25,11 @@ function MainContent() {
     <Fragment>
       {loading ? <Loader /> : ""}
       <Header />
-      <section className="movieSection">
+      <section className="home">
         <div className="container">
           <SwitchTabs />
-          <h3 className="movieSection__title">{whatsShowing}</h3>
-          <div className="movieSection__titles">
+          <h3 className="home__title">{whatsShowing}</h3>
+          <div className="media-strip__items">
             { movies ? movies.map(movie => <MovieCardItem key={movie.id} movie={movie}  /> ) : "" }
           </div>
         </div>

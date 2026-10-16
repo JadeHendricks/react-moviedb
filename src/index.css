@@ -288,21 +288,7 @@
 .borderBottom0 {
   border-bottom: 0rem !important;
 }
-.movieSection {
-  padding: 6rem;
-}
-.movieSection__title {
-  margin-bottom: 2.5rem;
-}
-.movieSection__titles {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 @media screen and (max-width: 1660px) {
-  .movieSection {
-    padding: 6rem 2rem;
-  }
   .movieMain {
     padding: 4rem;
   }
@@ -325,9 +311,6 @@
   }
 }
 @media screen and (max-width: 520px) {
-  .movieSection__titles {
-    flex-direction: column;
-  }
   .actorDetailSummary__image {
     -o-object-fit: cover;
     object-fit: cover;
