@@ -361,42 +361,12 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.cast {
-  margin: 7rem 0;
-}
-.cast__title {
-  margin-bottom: 2rem;
-}
-.cast__wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.moreMovies__title {
-  margin-bottom: 2rem;
-}
-.moreMovies__titles {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 @media screen and (max-width: 1660px) {
   .movieSection {
     padding: 6rem 2rem;
   }
   .movieMain {
     padding: 4rem;
-  }
-  .cast {
-    margin: 7rem 0;
-  }
-  .cast__title {
-    margin-bottom: 2rem;
-  }
-  .cast__wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -418,9 +388,6 @@
 }
 @media screen and (max-width: 520px) {
   .movieSection__titles {
-    flex-direction: column;
-  }
-  .moreMovies__titles {
     flex-direction: column;
   }
   .actorDetailSummary__image {

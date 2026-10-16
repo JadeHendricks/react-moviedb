@@ -60,7 +60,7 @@ test.describe('details', () => {
     await expect(page.locator('.movieDetailSummary .pill').first()).toBeVisible();
     await expect(page.locator('.review')).toHaveCount(2);
     await expect(page.locator('.cast-card')).toHaveCount(12);
-    await expect(page.locator('.moreMovies .movie-card')).toHaveCount(6);
+    await expect(page.locator('.media-strip .movie-card')).toHaveCount(6);
     await expect(page.locator('.movieDetailHeader__videos iframe')).toHaveCount(3);
     await snap(page, 'movie-detail');
   });
@@ -84,7 +84,7 @@ test.describe('details', () => {
     await page.goto('/actorSummary/501');
     await waitForLoaderGone(page);
     await expect(page.locator('.actorDetailSummary__name')).toHaveText(fixture('person').name);
-    await expect(page.locator('.moreMovies .movie-card')).toHaveCount(fixture('person-movie_credits').cast.length);
+    await expect(page.locator('.media-strip .movie-card')).toHaveCount(fixture('person-movie_credits').cast.length);
     await snap(page, 'actor');
   });
 });

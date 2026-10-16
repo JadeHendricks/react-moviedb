@@ -1,4 +1,5 @@
 import React, {Fragment, useEffect} from 'react';
+import '../../styles/organisms/media-strip.scss';
 import { useParams } from "react-router";
 import MovieCardItem from '../cards/MovieCardItem';
 import { formatDate } from "../../utils/formatDate";
@@ -70,9 +71,9 @@ function ActorSummary() {
 
       <div className="movieDetailsMaincontent">
             <main className="movieMain">
-              <section className="moreMovies">
-                  <h3 className="moreMovies__title">Popular Roles</h3>
-                  <div className="moreMovies__titles">
+              <section className="media-strip">
+                  <h3 className="media-strip__title">Popular Roles</h3>
+                  <div className="media-strip__items">
                     {credits && credits.map(movie => <MovieCardItem key={movie.id} movie={movie} compact />)}
                   </div>
               </section>

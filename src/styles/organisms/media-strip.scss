@@ -1,0 +1,21 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// A titled, wrapping row of movie cards: "Similar Movies", "Popular Roles" and the home page list.
+.media-strip {
+  display: block;
+}
+
+.media-strip__title {
+  margin-bottom: $space-20;
+}
+
+.media-strip__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @include respond-to(xs) {
+    flex-direction: column;
+  }
+}

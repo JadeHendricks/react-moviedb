@@ -1,4 +1,6 @@
 import React, {useEffect, Fragment} from 'react';
+import '../../styles/organisms/media-strip.scss';
+import '../../styles/organisms/cast-list.scss';
 import '../../styles/organisms/movie-main.scss';
 import '../../styles/molecules/review.scss';
 import '../../styles/molecules/category.scss';
@@ -136,16 +138,16 @@ function MovieSummary({type}: {type: MediaType}) {
                       <p>{movie.overview}</p>
                   </div>
 
-                  <div className="cast">
-                    <h3 className="cast__title">The Cast</h3>
-                    <div className="cast__wrapper">
+                  <div className="cast-list">
+                    <h3 className="cast-list__title">The Cast</h3>
+                    <div className="cast-list__items">
                       {cast && cast.slice(0, 12).map(castMember => <CastCard key={castMember.id} cast={castMember} />)}
                     </div>
                   </div>
 
-                  <section className="moreMovies">
-                      <h3 className="moreMovies__title">{type === "tv" ? "Similar Series" : "Similar Movies"}</h3>
-                      <div className="moreMovies__titles">
+                  <section className="media-strip">
+                      <h3 className="media-strip__title">{type === "tv" ? "Similar Series" : "Similar Movies"}</h3>
+                      <div className="media-strip__items">
                         {similarMovies && similarMovies.slice(0, 12).map(movie => <MovieCardItem key={movie.id} movie={movie} compact />)}
                       </div>
                   </section>
