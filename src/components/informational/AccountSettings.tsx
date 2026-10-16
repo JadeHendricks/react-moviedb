@@ -1,46 +1,49 @@
 import React from 'react';
+import '../../styles/atoms/input.scss';
+import '../../styles/atoms/label.scss';
+import '../../styles/pages/account.scss';
 import '../../styles/atoms/button.scss';
 
 function AccountSettings() {
   return (
-    <div className="accountSettings">
-        <div className="accountSettings__banner">
-            <h1 className="accountSettings__title">Edit Profile</h1>
+    <div className="account">
+        <div className="account__banner">
+            <h1 className="account__title">Edit Profile</h1>
         </div>
-        <form className="accountform">
-            <div className="accountform__container">
-                <div className="accountform__box">
-                    <label id="Username" className="accountform__label">Username</label>
-                    <input type="text" name="Username" className="accountform__input" placeholder="Username" />
+        <form className="account__form">
+            <div className="account__container">
+                <div className="account__field">
+                    <label id="Username" className="label label--block">Username</label>
+                    <input type="text" name="Username" className="input input--outlined" placeholder="Username" />
                 </div>
-                <div className="accountform__box">
-                    <label id="firstname" className="accountform__label">First Name</label>
-                    <input type="text" name="firstname" className="accountform__input" placeholder="First name" />
+                <div className="account__field">
+                    <label id="firstname" className="label label--block">First Name</label>
+                    <input type="text" name="firstname" className="input input--outlined" placeholder="First name" />
                 </div>
-                <div className="accountform__box">
-                    <label id="lastName" className="accountform__label">Last Name</label>
-                    <input type="text" name="lastName" className="accountform__input" placeholder="Last name" />
-                    <span className="auth-label">this is an auth message</span>
+                <div className="account__field">
+                    <label id="lastName" className="label label--block">Last Name</label>
+                    <input type="text" name="lastName" className="input input--outlined" placeholder="Last name" />
+                    <span className="label label--error">this is an auth message</span>
                 </div>
-                <div className="accountform__box">
-                    <label id="accountemailAddress" className="accountform__label">Email Address *</label>
-                    <input type="text" name="accountemailAddress" className="accountform__input" placeholder="Email address" />
-                    <span className="auth-label">this is an auth message</span>
+                <div className="account__field">
+                    <label id="accountemailAddress" className="label label--block">Email Address *</label>
+                    <input type="text" name="accountemailAddress" className="input input--outlined" placeholder="Email address" />
+                    <span className="label label--error">this is an auth message</span>
                 </div>
-                <div className="accountform__box">
-                    <label id="currentPassword" className="accountform__label">Current password</label>
-                    <input type="text" name="currentPassword" className="accountform__input" placeholder="Current password" />
-                    <span className="auth-label">this is an auth message</span>
+                <div className="account__field">
+                    <label id="currentPassword" className="label label--block">Current password</label>
+                    <input type="text" name="currentPassword" className="input input--outlined" placeholder="Current password" />
+                    <span className="label label--error">this is an auth message</span>
                 </div>
-                <div className="accountform__box">
-                    <label id="newpassword" className="accountform__label">New password</label>
-                    <input type="text" name="newpassword" className="accountform__input" placeholder="New password" />
+                <div className="account__field">
+                    <label id="newpassword" className="label label--block">New password</label>
+                    <input type="text" name="newpassword" className="input input--outlined" placeholder="New password" />
                 </div>
-                <div className="accountform__box">
-                    <label id="biography" className="accountform__label">Biography</label>
-                    <textarea name="biography" className="accountform__textarea" placeholder="Biography"></textarea>
+                <div className="account__field">
+                    <label id="biography" className="label label--block">Biography</label>
+                    <textarea name="biography" className="input input--outlined input--area" placeholder="Biography"></textarea>
                 </div>
-                <button className="button button--green" type="submit">Update Profile</button>
+                <button className="button button--green account__submit" type="submit">Update Profile</button>
             </div>
         </form>
     </div>

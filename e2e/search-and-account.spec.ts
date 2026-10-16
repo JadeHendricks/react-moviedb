@@ -14,8 +14,8 @@ test('search with mixed movie and series results', async ({ page }) => {
 
 test('account settings', async ({ page }) => {
   await page.goto('/accountSettings');
-  await expect(page.locator('.accountform')).toBeVisible();
-  await expect(page.locator('.accountSettings__title')).toHaveText('Edit Profile');
+  await expect(page.locator('.account__form')).toBeVisible();
+  await expect(page.locator('.account__title')).toHaveText('Edit Profile');
   await snap(page, 'account-settings');
 });
 
