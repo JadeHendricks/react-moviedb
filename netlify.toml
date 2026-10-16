@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Single-page app: every unknown path serves index.html so deep links survive a refresh.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
