@@ -4,17 +4,19 @@ import SwitchTabs from "../layout/SwitchTabs";
 import Header from './Header';
 import UiContext from "../../context/ui/UiContext";
 import Loader from "../layout/Loader";
-import { useMediaList } from "../../api/queries";
-import { useTimedLoader } from "../../hooks/useTimedLoader";
+import { useMediaList, useMostPopular } from "../../api/queries";
+import { useLoadingOverlay } from "../../hooks/useLoadingOverlay";
 
 function MainContent() {
 
   const {mediaType, category, whatsShowing} = useContext(UiContext);
 
   // The cards follow the query key (type + category), so the heading and the cards cannot disagree (B5).
-  const {data: movies} = useMediaList(mediaType, category);
+  const {data: movies, isPending: listPending} = useMediaList(mediaType, category);
 
-  const loading = useTimedLoader(3000);
+  // The hero (Header) uses this same query, so it is only requested once. The loader follows both (D2).
+  const {isPending: heroPending} = useMostPopular(mediaType);
+  const loading = useLoadingOverlay(listPending || heroPending, "home");
 
   return (
     <Fragment>

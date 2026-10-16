@@ -5,7 +5,7 @@ import { formatDate } from "../../utils/formatDate";
 import { genderLabel } from "../../utils/gender";
 import MediaImage from "../media/MediaImage";
 import { usePerson, usePersonMovieCredits } from "../../api/queries";
-import { useTimedLoader } from "../../hooks/useTimedLoader";
+import { useLoadingOverlay } from "../../hooks/useLoadingOverlay";
 import type { Person } from "../../types/tmdb";
 import Loader from "../layout/Loader";
 
@@ -16,10 +16,10 @@ function ActorSummary() {
   const params = useParams();
 
   // Keyed by the route id, so opening another actor refetches once and never loops.
-  const {data: actor = NO_ACTOR} = usePerson(params.id);
-  const {data: credits = NO_CREDITS} = usePersonMovieCredits(params.id);
+  const {data: actor = NO_ACTOR, isPending: personPending} = usePerson(params.id);
+  const {data: credits = NO_CREDITS, isPending: creditsPending} = usePersonMovieCredits(params.id);
 
-  const loading = useTimedLoader(3000);
+  const loading = useLoadingOverlay(personPending || creditsPending, params.id ?? "");
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -12,7 +12,7 @@ import type { MediaType } from "../../api/queries";
 import { useCast, useDetails, useReviews, useSimilar, useVideos } from "../../api/queries";
 import { useTrailer } from "../../hooks/useTrailer";
 import { tmdbImage } from "../../api/tmdbClient";
-import { useTimedLoader } from "../../hooks/useTimedLoader";
+import { useLoadingOverlay } from "../../hooks/useLoadingOverlay";
 import type { MediaDetails } from "../../types/tmdb";
 import Loader from "../layout/Loader";
 
@@ -24,15 +24,16 @@ function MovieSummary({type}: {type: MediaType}) {
 
 
   // Each section is its own query keyed by (type, id): changing the id refetches once, nothing loops (B1).
-  const {data: movie = NO_DETAILS} = useDetails(type, params.id);
-  const {data: reviews = NO_ITEMS} = useReviews(type, params.id);
-  const {data: cast = NO_ITEMS} = useCast(type, params.id);
-  const {data: videos = NO_ITEMS} = useVideos(type, params.id);
-  const {data: similarMovies = NO_ITEMS} = useSimilar(type, params.id);
+  const {data: movie = NO_DETAILS, isPending: detailsPending} = useDetails(type, params.id);
+  const {data: reviews = NO_ITEMS, isPending: reviewsPending} = useReviews(type, params.id);
+  const {data: cast = NO_ITEMS, isPending: castPending} = useCast(type, params.id);
+  const {data: videos = NO_ITEMS, isPending: videosPending} = useVideos(type, params.id);
+  const {data: similarMovies = NO_ITEMS, isPending: similarPending} = useSimilar(type, params.id);
   // The title already carries its genre names, so no genre-list request and no stale genres from the previous title (B15).
   const genres = movie.genres ?? NO_ITEMS;
 
-  const loading = useTimedLoader(4000);
+  // Keyed by type and id, so opening another title (e.g. a similar one) shows the loader again (B4, D2).
+  const loading = useLoadingOverlay(detailsPending || reviewsPending || castPending || videosPending || similarPending, `${type}-${params.id}`);
 
   useEffect(() => {
     window.scrollTo(0, 0);
