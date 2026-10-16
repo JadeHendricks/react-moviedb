@@ -5,7 +5,8 @@ import Rating from "../rating/Rating";
 import svgAsset from "../../images/sprite.svg";
 import MovieCardItem from '../cards/MovieCardItem';
 import CastCard from '../cards/CastCard';
-import { formatDate, releaseDateOf } from "../../utils/formatDate";
+import { releaseDateOf } from "../../utils/formatDate";
+import { runtimeLabel } from "../../utils/runtime";
 import imageNotFound from "../../images/imageNotFound.jpg";
 import UiContext from "../../context/ui/UiContext";
 import { useCast, useDetails, useGenres, usePlayTrailer, useReviews, useSimilar, useVideos } from "../../api/queries";
@@ -76,7 +77,7 @@ function MovieSummary() {
 
                       <div className="misc__box">
                           <div className="movieDetails__title movieDetails__title--smaller">Runtime</div>
-                          <p className="misc__info">{movie.runtime ? movie.runtime : movie.episode_run_time}mins</p>
+                          <p className="misc__info">{runtimeLabel(movie)}</p>
                       </div>
                       { appWideContent === "series" ? 
                       <Fragment>
