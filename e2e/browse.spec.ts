@@ -11,7 +11,7 @@ const mostPopularTitle = (name: string) => {
 
 // Clicks a side-nav entry and waits until the heading and first card show that category.
 const openCategory = async (page: import('@playwright/test').Page, label: string, heading: string, fixtureName: string) => {
-  await page.locator('.navigation__node', { hasText: label }).click();
+  await page.locator('.side-nav__item', { hasText: label }).click();
   await expect(page.locator('.movieSection__title')).toHaveText(heading);
   await expect(page.locator('.movie-card__title').first()).toHaveText(firstTitle(fixtureName));
 };
@@ -41,7 +41,7 @@ test.describe('series', () => {
     await page.locator('.switch-tabs__tab[data-content="series"]').click();
     await expect(page.locator('.movie-card__title').first()).toHaveText(firstTitle('tv-on_the_air'));
     await expect(page.locator('.movie-header__title')).toHaveText(mostPopularTitle('tv-popular'));
-    await expect(page.locator('.navigation__node', { hasText: 'Upcoming' })).toHaveCount(0);
+    await expect(page.locator('.side-nav__item', { hasText: 'Upcoming' })).toHaveCount(0);
     await snap(page, 'series-on-the-air');
 
     await openCategory(page, 'Top Rated', 'Top rated', 'tv-top_rated');

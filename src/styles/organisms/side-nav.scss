@@ -1,0 +1,117 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The category menu. A column on the left of the page; below 1200px a green bar under the content.
+// The current category carries side-nav__item--active.
+.side-nav {
+  flex: 0 0 16rem;
+  background-color: $color-white;
+  box-shadow: $shadow-side;
+  text-align: center;
+  color: $color-muted;
+  font-weight: $font-weight-bold;
+
+  @include respond-to(lg) {
+    background-color: $color-green;
+    flex: 1;
+    box-shadow: $shadow-bar-top;
+  }
+}
+
+// The link around the logo.
+.side-nav__home {
+  text-decoration: none;
+}
+
+.side-nav__logo {
+  color: $color-text;
+  height: 9rem;
+  padding: $space-28 0;
+  font-size: $font-size-28;
+  border-bottom: $border-thin solid $color-surface-dim;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.side-nav__list {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  @include respond-to(xs) {
+    justify-content: space-between;
+    padding: 0 $space-15;
+  }
+}
+
+.side-nav__item {
+  color: $color-text;
+  padding: $space-30 0;
+  border-bottom: $border-thin solid $color-surface-dim;
+  transition: $transition-medium;
+  text-decoration: none;
+
+  @include respond-to(lg) {
+    border: 0;
+    color: $color-white;
+    padding: $space-20 0;
+  }
+
+  @include respond-to(xs) {
+    padding: $space-15 0;
+  }
+}
+
+// The hover and active looks come after the responsive rules above so they win at every width.
+.side-nav__item:hover {
+  color: $color-green;
+  cursor: pointer;
+
+  @include respond-to(lg) {
+    color: $color-white;
+  }
+}
+
+.side-nav__item--active {
+  color: $color-green;
+
+  @include respond-to(lg) {
+    color: $color-white;
+    font-weight: $font-weight-bold;
+    text-decoration: underline;
+  }
+}
+
+.side-nav__icon {
+  --icon-size: 4.2rem;
+
+  margin-bottom: $space-10;
+
+  @include respond-to(lg) {
+    --icon-size: #{$space-35};
+  }
+
+  @include respond-to(xs) {
+    --icon-size: #{$space-30};
+  }
+}
+
+.side-nav__label {
+  color: currentColor;
+  font-size: $font-size-14;
+
+  @include respond-to(xs) {
+    font-weight: $font-weight-light;
+    font-size: $font-size-12;
+  }
+}

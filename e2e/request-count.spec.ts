@@ -48,7 +48,7 @@ test.describe('TMDB request count per page', () => {
     await gotoHome(page);
     await page.waitForTimeout(1_000);
     const paths = trackTmdbRequests(page);
-    await page.locator('.navigation__node', { hasText: 'Top Rated' }).click();
+    await page.locator('.side-nav__item', { hasText: 'Top Rated' }).click();
     await expect(page.locator('.movieSection__title')).toHaveText('Top rated');
     await page.waitForTimeout(SETTLE_MS);
     expect(paths).toEqual(['movie/top_rated']);

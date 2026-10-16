@@ -687,60 +687,6 @@
     line-height: 2.5rem;
   }
 }
-.navigation {
-  flex: 0 0 16rem;
-  background-color: #ffffff;
-  box-shadow: 0.8rem 0 1rem -1rem #bbb9bc;
-  text-align: center;
-  color: #868686;
-  font-weight: 700;
-}
-.navigation__logo {
-  color: #333333;
-  height: 9rem;
-  padding: 2.8rem 0;
-  font-size: 2.8rem;
-  border-bottom: 0.1rem solid #e7e7e7;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.navigation__logo span {
-  color: #3cb13e;
-  font-size: 3rem;
-  position: relative;
-  top: 0.8rem;
-}
-.navigation__wrapper {
-  display: flex;
-  flex-direction: column;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-.navigation__node {
-  color: #333333;
-  padding: 3rem 0;
-  border-bottom: 0.1rem solid #e7e7e7;
-  transition: 0.4s all;
-  text-decoration: none;
-}
-.navigation__node:hover {
-  color: #3cb13e;
-  cursor: pointer;
-}
-.navigation__node.active {
-  color: #3cb13e;
-}
-.navigation__icon {
-  fill: currentColor;
-  height: 4.2rem;
-  width: 4.2rem;
-  margin-bottom: 1rem;
-}
-.navigation__nodename {
-  color: currentColor;
-  font-size: 1.4rem;
-}
 .topnav {
   background-color: #ffffff;
   box-shadow:
@@ -777,36 +723,6 @@
   margin-right: 0;
 }
 @media screen and (max-width: 1200px) {
-  .navigation {
-    background-color: #3cb13e;
-    flex: 1;
-    box-shadow: 0 -8px 10px -8px #bbb9bc;
-  }
-  .navigation__logo {
-    display: none;
-  }
-  .navigation__wrapper {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  .navigation__node {
-    border: 0;
-    color: #ffffff;
-    padding: 2rem 0;
-  }
-  .navigation__node.active {
-    color: #ffffff;
-    font-weight: 700;
-    text-decoration: underline;
-  }
-  .navigation__node:hover {
-    color: #ffffff;
-    cursor: pointer;
-  }
-  .navigation__icon {
-    height: 3.5rem;
-    width: 3.5rem;
-  }
   .topnav {
     box-shadow: 0 8px 10px -8px #bbb9bc;
   }
@@ -847,25 +763,6 @@
 @media screen and (max-width: 520px) {
   .topnav__buttons button {
     font-size: 1.4rem;
-  }
-  .navigation__wrapper {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 1.5rem;
-  }
-  .navigation__node {
-    padding: 1.5rem 0;
-  }
-  .navigation__node.active {
-    color: #ffffff;
-  }
-  .navigation__icon {
-    height: 3rem;
-    width: 3rem;
-  }
-  .navigation__nodename {
-    font-weight: 100;
-    font-size: 1.2rem;
   }
 }
 .movie-header {

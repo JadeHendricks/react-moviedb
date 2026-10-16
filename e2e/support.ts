@@ -115,7 +115,7 @@ export const settleImages = (page: Page) =>
 
 export const snap = async (page: Page, name: string, options: { fullPage?: boolean } = {}) => {
   await settleImages(page);
-  // Park the pointer so hover styles (e.g. .navigation__node:hover) never leak into a baseline.
+  // Park the pointer so hover styles (e.g. .side-nav__item:hover) never leak into a baseline.
   await page.mouse.move(0, 0);
   await expect(page).toHaveScreenshot(`${name}.png`, { fullPage: options.fullPage ?? true });
 };
