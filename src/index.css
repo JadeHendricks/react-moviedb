@@ -500,42 +500,6 @@
 .moreMovies .rating__number {
   font-size: 1.2rem;
 }
-.cardSearch {
-  margin-bottom: 2.5rem;
-  background-color: #ffffff;
-  font-size: 1.4rem;
-}
-.cardSearch__imageholder {
-  height: 25rem;
-  width: 100%;
-}
-.cardSearch__image {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  border-radius: 0.6rem;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.cardSearch__info {
-  padding: 2rem;
-  position: relative;
-}
-.cardSearch__title {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  width: calc(100% - 4rem);
-}
-.cardSearch__description {
-  font-size: 1.4rem;
-  line-height: 1.4;
-}
-.cardSearch .rating {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
 @media screen and (max-width: 1660px) {
   .movieSection {
     padding: 6rem 2rem;
@@ -592,9 +556,6 @@
   .moreMovies .rating__number {
     font-size: 1rem;
   }
-  .cardSearch {
-    flex: 0 1 23%;
-  }
   .cast {
     margin: 7rem 0;
   }
@@ -636,9 +597,6 @@
   .moreMovies .rating__number {
     font-size: 1.2rem;
   }
-  .cardSearch {
-    flex: 0 1 31%;
-  }
 }
 @media screen and (max-width: 991px) {
   .movieDetails__wrapper {
@@ -659,12 +617,6 @@
   }
   .movieCard__image {
     height: 20rem;
-  }
-  .cardSearch {
-    flex: 0 1 48%;
-  }
-  .cardSearch__description {
-    font-size: 1.2rem;
   }
 }
 @media screen and (max-width: 520px) {
@@ -690,12 +642,6 @@
   }
   .moreMovies .movieCard__buttons button {
     font-size: 1.2rem;
-  }
-  .cardSearch {
-    flex: 0 1 100%;
-  }
-  .cardSearch__description {
-    font-size: 1.4rem;
   }
   .actorDetailSummary__image {
     -o-object-fit: cover;

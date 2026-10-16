@@ -39,7 +39,7 @@ describe('card images and text for series (B23)', () => {
   it('SearchCardItem alt falls back to the name and uses its own image class', () => {
     renderWithProviders(<SearchCardItem movie={series} />);
     const img = screen.getByAltText('The Night Shift');
-    expect(img).toHaveClass('cardSearch__image');
+    expect(img).toHaveClass('search-card__image');
     expect(img).not.toHaveClass('cast-card__image');
   });
 

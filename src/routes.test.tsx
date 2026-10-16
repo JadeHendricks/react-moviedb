@@ -57,8 +57,8 @@ describe('routes', () => {
 
     renderApp('/searchResults/same');
 
-    const show = (await screen.findByText('Same Id Show')).closest('.cardSearch') as HTMLElement;
-    const movie = screen.getByText('Same Id Movie').closest('.cardSearch') as HTMLElement;
+    const show = (await screen.findByText('Same Id Show')).closest('.search-card') as HTMLElement;
+    const movie = screen.getByText('Same Id Movie').closest('.search-card') as HTMLElement;
     expect(within(show).getAllByRole('link')[0]).toHaveAttribute('href', '/seriesSummary/7');
     expect(within(movie).getAllByRole('link')[0]).toHaveAttribute('href', '/movieSummary/7');
     // A movie and a series with the same id are two rows with two keys, so React has nothing to warn about (B8).

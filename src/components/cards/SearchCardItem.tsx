@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/molecules/search-card.scss';
 import Rating from "../rating/Rating";
 import {Link} from "react-router";
 import MediaImage from "../media/MediaImage";
@@ -10,16 +11,16 @@ function SearchCardItem({movie: {id, title, name, vote_average, overview, poster
 
 
   return (
-    <div className="card cardSearch">
+    <div className="search-card">
        <Link to={detailPath(mediaTypeOf({media_type}), id)}>
-        <div className="cardSearch__imageholder">
-          <MediaImage path={poster_path} className="cardSearch__image" alt={title ? title : name} />
+        <div className="search-card__media">
+          <MediaImage path={poster_path} className="search-card__image" alt={title ? title : name} />
         </div>
       </Link>
-      <div className="cardSearch__info">
-        <Rating rating={vote_average}/>
-        <h5 className="cardSearch__title">{title ? title : name}</h5>
-        <p className="cardSearch__description">
+      <div className="search-card__info">
+        <Rating rating={vote_average} className="search-card__rating"/>
+        <h5 className="search-card__title">{title ? title : name}</h5>
+        <p className="search-card__description">
           {truncate(overview, 150)}
         </p>
       </div>

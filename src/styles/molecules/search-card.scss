@@ -1,0 +1,67 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// A search hit: poster, title, rating badge and a short description.
+.search-card {
+  @include card-surface;
+
+  margin-bottom: $space-25;
+  background-color: $color-white;
+  font-size: $font-size-14;
+  flex: 0 1 18%;
+
+  @include respond-to(xl) {
+    flex: 0 1 23%;
+  }
+
+  @include respond-to(lg) {
+    flex: 0 1 31%;
+  }
+
+  @include respond-to(sm) {
+    flex: 0 1 48%;
+  }
+
+  @include respond-to(xs) {
+    flex: 0 1 100%;
+  }
+}
+
+.search-card__media {
+  height: 25rem;
+  width: 100%;
+}
+
+.search-card__image {
+  @include card-image;
+}
+
+.search-card__info {
+  padding: $space-20;
+  position: relative;
+}
+
+.search-card__rating {
+  position: absolute;
+  top: $space-10;
+  right: $space-10;
+}
+
+.search-card__title {
+  font-size: $font-size-18;
+  margin-bottom: $space-10;
+  width: calc(100% - 4rem);
+}
+
+.search-card__description {
+  font-size: $font-size-14;
+  line-height: $line-height-base;
+
+  @include respond-to(sm) {
+    font-size: $font-size-12;
+  }
+
+  @include respond-to(xs) {
+    font-size: $font-size-14;
+  }
+}
