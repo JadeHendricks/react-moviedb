@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import '../../styles/atoms/button.scss';
 import '../../styles/layout/container.scss';
 import svgAssets from "../../images/sprite.svg";
 import { Link } from "react-router";

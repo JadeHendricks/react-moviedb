@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import '../../styles/atoms/button.scss';
 import PasswordField from "./PasswordField";
 import ModalContext from "../../context/modal/ModalContext";
 

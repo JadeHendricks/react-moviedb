@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/atoms/button.scss';
 import { Link, isRouteErrorResponse, useRouteError } from 'react-router';
 import '../../styles/layout/container.scss';
 

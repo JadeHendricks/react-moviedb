@@ -1,4 +1,5 @@
 import React, {useState, useContext, Fragment, type FormEvent, type ChangeEvent} from 'react';
+import '../../styles/atoms/button.scss';
 import svgAsset from "../../images/sprite.svg";
 import { useNavigate } from "react-router";
 import ModalContext from "../../context/modal/ModalContext";
@@ -37,7 +38,7 @@ function TopNavigation() {
       </form>
       <div className="userAuth">
           <div className="topnav__buttons">
-              <button className="button button--green button--skeleton" data-auth="login" onClick={authSelection}>Login</button>
+              <button className="button button--skeleton" data-auth="login" onClick={authSelection}>Login</button>
               <button className="button button--green" data-auth="signup" onClick={authSelection}>Sign up</button>
           </div>
           <div className="topnav__account">

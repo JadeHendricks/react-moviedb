@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/atoms/button.scss';
 
 function AccountSettings() {
   return (

@@ -766,37 +766,6 @@
     object-fit: cover;
   }
 }
-button[disabled] {
-  background-color: #bbb9bc;
-  cursor: not-allowed;
-}
-.button {
-  border: 0;
-  padding: 1.2rem 3.5rem;
-  font-size: 1.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.button--green {
-  color: #ffffff;
-  background-color: #3cb13e;
-}
-.button--green:hover {
-  background-color: #868686;
-}
-.button--skeleton {
-  background-color: transparent;
-  color: #3cb13e;
-  padding: 1rem 3.3rem;
-  border: 0.2rem solid #3cb13e;
-}
-.button--skeleton:hover {
-  background-color: #868686;
-  color: #ffffff;
-  border: 0.2rem solid #868686;
-}
 input[type='search']::-ms-clear {
   display: none;
   width: 0;

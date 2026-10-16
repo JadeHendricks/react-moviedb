@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/atoms/button.scss';
 import Rating from "../rating/Rating";
 import { Link } from "react-router";
 import MediaImage from "../media/MediaImage";
@@ -29,7 +30,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, first_
           <p className="movieCard__date">Release date: {releaseDateOf({release_date, first_air_date})}</p>
           <div className="movieCard__buttons">
             <button {...trailer} className="button button--green">Watch Trailer</button>
-            <Link to={detailPath(mediaType, id)} className="button button--green button--skeleton">View More</Link>
+            <Link to={detailPath(mediaType, id)} className="button button--skeleton">View More</Link>
           </div>
       </div>
     </div>
