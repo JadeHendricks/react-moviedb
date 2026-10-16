@@ -1,4 +1,5 @@
 import React, {Fragment, useEffect} from 'react';
+import '../../styles/pages/search.scss';
 import { useParams } from "react-router";
 import '../../styles/layout/container.scss';
 import SearchCardItem from "../cards/SearchCardItem";
@@ -22,10 +23,10 @@ function SearchResults() {
   return (
     <Fragment>
       {loading ? <Loader /> : ""}
-      <section className="searchResults">
+      <section className="search">
         <div className="container">
-            <h2 className="searchResults__title">Search results for <span>{`${query}`}</span></h2>
-            <div className="searchResults__wrapper">
+            <h2 className="search__title">Search results for <span className="search__query">{`${query}`}</span></h2>
+            <div className="search__results">
               {searchResults.map(result => <SearchCardItem key={searchResultKey(result)} movie={result}/>)}
             </div>
         </div>

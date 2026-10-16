@@ -38,7 +38,7 @@ describe('top navigation', () => {
     await user.type(screen.getByPlaceholderText('Search for Movies or TV Series'), 'A&B#c/d%{Enter}');
 
     expect(await screen.findByText('Special')).toBeInTheDocument();
-    expect(document.querySelector('.searchResults__title span')).toHaveTextContent('a&b#c/d%');
+    expect(document.querySelector('.search__query')).toHaveTextContent('a&b#c/d%');
     const searched = calls.filter((url) => url.includes('/search/movie'));
     expect(new URL(searched[0]!).searchParams.get('query')).toBe('a&b#c/d%');
   });

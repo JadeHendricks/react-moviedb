@@ -94,32 +94,6 @@
 .misc__info {
   line-height: 1.4;
 }
-.searchResults {
-  padding: 6rem 0;
-}
-.searchResults__title {
-  font-size: 5rem;
-  text-align: center;
-  margin-bottom: 6rem;
-}
-.searchResults__title span {
-  color: #3cb13e;
-}
-.searchResults__wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-@media screen and (max-width: 1660px) {
-  .searchResults {
-    padding: 4rem;
-  }
-  .searchResults__title {
-    font-size: 4rem;
-    text-align: center;
-    margin-bottom: 6rem;
-  }
-}
 @media screen and (max-width: 991px) {
   .movieMain__title {
     padding-right: 7rem;
@@ -127,15 +101,6 @@
   .movieDetailSummary__image {
     -o-object-fit: contain;
     object-fit: contain;
-  }
-}
-@media screen and (max-width: 767px) {
-  .searchResults {
-    padding: 2rem;
-  }
-  .searchResults__title {
-    font-size: 3rem;
-    margin-bottom: 4rem;
   }
 }
 @media screen and (max-width: 520px) {

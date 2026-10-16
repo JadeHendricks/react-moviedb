@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/organisms/route-error.scss';
 import '../../styles/atoms/button.scss';
 import { Link, isRouteErrorResponse, useRouteError } from 'react-router';
 import '../../styles/layout/container.scss';
@@ -12,9 +13,9 @@ function RouteError() {
       ? error.message
       : 'Unknown error';
   return (
-    <section className="searchResults" role="alert">
+    <section className="route-error" role="alert">
       <div className="container">
-        <h2 className="searchResults__title">Something went wrong</h2>
+        <h2 className="route-error__title">Something went wrong</h2>
         <p>{detail}</p>
         <Link to="/" className="button button--green">Back to home</Link>
       </div>

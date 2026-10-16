@@ -8,7 +8,7 @@ test('search with mixed movie and series results', async ({ page }) => {
   await waitForLoaderGone(page);
   const expected = fixture('search-movie').results.length + fixture('search-tv').results.length;
   await expect(page.locator('.search-card')).toHaveCount(expected);
-  await expect(page.locator('.searchResults__title span')).toHaveText('matrix');
+  await expect(page.locator('.search__query')).toHaveText('matrix');
   await snap(page, 'search-results');
 });
 
