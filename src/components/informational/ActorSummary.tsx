@@ -1,4 +1,5 @@
 import React, {Fragment, useEffect} from 'react';
+import '../../styles/pages/actor.scss';
 import '../../styles/organisms/movie-main.scss';
 import '../../styles/pages/details.scss';
 import '../../styles/organisms/media-strip.scss';
@@ -33,10 +34,10 @@ function ActorSummary() {
     {loading ? <Loader /> : ""}
     <section className="details">
       <div className="details__layout">
-      <div className="details-side actorDetailSummary">
-          <div className="actorDetailSummary__imageContanier">
+      <div className="details-side">
+          <div className="details-side__media actor__media">
               <MediaImage path={actor.profile_path} className="details-side__image" alt={actor.name} />
-              <span className="actorDetailSummary__name">{actor.name}</span>
+              <span className="actor__name">{actor.name}</span>
           </div>
           <div className="details-side__body">
               <h3 className="details__title">Actor Details</h3>

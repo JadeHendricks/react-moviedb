@@ -83,7 +83,7 @@ test.describe('details', () => {
   test('actor page', async ({ page }) => {
     await page.goto('/actorSummary/501');
     await waitForLoaderGone(page);
-    await expect(page.locator('.actorDetailSummary__name')).toHaveText(fixture('person').name);
+    await expect(page.locator('.actor__name')).toHaveText(fixture('person').name);
     await expect(page.locator('.media-strip .movie-card')).toHaveCount(fixture('person-movie_credits').cast.length);
     await snap(page, 'actor');
   });
