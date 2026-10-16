@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/molecules/review.scss';
 import type { Review as ReviewData } from "../../types/tmdb";
 import { truncate } from "../../utils/truncate";
 
@@ -6,14 +7,14 @@ function Review({review: {author, content, url}}: {review: ReviewData}) {
 
 
   return (
-    <div className="reviews__review">
-      <div className="reviews__title">
+    <div className="review">
+      <div className="review__title">
           <strong>{author}</strong>
       </div>
-      <div className="reviews__description">
+      <div className="review__description">
           { truncate(content, 300) }
           <br />
-          <a className="reviews__link" target="_blank" rel="noopener noreferrer" href={url}>See more &rarr;</a>
+          <a className="review__link" target="_blank" rel="noopener noreferrer" href={url}>See more &rarr;</a>
       </div>
     </div>
   )

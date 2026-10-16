@@ -58,7 +58,7 @@ test.describe('details', () => {
     await waitForLoaderGone(page);
     await expect(page.locator('.movieMain__title')).toContainText(fixture('movie-detail').title);
     await expect(page.locator('.movieDetailSummary .pill').first()).toBeVisible();
-    await expect(page.locator('.reviews__review')).toHaveCount(2);
+    await expect(page.locator('.review')).toHaveCount(2);
     await expect(page.locator('.castCard')).toHaveCount(12);
     await expect(page.locator('.moreMovies .movieCard')).toHaveCount(6);
     await expect(page.locator('.movieDetailHeader__videos iframe')).toHaveCount(3);

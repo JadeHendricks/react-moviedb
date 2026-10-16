@@ -1080,56 +1080,6 @@ textarea {
     font-size: 1.2rem;
   }
 }
-.reviews {
-  color: #333333;
-  font-size: 1.6rem;
-}
-.reviews__review {
-  position: relative;
-  padding: 4rem 0;
-  border-bottom: 0.1rem dashed #bbb9bc;
-}
-.reviews__title {
-  color: currentColor;
-  margin-bottom: 1rem;
-  width: calc(100% - 4.5rem);
-}
-.reviews__date {
-  color: #868686;
-  display: block;
-}
-.reviews__slug {
-  display: block;
-  margin-bottom: 1rem;
-}
-.reviews__description {
-  font-size: 1.4rem;
-}
-.reviews__description::after {
-  content: '';
-  clear: both;
-  display: table;
-}
-.reviews .rating {
-  position: absolute;
-  top: 4rem;
-  right: 0;
-}
-.reviews__link {
-  display: block;
-  margin-top: 1rem;
-  float: right;
-  color: #3cb13e;
-  opacity: 0.7;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 1.6rem;
-}
-.reviews__link:hover {
-  color: #3cb13e;
-  opacity: 1;
-}
 .pagination {
   display: flex;
   justify-content: center;

@@ -1,4 +1,5 @@
 import React, {useEffect, Fragment} from 'react';
+import '../../styles/molecules/review.scss';
 import '../../styles/molecules/category.scss';
 import '../../styles/atoms/pill.scss';
 import { useParams } from "react-router";
@@ -94,7 +95,7 @@ function MovieSummary({type}: {type: MediaType}) {
                       </div></Fragment> : "" }
 
                     </div>
-                    <div className="reviews">
+                    <div className="review-list">
                       {reviews.length !== 0 ? <h3 className="movieDetails__title">Recent Reviews</h3> : ""}
                       {reviews && reviews.map(review => <Review key={review.id} review={review}/>)}
                     </div>
