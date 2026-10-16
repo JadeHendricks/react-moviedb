@@ -1,4 +1,7 @@
 import React, {useState, useContext, Fragment, type FormEvent, type ChangeEvent} from 'react';
+import '../../styles/molecules/search-form.scss';
+import '../../styles/atoms/input.scss';
+import '../../styles/atoms/icon.scss';
 import '../../styles/atoms/button.scss';
 import svgAsset from "../../images/sprite.svg";
 import { useNavigate } from "react-router";
@@ -30,11 +33,11 @@ function TopNavigation() {
     <Fragment>
     {modalShow ? <Modal /> : ""}
     <nav className="topnav">
-      <form className="searchForm" onSubmit={initSearch}>
-          <svg className="searchForm__icon">
+      <form className="search-form" onSubmit={initSearch}>
+          <svg className="icon search-form__icon">
               <use href={`${svgAsset}#icon-magnifying-glass`}></use>
           </svg>
-          <input className="searchForm__input" type="search" name="search" placeholder="Search for Movies or TV Series" value={search} onChange={updateSearch} />
+          <input className="input input--search" type="search" name="search" placeholder="Search for Movies or TV Series" value={search} onChange={updateSearch} />
       </form>
       <div className="userAuth">
           <div className="topnav__buttons">

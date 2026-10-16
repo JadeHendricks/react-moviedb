@@ -2,8 +2,8 @@ import { test, expect, fixture, gotoHome, snap, waitForLoaderGone } from './supp
 
 test('search with mixed movie and series results', async ({ page }) => {
   await gotoHome(page);
-  await page.locator('.searchForm__input').fill('Matrix');
-  await page.locator('.searchForm__input').press('Enter');
+  await page.locator('.input--search').fill('Matrix');
+  await page.locator('.input--search').press('Enter');
   await expect(page).toHaveURL(/\/searchResults\/matrix$/);
   await waitForLoaderGone(page);
   const expected = fixture('search-movie').results.length + fixture('search-tv').results.length;

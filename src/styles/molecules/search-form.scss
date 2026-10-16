@@ -1,0 +1,33 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The search bar in the top navigation: a magnifier icon over a big search input.
+.search-form {
+  height: 9rem;
+  flex: 1;
+
+  @include respond-to(lg) {
+    width: 100%;
+  }
+}
+
+// The icon is placed against the navigation bar, which is its positioned ancestor.
+.search-form__icon {
+  --icon-size: #{$space-30};
+  --icon-fill: #{$color-border};
+
+  position: absolute;
+  left: $space-35;
+  top: 50%;
+  margin-top: -1.5rem;
+
+  @include respond-to(sm) {
+    left: $space-20;
+    top: auto;
+    bottom: $space-30;
+  }
+
+  @include respond-to(xs) {
+    --icon-size: #{$space-25};
+  }
+}

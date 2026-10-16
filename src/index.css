@@ -763,49 +763,6 @@
     object-fit: cover;
   }
 }
-input[type='search']::-ms-clear {
-  display: none;
-  width: 0;
-  height: 0;
-}
-input[type='search']::-ms-reveal {
-  display: none;
-  width: 0;
-  height: 0;
-}
-input[type='search']::-webkit-search-decoration,
-input[type='search']::-webkit-search-cancel-button,
-input[type='search']::-webkit-search-results-button,
-input[type='search']::-webkit-search-results-decoration {
-  display: none;
-}
-input,
-select,
-textarea {
-  font-family: 'Open Sans', sans-serif;
-}
-.searchForm {
-  height: 9rem;
-  flex: 1;
-}
-.searchForm__icon {
-  fill: #bbb9bc;
-  width: 3rem;
-  height: 3rem;
-  position: absolute;
-  left: 3.5rem;
-  top: 50%;
-  margin-top: -1.5rem;
-}
-.searchForm__input {
-  height: 100%;
-  width: 100%;
-  border: 0;
-  font-size: 2rem;
-  padding: 2rem 2rem 2rem 7rem;
-  outline: 0;
-  transition: 0.4s all;
-}
 .modalForm {
   color: #333333;
   font-size: 1.4rem;
@@ -946,11 +903,6 @@ textarea {
   margin-top: 5rem;
   margin-left: auto;
 }
-@media screen and (max-width: 1200px) {
-  .searchForm {
-    width: 100%;
-  }
-}
 @media screen and (max-width: 991px) {
   .accountSettings__banner {
     padding: 6rem;
@@ -966,19 +918,6 @@ textarea {
   }
 }
 @media screen and (max-width: 767px) {
-  .searchForm {
-    height: 9rem;
-    width: 100%;
-  }
-  .searchForm__icon {
-    left: 2rem;
-    top: auto;
-    bottom: 3rem;
-  }
-  .searchForm__input {
-    font-size: 1.5rem;
-    padding: 2rem 2rem 2rem 4.5rem;
-  }
   .inputbox__box {
     padding: 1rem 1.5rem;
   }
@@ -992,12 +931,6 @@ textarea {
   }
   .inputbox__input {
     font-size: 1.6rem;
-  }
-}
-@media screen and (max-width: 520px) {
-  .searchForm__icon {
-    height: 2.5rem;
-    width: 2.5rem;
   }
 }
 .modal {
