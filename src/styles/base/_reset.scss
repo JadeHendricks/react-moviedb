@@ -1,0 +1,19 @@
+﻿@use '../tokens' as *;
+
+// Every element starts without margin or padding and inherits box-sizing from <body>.
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+// 1rem = 10px across the app, so sizes are written in tenths of a rem.
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}

@@ -1,0 +1,51 @@
+﻿@use 'sass:list';
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+* {
+  font-family: $font-family-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+}
+
+// Heading sizes come from $heading-sizes: [desktop, up to 991px, up to 767px].
+@each $tag, $sizes in $heading-sizes {
+  #{$tag} {
+    font-size: list.nth($sizes, 1);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $font-weight-bold;
+}
+
+p,
+ul,
+li {
+  font-size: $font-size-14;
+}
+
+strong {
+  font-weight: $font-weight-bold;
+}
+
+@include respond-to(md) {
+  @each $tag, $sizes in $heading-sizes {
+    #{$tag} {
+      font-size: list.nth($sizes, 2);
+    }
+  }
+}
+
+@include respond-to(sm) {
+  @each $tag, $sizes in $heading-sizes {
+    #{$tag} {
+      font-size: list.nth($sizes, 3);
+    }
+  }
+}
