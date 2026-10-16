@@ -59,7 +59,7 @@ test.describe('details', () => {
     await expect(page.locator('.movieMain__title')).toContainText(fixture('movie-detail').title);
     await expect(page.locator('.movieDetailSummary .pill').first()).toBeVisible();
     await expect(page.locator('.review')).toHaveCount(2);
-    await expect(page.locator('.castCard')).toHaveCount(12);
+    await expect(page.locator('.cast-card')).toHaveCount(12);
     await expect(page.locator('.moreMovies .movieCard')).toHaveCount(6);
     await expect(page.locator('.movieDetailHeader__videos iframe')).toHaveCount(3);
     await snap(page, 'movie-detail');
@@ -76,7 +76,7 @@ test.describe('details', () => {
     await expect(page.locator('.movieMain__title')).toContainText(fixture('tv-detail').name);
     await expect(page.locator('.movieDetails__title', { hasText: 'Series Details' })).toBeVisible();
     await expect(page.locator('.movieDetailSummary .pill').first()).toBeVisible();
-    await expect(page.locator('.castCard')).toHaveCount(12);
+    await expect(page.locator('.cast-card')).toHaveCount(12);
     await snap(page, 'series-detail');
   });
 

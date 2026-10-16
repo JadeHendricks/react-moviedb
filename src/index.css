@@ -460,40 +460,6 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.castCard {
-  margin-bottom: 2.5rem;
-  background-color: #ffffff;
-  text-align: center;
-  font-size: 1.4rem;
-  flex: 0 1 23%;
-}
-.castCard:last-child {
-  margin-right: 0;
-}
-.castCard__imageholder {
-  width: 100%;
-  height: 36rem;
-}
-.castCard__image {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  border-radius: 0.6rem;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.castCard__info {
-  padding: 2rem;
-}
-.castCard__realname {
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
-}
-.castCard__as {
-  font-size: 1.4rem;
-  color: #868686;
-}
 .moreMovies__title {
   margin-bottom: 2rem;
 }
@@ -640,20 +606,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .castCard {
-    margin-bottom: 2.5rem;
-    font-size: 1.4rem;
-    flex: 0 1 23%;
-  }
-  .castCard__imageholder {
-    height: 25rem;
-  }
-  .castCard__info {
-    padding: 1.5rem;
-  }
-  .castCard__realname {
-    font-size: 1.4rem;
-  }
 }
 @media screen and (max-width: 1200px) {
   .movieCard {
@@ -686,13 +638,6 @@
   }
   .cardSearch {
     flex: 0 1 31%;
-  }
-  .castCard {
-    margin-bottom: 4rem;
-    flex: 0 1 48%;
-  }
-  .castCard__imageholder {
-    height: 28rem;
   }
 }
 @media screen and (max-width: 991px) {
@@ -751,9 +696,6 @@
   }
   .cardSearch__description {
     font-size: 1.4rem;
-  }
-  .castCard {
-    flex: 0 1 100%;
   }
   .actorDetailSummary__image {
     -o-object-fit: cover;
