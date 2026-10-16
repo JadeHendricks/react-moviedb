@@ -7,18 +7,12 @@ import MovieSummary from "./components/informational/MovieSummary";
 import AccountSummary from "./components/informational/ActorSummary";
 import MainContent from "./components/layout/MainContent";
 import SearchResults from "./components/informational/SearchResults";
-import MovieSummaryState from "./context/movieSummary/MovieSummaryState";
-import ActorSummaryState from "./context/actorSummary/ActorSummaryState";
-import HeaderState from "./context/header/HeaderState";
-import MainContentState from "./context/mainContent/MainContentState";
 import ModalState from "./context/modal/ModalState";
+import UiState from "./context/ui/UiState";
 
 function App() {
   return (
-    <MainContentState>
-    <MovieSummaryState>
-    <ActorSummaryState>
-    <HeaderState>
+    <UiState>
     <ModalState>
       <Router>
         <Fragment>
@@ -36,10 +30,7 @@ function App() {
         </Fragment>
       </Router>
     </ModalState>
-    </HeaderState>
-    </ActorSummaryState>
-    </MovieSummaryState>
-    </MainContentState>
+    </UiState>
   );
 }
 
