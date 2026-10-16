@@ -56,8 +56,8 @@ test.describe('details', () => {
   test('movie detail', async ({ page }) => {
     await page.goto('/movieSummary/101');
     await waitForLoaderGone(page);
-    await expect(page.locator('.movieMain__title')).toContainText(fixture('movie-detail').title);
-    await expect(page.locator('.movieDetailSummary .pill').first()).toBeVisible();
+    await expect(page.locator('.movie-main__title')).toContainText(fixture('movie-detail').title);
+    await expect(page.locator('.details-side .pill').first()).toBeVisible();
     await expect(page.locator('.review')).toHaveCount(2);
     await expect(page.locator('.cast-card')).toHaveCount(12);
     await expect(page.locator('.media-strip .movie-card')).toHaveCount(6);
@@ -73,9 +73,9 @@ test.describe('details', () => {
     await page.locator('.movie-card').first().getByRole('link', { name: 'View More' }).click();
     await expect(page).toHaveURL(/\/seriesSummary\/200$/);
     await waitForLoaderGone(page);
-    await expect(page.locator('.movieMain__title')).toContainText(fixture('tv-detail').name);
-    await expect(page.locator('.movieDetails__title', { hasText: 'Series Details' })).toBeVisible();
-    await expect(page.locator('.movieDetailSummary .pill').first()).toBeVisible();
+    await expect(page.locator('.movie-main__title')).toContainText(fixture('tv-detail').name);
+    await expect(page.locator('.details__title', { hasText: 'Series Details' })).toBeVisible();
+    await expect(page.locator('.details-side .pill').first()).toBeVisible();
     await expect(page.locator('.cast-card')).toHaveCount(12);
     await snap(page, 'series-detail');
   });

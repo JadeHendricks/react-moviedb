@@ -1,4 +1,5 @@
 import React, {useEffect, Fragment} from 'react';
+import '../../styles/pages/details.scss';
 import '../../styles/organisms/details-hero.scss';
 import '../../styles/atoms/icon.scss';
 import '../../styles/organisms/media-strip.scss';
@@ -59,56 +60,56 @@ function MovieSummary({type}: {type: MediaType}) {
   return (
     <Fragment>
       {loading ? <Loader /> : ""}
-      <section className="movieDetails">
+      <section className="details">
 
-        <div className="movieDetails__wrapper">
+        <div className="details__layout">
 
-            <div className="movieDetailSummary">
+            <div className="details-side">
 
-                <div className="movieDetailSummary__imageContanier">
-                  <MediaImage path={movie.poster_path} className="movieDetailSummary__image" alt={movie.title ? movie.title : movie.name} />
+                <div className="details-side__media">
+                  <MediaImage path={movie.poster_path} className="details-side__image" alt={movie.title ? movie.title : movie.name} />
                 </div>
 
-                <div className="movieDetailSummary__wrapper">
-                    <h3 className="movieDetails__title">{type === "movie" ? "Movie Details" : "Series Details"}</h3>
+                <div className="details-side__body">
+                    <h3 className="details__title">{type === "movie" ? "Movie Details" : "Series Details"}</h3>
                     <div className="category">
-                        <div className="movieDetails__title movieDetails__title--smaller">Category</div>
+                        <div className="details__title details__title--small">Category</div>
                         <div className="category__wrapper category__wrapper--start">
                         {genres.length !== 0 ? genres.slice(0, 2).map(genre => <div key={genre.id} className="pill">{genre.name}</div>) : ""}
                         </div>
                     </div>
-                    <div className="misc">
-                      <div className="misc__box">
-                          <div className="movieDetails__title movieDetails__title--smaller">Initial release date</div>
-                          <p className="misc__info">{ releaseDateOf(movie) }</p>
+                    <div className="details-info">
+                      <div className="details-info__group">
+                          <div className="details__title details__title--small">Initial release date</div>
+                          <p className="details-info__text">{ releaseDateOf(movie) }</p>
                       </div>
 
-                      <div className="misc__box">
-                          <div className="movieDetails__title movieDetails__title--smaller">Runtime</div>
-                          <p className="misc__info">{runtimeLabel(movie)}</p>
+                      <div className="details-info__group">
+                          <div className="details__title details__title--small">Runtime</div>
+                          <p className="details-info__text">{runtimeLabel(movie)}</p>
                       </div>
                       { type === "tv" ? 
                       <Fragment>
-                      <div className="misc__box">
-                          <div className="movieDetails__title movieDetails__title--smaller">Number of seasons</div>
-                          <p className="misc__info">{movie.number_of_seasons}</p>
+                      <div className="details-info__group">
+                          <div className="details__title details__title--small">Number of seasons</div>
+                          <p className="details-info__text">{movie.number_of_seasons}</p>
                       </div>
 
-                      <div className="misc__box">
-                          <div className="movieDetails__title movieDetails__title--smaller">Number of episodes</div>
-                          <p className="misc__info">{movie.number_of_episodes}</p>
+                      <div className="details-info__group">
+                          <div className="details__title details__title--small">Number of episodes</div>
+                          <p className="details-info__text">{movie.number_of_episodes}</p>
                       </div></Fragment> : "" }
 
                     </div>
                     <div className="review-list">
-                      {reviews.length !== 0 ? <h3 className="movieDetails__title">Recent Reviews</h3> : ""}
+                      {reviews.length !== 0 ? <h3 className="details__title">Recent Reviews</h3> : ""}
                       {reviews && reviews.map(review => <Review key={review.id} review={review}/>)}
                     </div>
                 </div>
 
             </div>
 
-            <div className="movieDetailsMaincontent">
+            <div className="details__content">
 
                 <header className="details-hero" style={backgroundImage}>
                     <svg className="icon icon--play details-hero__play" {...trailer}>
@@ -132,11 +133,11 @@ function MovieSummary({type}: {type: MediaType}) {
                     </div>
                 </header>
 
-                <main className="movieMain">
+                <main className="movie-main">
                   <Rating rating={movie.vote_average} className="movie-main__rating" />
-                  <h2 className="movieMain__title">{movie.title ? movie.title : movie.name} <span>({ releaseDateOf(movie) })</span></h2>
-                  <div className="movieMain__storyline">
-                      <h3 className="marginBottom10">Storyline</h3>
+                  <h2 className="movie-main__title">{movie.title ? movie.title : movie.name} <span className="movie-main__year">({ releaseDateOf(movie) })</span></h2>
+                  <div className="movie-main__storyline">
+                      <h3 className="movie-main__storyline-title">Storyline</h3>
                       <p>{movie.overview}</p>
                   </div>
 

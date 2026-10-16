@@ -1,4 +1,6 @@
 import React, {Fragment, useEffect} from 'react';
+import '../../styles/organisms/movie-main.scss';
+import '../../styles/pages/details.scss';
 import '../../styles/organisms/media-strip.scss';
 import { useParams } from "react-router";
 import MovieCardItem from '../cards/MovieCardItem';
@@ -29,48 +31,48 @@ function ActorSummary() {
   return (
     <Fragment>
     {loading ? <Loader /> : ""}
-    <section className="movieDetails">
-      <div className="movieDetails__wrapper">
-      <div className="movieDetailSummary actorDetailSummary">
+    <section className="details">
+      <div className="details__layout">
+      <div className="details-side actorDetailSummary">
           <div className="actorDetailSummary__imageContanier">
-              <MediaImage path={actor.profile_path} className="movieDetailSummary__image" alt={actor.name} />
+              <MediaImage path={actor.profile_path} className="details-side__image" alt={actor.name} />
               <span className="actorDetailSummary__name">{actor.name}</span>
           </div>
-          <div className="movieDetailSummary__wrapper">
-              <h3 className="movieDetails__title">Actor Details</h3>
-              <div className="misc">
-                  <div className="misc__box">
-                    <div className="movieDetails__title movieDetails__title--smaller">Biography</div>
-                    <p className="misc__info">
+          <div className="details-side__body">
+              <h3 className="details__title">Actor Details</h3>
+              <div className="details-info">
+                  <div className="details-info__group">
+                    <div className="details__title details__title--small">Biography</div>
+                    <p className="details-info__text">
                         {actor.biography}
                     </p>
                   </div>
 
-                  <div className="misc__box">
-                      <div className="movieDetails__title movieDetails__title--smaller">Occupation</div>
-                      <p className="misc__info">{actor.known_for_department}</p>
+                  <div className="details-info__group">
+                      <div className="details__title details__title--small">Occupation</div>
+                      <p className="details-info__text">{actor.known_for_department}</p>
                   </div>
 
-                  <div className="misc__box">
-                      <div className="movieDetails__title movieDetails__title--smaller">Gender</div>
-                      <p className="misc__info">{genderLabel(actor.gender)}</p>
+                  <div className="details-info__group">
+                      <div className="details__title details__title--small">Gender</div>
+                      <p className="details-info__text">{genderLabel(actor.gender)}</p>
                   </div>
 
-                  <div className="misc__box">
-                      <div className="movieDetails__title movieDetails__title--smaller">Date of birth</div>
-                      <p className="misc__info">{ formatDate(actor.birthday) }</p>
+                  <div className="details-info__group">
+                      <div className="details__title details__title--small">Date of birth</div>
+                      <p className="details-info__text">{ formatDate(actor.birthday) }</p>
                   </div>
 
-                  <div className="misc__box">
-                      <div className="movieDetails__title movieDetails__title--smaller">Place of birth</div>
-                      <p className="misc__info">{actor.place_of_birth}</p>
+                  <div className="details-info__group">
+                      <div className="details__title details__title--small">Place of birth</div>
+                      <p className="details-info__text">{actor.place_of_birth}</p>
                   </div>
               </div>
           </div>
       </div>
 
-      <div className="movieDetailsMaincontent">
-            <main className="movieMain">
+      <div className="details__content">
+            <main className="movie-main">
               <section className="media-strip">
                   <h3 className="media-strip__title">Popular Roles</h3>
                   <div className="media-strip__items">
