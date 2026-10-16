@@ -19,7 +19,7 @@ describe('top navigation', () => {
   it('fixes the clas typo and points the avatar at the bundled image (B21, D3)', () => {
     const { container } = renderWithProviders(<TopNavigation />);
 
-    expect(container.querySelector('.userAuth')).not.toBeNull();
+    expect(container.querySelector('.top-nav__auth')).not.toBeNull();
     expect(container.querySelector('[clas]')).toBeNull();
     const avatar = screen.getByAltText('person');
     expect(avatar.getAttribute('src')).not.toContain('./assets/');

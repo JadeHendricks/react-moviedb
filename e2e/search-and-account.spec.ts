@@ -23,7 +23,7 @@ test.describe('login / sign-up modal', () => {
   test('open, switch tab, show password, close on overlay', async ({ page }) => {
     await gotoHome(page);
 
-    await page.locator('.topnav__buttons [data-auth="login"]').click();
+    await page.locator('.top-nav__buttons [data-auth="login"]').click();
     await expect(page.locator('.modalAuth')).toBeVisible();
     await expect(page.locator('.modalForm__login')).toBeVisible();
     await snap(page, 'modal-login', { fullPage: false });

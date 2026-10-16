@@ -1,4 +1,5 @@
 import React, {useState, useContext, Fragment, type FormEvent, type ChangeEvent} from 'react';
+import '../../styles/organisms/top-nav.scss';
 import '../../styles/molecules/search-form.scss';
 import '../../styles/atoms/input.scss';
 import '../../styles/atoms/icon.scss';
@@ -32,21 +33,21 @@ function TopNavigation() {
   return (
     <Fragment>
     {modalShow ? <Modal /> : ""}
-    <nav className="topnav">
+    <nav className="top-nav">
       <form className="search-form" onSubmit={initSearch}>
           <svg className="icon search-form__icon">
               <use href={`${svgAsset}#icon-magnifying-glass`}></use>
           </svg>
           <input className="input input--search" type="search" name="search" placeholder="Search for Movies or TV Series" value={search} onChange={updateSearch} />
       </form>
-      <div className="userAuth">
-          <div className="topnav__buttons">
-              <button className="button button--skeleton" data-auth="login" onClick={authSelection}>Login</button>
-              <button className="button button--green" data-auth="signup" onClick={authSelection}>Sign up</button>
+      <div className="top-nav__auth">
+          <div className="top-nav__buttons">
+              <button className="button button--skeleton top-nav__button" data-auth="login" onClick={authSelection}>Login</button>
+              <button className="button button--green top-nav__button" data-auth="signup" onClick={authSelection}>Sign up</button>
           </div>
-          <div className="topnav__account">
-              <img src={avatar} alt="person" title="person" />
-              <span>Kevin Adriana</span>
+          <div className="top-nav__account">
+              <img className="top-nav__avatar" src={avatar} alt="person" title="person" />
+              <span className="top-nav__name">Kevin Adriana</span>
           </div>
       </div>
     </nav>
