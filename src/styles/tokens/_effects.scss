@@ -1,0 +1,20 @@
+﻿@use 'colors' as *;
+
+// Corners
+$radius-sm: 0.4rem;
+$radius-md: 0.6rem;
+$radius-pill: 3rem;
+$radius-round: 100%;
+
+// Shadows
+$shadow-card: 0 1rem 3rem $color-shade-5, 0 0.5rem 1rem $color-shade-12;
+$shadow-modal: 0 19px 38px $color-shade-30, 0 15px 12px $color-shade-22;
+$shadow-side: 0.8rem 0 1rem -1rem $color-border;
+$shadow-bar-bottom: 0 8px 10px -8px $color-border;
+$shadow-bar-top: 0 -8px 10px -8px $color-border;
+$shadow-cta: 0 12px 28px $color-green-glow;
+
+// Motion
+$transition-fast: all 0.2s;
+$transition-medium: all 0.4s;
+$transition-slow: all 0.5s;
