@@ -67,51 +67,6 @@
 .movieDetailsMaincontent {
   flex: 1;
 }
-.movieDetailHeader {
-  background: #333
-    url('https://2l7g9kgsh281akevs49v281d-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/Dunkirk-movie-banner.jpg')
-    no-repeat top left;
-  padding: 4rem 10rem;
-  height: 80rem;
-  position: relative;
-  color: #ffffff;
-}
-.movieDetailHeader__playicon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  top: 40%;
-  fill: #ffffff;
-  width: 15rem;
-  height: 15rem;
-  transition: all 0.5s;
-}
-.movieDetailHeader__playicon:hover {
-  fill: #3cb13e;
-  transform: translate(-50%, -40%) scale(1.2) rotate(360deg);
-  cursor: pointer;
-}
-.movieDetailHeader__media {
-  position: absolute;
-  bottom: 4rem;
-}
-.movieDetailHeader__title {
-  color: currentColor;
-  margin-bottom: 1.2rem;
-}
-.movieDetailHeader__videos {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-.movieDetailHeader__videos img {
-  flex: 0 1 18%;
-  margin: 2.5rem 2.5rem 0 0;
-}
-.movieDetailHeader__videos img:last-child {
-  margin-right: 0;
-}
 .movieMain {
   padding: 7rem 10rem;
   position: relative;
@@ -165,20 +120,6 @@
     margin-bottom: 6rem;
   }
 }
-@media screen and (max-width: 1200px) {
-  .movieDetailHeader {
-    height: 50rem;
-  }
-  .movieDetailHeader__playicon {
-    top: 50%;
-  }
-  .movieDetailHeader__videos {
-    display: none;
-  }
-  .movieDetailHeader__media {
-    display: none;
-  }
-}
 @media screen and (max-width: 991px) {
   .movieMain__title {
     padding-right: 7rem;
@@ -186,9 +127,6 @@
   .movieDetailSummary__image {
     -o-object-fit: contain;
     object-fit: contain;
-  }
-  .movieDetailHeader {
-    height: 40rem;
   }
 }
 @media screen and (max-width: 767px) {

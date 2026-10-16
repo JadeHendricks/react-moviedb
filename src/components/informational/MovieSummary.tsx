@@ -1,4 +1,6 @@
 import React, {useEffect, Fragment} from 'react';
+import '../../styles/organisms/details-hero.scss';
+import '../../styles/atoms/icon.scss';
 import '../../styles/organisms/media-strip.scss';
 import '../../styles/organisms/cast-list.scss';
 import '../../styles/organisms/movie-main.scss';
@@ -108,13 +110,13 @@ function MovieSummary({type}: {type: MediaType}) {
 
             <div className="movieDetailsMaincontent">
 
-                <header className="movieDetailHeader" style={backgroundImage}>
-                    <svg className="movieDetailHeader__playicon" {...trailer}>
+                <header className="details-hero" style={backgroundImage}>
+                    <svg className="icon icon--play details-hero__play" {...trailer}>
                         <use href={`${svgAsset}#icon-play2`}></use>
                     </svg>
-                    <div className="movieDetailHeader__media">
-                      {videos.length !== 0 ? <h3 className="movieDetailHeader__title">Media</h3> : <h3 className="movieDetailHeader__title">No videos available</h3>}
-                        <div className="movieDetailHeader__videos">
+                    <div className="details-hero__media">
+                      {videos.length !== 0 ? <h3 className="details-hero__title">Media</h3> : <h3 className="details-hero__title">No videos available</h3>}
+                        <div className="details-hero__videos">
                         
                             {videos && videos.slice(0, 4).map(
                                 video => 
