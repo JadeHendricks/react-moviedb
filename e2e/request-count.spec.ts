@@ -40,7 +40,8 @@ test.describe('TMDB request count per page', () => {
     await gotoHome(page);
     await page.locator('.switchTabs__tab[data-content="series"]').click();
     await expect(page.locator('.movieCard').first()).toBeVisible();
-    await expectStableCount(page, paths, 5, 'home series (after movies)');
+    // 6: the series hero now loads the series genre list too (B14), which it used to skip.
+    await expectStableCount(page, paths, 6, 'home series (after movies)');
   });
 
   test('a category click sends exactly one list request (B5)', async ({ page }) => {
@@ -57,7 +58,7 @@ test.describe('TMDB request count per page', () => {
     const paths = trackTmdbRequests(page);
     await page.goto('/movieSummary/101');
     await waitForLoaderGone(page);
-    await expectStableCount(page, paths, 6, 'movie detail');
+    await expectStableCount(page, paths, 5, 'movie detail');
   });
 
   test('actor page', async ({ page }) => {
