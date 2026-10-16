@@ -23,7 +23,7 @@ describe('detail page', () => {
 
     renderApp('/movieSummary/1');
 
-    expect(await screen.findByText('Drama')).toHaveClass('category__pill');
+    expect(await screen.findByText('Drama')).toHaveClass('pill');
     expect(calls.some((url) => url.includes('/genre/'))).toBe(false);
   });
 

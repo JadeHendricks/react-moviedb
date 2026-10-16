@@ -21,7 +21,7 @@ test.describe('movies', () => {
     await gotoHome(page);
     await expect(page.locator('.movie-header__title')).toHaveText(mostPopularTitle('movie-popular'));
     await expect(page.locator('.movieCard__title').first()).toHaveText(firstTitle('movie-now_playing'));
-    await expect(page.locator('.movie-header .category__pill').first()).toBeVisible();
+    await expect(page.locator('.movie-header .pill').first()).toBeVisible();
     await snap(page, 'movies-now-playing');
 
     await openCategory(page, 'Top Rated', 'Top rated', 'movie-top_rated');
@@ -57,7 +57,7 @@ test.describe('details', () => {
     await page.goto('/movieSummary/101');
     await waitForLoaderGone(page);
     await expect(page.locator('.movieMain__title')).toContainText(fixture('movie-detail').title);
-    await expect(page.locator('.movieDetailSummary .category__pill').first()).toBeVisible();
+    await expect(page.locator('.movieDetailSummary .pill').first()).toBeVisible();
     await expect(page.locator('.reviews__review')).toHaveCount(2);
     await expect(page.locator('.castCard')).toHaveCount(12);
     await expect(page.locator('.moreMovies .movieCard')).toHaveCount(6);
@@ -75,7 +75,7 @@ test.describe('details', () => {
     await waitForLoaderGone(page);
     await expect(page.locator('.movieMain__title')).toContainText(fixture('tv-detail').name);
     await expect(page.locator('.movieDetails__title', { hasText: 'Series Details' })).toBeVisible();
-    await expect(page.locator('.movieDetailSummary .category__pill').first()).toBeVisible();
+    await expect(page.locator('.movieDetailSummary .pill').first()).toBeVisible();
     await expect(page.locator('.castCard')).toHaveCount(12);
     await snap(page, 'series-detail');
   });

@@ -1,0 +1,24 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// A row of pills under a "Category" label or on the hero.
+.category {
+  color: $color-muted;
+  margin-top: $space-30;
+}
+
+.category__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  @include respond-to(xs) {
+    justify-content: center;
+  }
+}
+
+// The details sidebar keeps its pills left-aligned on small screens.
+.category__wrapper--start {
+  @include respond-to(xs) {
+    justify-content: flex-start;
+  }
+}

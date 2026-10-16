@@ -1,4 +1,6 @@
 import React, {useContext} from 'react'
+import '../../styles/molecules/category.scss';
+import '../../styles/atoms/pill.scss';
 import '../../styles/atoms/button.scss';
 import '../../styles/layout/container.scss';
 import svgAssets from "../../images/sprite.svg";
@@ -47,7 +49,7 @@ const Header = () => {
           <h4 className="movie-header__slug">Most Popular</h4>
           <div className="category">
               <div className="category__wrapper">
-                {genres.slice(0, 3).map(genre => <div key={genre.id} className="category__pill category__pill--large category__pill--white">{genre.name}</div>)}
+                {genres.slice(0, 3).map(genre => <div key={genre.id} className="pill pill--large pill--white">{genre.name}</div>)}
               </div>
           </div>
           <h1 className="movie-header__title">{ title ? title : name }</h1>

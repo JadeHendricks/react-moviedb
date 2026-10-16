@@ -236,9 +236,6 @@
     -o-object-fit: cover;
     object-fit: cover;
   }
-  .movieDetailSummary__wrapper .category__wrapper {
-    justify-content: flex-start;
-  }
 }
 .marginTop5 {
   margin-top: 0.5rem !important;
@@ -1132,37 +1129,6 @@ textarea {
 .reviews__link:hover {
   color: #3cb13e;
   opacity: 1;
-}
-.category {
-  color: #868686;
-  margin-top: 3rem;
-}
-.category__wrapper {
-  display: flex;
-  flex-wrap: wrap;
-}
-.category__pill {
-  border: 0.2rem solid currentColor;
-  color: currentColor;
-  text-transform: uppercase;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.6rem;
-  margin: 1rem 1.5rem 0 0;
-  font-weight: 700;
-}
-.category__pill--large {
-  font-size: 1.6rem;
-  margin: 1rem 2rem 0 0;
-  padding: 0.5rem 2rem;
-}
-.category__pill--white {
-  color: #ffffff;
-}
-@media screen and (max-width: 520px) {
-  .category__wrapper {
-    justify-content: center;
-  }
 }
 .pagination {
   display: flex;

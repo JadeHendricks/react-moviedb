@@ -1,4 +1,6 @@
 import React, {useEffect, Fragment} from 'react';
+import '../../styles/molecules/category.scss';
+import '../../styles/atoms/pill.scss';
 import { useParams } from "react-router";
 import Review from "../reviews/Review";
 import Rating from "../rating/Rating";
@@ -65,8 +67,8 @@ function MovieSummary({type}: {type: MediaType}) {
                     <h3 className="movieDetails__title">{type === "movie" ? "Movie Details" : "Series Details"}</h3>
                     <div className="category">
                         <div className="movieDetails__title movieDetails__title--smaller">Category</div>
-                        <div className="category__wrapper">
-                        {genres.length !== 0 ? genres.slice(0, 2).map(genre => <div key={genre.id} className="category__pill">{genre.name}</div>) : ""}
+                        <div className="category__wrapper category__wrapper--start">
+                        {genres.length !== 0 ? genres.slice(0, 2).map(genre => <div key={genre.id} className="pill">{genre.name}</div>) : ""}
                         </div>
                     </div>
                     <div className="misc">
