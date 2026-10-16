@@ -24,12 +24,12 @@ test.describe('login / sign-up modal', () => {
     await gotoHome(page);
 
     await page.locator('.top-nav__buttons [data-auth="login"]').click();
-    await expect(page.locator('.modalAuth')).toBeVisible();
-    await expect(page.locator('.modalForm__login')).toBeVisible();
+    await expect(page.locator('.modal__dialog')).toBeVisible();
+    await expect(page.locator('.modal__login')).toBeVisible();
     await snap(page, 'modal-login', { fullPage: false });
 
-    await page.locator('.modalAuth__tabs [data-auth="signup"]').click();
-    await expect(page.locator('.modalForm__signup')).toBeVisible();
+    await page.locator('.modal__tabs [data-auth="signup"]').click();
+    await expect(page.locator('.modal__signup')).toBeVisible();
     await snap(page, 'modal-signup', { fullPage: false });
 
     const password = page.locator('input[name="login_password"]');
@@ -40,8 +40,8 @@ test.describe('login / sign-up modal', () => {
     await page.locator('.field__icon').first().click();
     await expect(password).toHaveAttribute('type', 'password');
 
-    // Clicking the dimmed overlay (outside .modal) closes it.
-    await page.locator('.overlay').click({ position: { x: 5, y: 5 } });
-    await expect(page.locator('.overlay')).toHaveCount(0);
+    // Clicking the dimmed overlay (outside .modal__dialog) closes it.
+    await page.locator('.modal').click({ position: { x: 5, y: 5 } });
+    await expect(page.locator('.modal')).toHaveCount(0);
   });
 });

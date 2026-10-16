@@ -7,7 +7,7 @@ import { renderWithProviders } from '../../test/render';
 
 const openLogin = async (user: ReturnType<typeof userEvent.setup>) => {
   await user.click(screen.getAllByRole('button', { name: 'Login' })[0]!);
-  return document.querySelector('.overlay') as HTMLElement;
+  return document.querySelector('.modal') as HTMLElement;
 };
 
 describe('login / sign-up modal', () => {
@@ -22,11 +22,11 @@ describe('login / sign-up modal', () => {
     const overlay = await openLogin(user);
     expect(overlay).not.toBeNull();
 
-    await user.click(document.querySelector('.modalAuth__slug') as HTMLElement);
-    expect(document.querySelector('.overlay')).not.toBeNull();
+    await user.click(document.querySelector('.modal__slug') as HTMLElement);
+    expect(document.querySelector('.modal')).not.toBeNull();
 
     await user.click(overlay);
-    expect(document.querySelector('.overlay')).toBeNull();
+    expect(document.querySelector('.modal')).toBeNull();
   });
 
   it('closes on Escape (B3)', async () => {
@@ -36,7 +36,7 @@ describe('login / sign-up modal', () => {
 
     await user.keyboard('{Escape}');
 
-    expect(document.querySelector('.overlay')).toBeNull();
+    expect(document.querySelector('.modal')).toBeNull();
   });
 
   it('adds no window listener that outlives the modal, however often it is opened (B3)', async () => {

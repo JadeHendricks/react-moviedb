@@ -155,17 +155,6 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.overlay {
-  display: block;
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  background: linear-gradient(128deg, rgba(133, 133, 133, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%);
-}
 @media screen and (max-width: 1660px) {
   .searchResults {
     padding: 4rem;
@@ -439,23 +428,6 @@
     object-fit: cover;
   }
 }
-.modalForm {
-  color: #333333;
-  font-size: 1.4rem;
-}
-.modalForm__box {
-  position: relative;
-  padding: 2rem 2.5rem;
-  border-top: 0.1rem solid #bbb9bc;
-  border-bottom: 0.1rem solid #bbb9bc;
-}
-.modalForm__box:first-child {
-  border-bottom: 0;
-}
-.modalForm button {
-  width: 100%;
-  margin: 4rem 0 0.5rem 0;
-}
 .auth-label {
   font-size: 1.4rem;
   color: #fe3434;
@@ -532,86 +504,6 @@
   }
   .accountSettings .accountform__container {
     padding: 0 2rem;
-  }
-}
-.modal {
-  padding-bottom: 1.5rem;
-  border-radius: 0.6rem;
-  box-shadow:
-    0 19px 38px rgba(0, 0, 0, 0.3),
-    0 15px 12px rgba(0, 0, 0, 0.22);
-  background-color: #ffffff;
-  width: 65rem;
-  z-index: 5;
-  position: fixed;
-  left: 50%;
-  top: 15%;
-  transform: translate(-50%, -15%);
-}
-.modalAuth {
-  color: #868686;
-}
-.modalAuth__padding {
-  padding: 0 2rem;
-}
-.modalAuth__slug {
-  font-size: 1.8rem;
-  margin: 5rem 0;
-  color: currentColor;
-  text-align: center;
-}
-.modalAuth__tabs {
-  display: flex;
-  color: #ffffff;
-}
-.modalAuth__tabs button.tab {
-  flex: 1;
-  border: 0;
-  background-color: #bbb9bc;
-  color: #868686;
-  text-transform: uppercase;
-  padding: 2.5rem 1.5rem;
-  font-weight: 700;
-  font-size: 1.6rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.modalAuth__tabs button.tab:focus {
-  outline: 0;
-}
-.modalAuth__tabs button.tab:hover {
-  background-color: #3cb13e;
-  color: #ffffff;
-}
-.modalAuth__tabs button.active {
-  color: #333333;
-  background-color: #ffffff;
-}
-.modalAuth__tabs button.active:hover {
-  color: #333333;
-  background-color: #ffffff;
-}
-@media screen and (max-width: 767px) {
-  .modal {
-    width: calc(100% - 4rem);
-    top: 12%;
-  }
-  .modalAuth__slug {
-    font-size: 1.6rem;
-    margin: 3rem 0;
-  }
-  .modalAuth__tabs {
-    display: flex;
-    color: #ffffff;
-  }
-  .modalAuth__tabs button.tab {
-    padding: 1.5rem 1rem;
-    font-size: 1.4rem;
-  }
-}
-@media screen and (max-width: 520px) {
-  .modalAuth__slug {
-    font-size: 1.2rem;
   }
 }
 .pagination {
