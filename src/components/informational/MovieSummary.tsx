@@ -9,7 +9,8 @@ import { releaseDateOf } from "../../utils/formatDate";
 import { runtimeLabel } from "../../utils/runtime";
 import MediaImage from "../media/MediaImage";
 import UiContext from "../../context/ui/UiContext";
-import { useCast, useDetails, useGenres, usePlayTrailer, useReviews, useSimilar, useVideos } from "../../api/queries";
+import { useCast, useDetails, useGenres, useReviews, useSimilar, useVideos } from "../../api/queries";
+import { useTrailer } from "../../hooks/useTrailer";
 import { tmdbImage } from "../../api/tmdbClient";
 import { useTimedLoader } from "../../hooks/useTimedLoader";
 import type { MediaDetails } from "../../types/tmdb";
@@ -39,7 +40,7 @@ function MovieSummary() {
     window.scrollTo(0, 0);
   }, [params.id]);
 
-  const playTrailer = usePlayTrailer(mediaType, params.id);
+  const trailer = useTrailer(mediaType, params.id);
 
   const backgroundImage = {
     backgroundImage: movie.backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(movie.backdrop_path, "original")})` : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("")`,
@@ -103,7 +104,7 @@ function MovieSummary() {
             <div className="movieDetailsMaincontent">
 
                 <header className="movieDetailHeader" style={backgroundImage}>
-                    <svg className="movieDetailHeader__playicon" onClick={playTrailer}>
+                    <svg className="movieDetailHeader__playicon" {...trailer}>
                         <use href={`${svgAsset}#icon-play2`}></use>
                     </svg>
                     <div className="movieDetailHeader__media">

@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import MediaImage from "../media/MediaImage";
 import { releaseDateOf } from "../../utils/formatDate";
 import UiContext from "../../context/ui/UiContext";
-import { usePlayTrailer } from "../../api/queries";
+import { useTrailer } from "../../hooks/useTrailer";
 import type { MediaListItem } from "../../types/tmdb";
 import { truncate } from "../../utils/truncate";
 
@@ -13,7 +13,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, first_
   const {mediaType} = useContext(UiContext);
 
 
-  const playTrailer = usePlayTrailer(mediaType, id);
+  const trailer = useTrailer(mediaType, id);
 
   return (
     <div className="card movieCard">
@@ -27,7 +27,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, first_
           <Rating rating={vote_average} />
           <p className="movieCard__date">Release date: {releaseDateOf({release_date, first_air_date})}</p>
           <div className="movieCard__buttons">
-            <button onClick={playTrailer} className="button button--green">Watch Trailer</button>
+            <button {...trailer} className="button button--green">Watch Trailer</button>
             <Link to={`/movieSummary/${id}`} className="button button--green button--skeleton">View More</Link>
           </div>
       </div>

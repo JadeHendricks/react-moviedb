@@ -3,7 +3,8 @@ import svgAssets from "../../images/sprite.svg";
 import { Link } from "react-router";
 import { releaseDateOf } from "../../utils/formatDate";
 import UiContext from "../../context/ui/UiContext";
-import { useGenres, useMostPopular, usePlayTrailer } from "../../api/queries";
+import { useGenres, useMostPopular } from "../../api/queries";
+import { useTrailer } from "../../hooks/useTrailer";
 import { tmdbImage } from "../../api/tmdbClient";
 import type { MediaListItem } from "../../types/tmdb";
 
@@ -21,7 +22,7 @@ const Header = () => {
   const {data: allGenres} = useGenres("movie");
   const genres = genre_ids ? (allGenres ?? []).filter(element => genre_ids.includes(element.id)) : [];
 
-  const playTrailer = usePlayTrailer(mediaType, id);
+  const trailer = useTrailer(mediaType, id);
 
   const backgroundImage = {
     backgroundImage: backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(backdrop_path, "original")})` : "",
@@ -33,7 +34,7 @@ const Header = () => {
   return (
     <header className="movie-header" style={backgroundImage}>
       <div className="container-small">
-          <svg className="movie-header__playicon" onClick={playTrailer}>
+          <svg className="movie-header__playicon" {...trailer}>
               <use href={`${svgAssets}#icon-play2`}>
                 <title>Play {title} trailer</title>
               </use>

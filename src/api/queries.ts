@@ -1,10 +1,8 @@
-import { useCallback } from 'react';
 import {
   keepPreviousData,
   queryOptions,
   useQueries,
   useQuery,
-  useQueryClient,
   type UseQueryResult,
 } from '@tanstack/react-query';
 import { tmdbGet } from './tmdbClient';
@@ -83,7 +81,7 @@ export const useCast = (type: MediaType, id: Id) =>
     enabled: id !== undefined,
   });
 
-const videosOptions = (type: MediaType, id: Id) =>
+export const videosOptions = (type: MediaType, id: Id) =>
   queryOptions({
     queryKey: tmdbKeys.videos(type, id),
     queryFn: ({ signal }) => tmdbGet<{ results: Video[] }>(`${type}/${id}/videos`, { page: 1 }, signal),
@@ -150,17 +148,3 @@ export const useSearch = (query: string) =>
 
 /** Key for a search result row: movie and series ids can be equal (B8). */
 export const searchResultKey = (result: MediaListItem) => `${result.media_type}-${result.id}`;
-
-/**
- * Opens the first video of a title on YouTube. The click only reads the cached/fetched videos query;
- * there is no hand-rolled fetch in the handler.
- */
-export const usePlayTrailer = (type: MediaType, id: Id) => {
-  const queryClient = useQueryClient();
-  return useCallback(async () => {
-    const data = await queryClient.fetchQuery(videosOptions(type, id));
-    const key = data.results[0]?.key;
-    if (!key) return;
-    window.open(`https://www.youtube.com/watch?v=${key}`, '_blank');
-  }, [queryClient, type, id]);
-};
