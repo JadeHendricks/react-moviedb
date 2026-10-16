@@ -90,7 +90,7 @@ export { expect };
 // The old app shows a fixed 3-4 s loader overlay. Wait for it to leave instead of faking timers,
 // because the app's fetch loops (B1/B2) keep the network busy so `networkidle` never settles.
 export const waitForLoaderGone = (page: Page) =>
-  expect(page.locator('.loader-container')).toHaveCount(0, { timeout: 15_000 });
+  expect(page.locator('.loader')).toHaveCount(0, { timeout: 15_000 });
 
 // Make sure <img> elements and inline CSS background images (hero/detail header) have loaded.
 export const settleImages = (page: Page) =>

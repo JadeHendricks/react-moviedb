@@ -62,7 +62,7 @@ describe('detail page', () => {
       '/movie/2': movieDetail({ id: 2, title: 'Second Movie' }),
     });
     vi.stubGlobal('fetch', fetchMock);
-    const loader = () => document.querySelector('.loader-container');
+    const loader = () => document.querySelector('.loader');
 
     const start = performance.now();
     const { router } = renderApp('/movieSummary/1');

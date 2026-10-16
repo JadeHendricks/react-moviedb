@@ -1,0 +1,75 @@
+@use '../tokens' as *;
+
+// Full-screen loading overlay: a green wash with three rings spinning in 3D.
+.loader {
+  background: linear-gradient(
+    135deg,
+    rgba($color-green, 0.8) 30%,
+    rgba($color-green-light, 0.95) 100%
+  );
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $z-loader;
+}
+
+.loader__spinner {
+  position: absolute;
+  top: calc(50% - 3.2rem);
+  left: calc(50% - 3.2rem);
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  perspective: 80rem;
+}
+
+.loader__ring {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.loader__ring--one {
+  left: 0;
+  top: 0;
+  animation: rotate-one 1s linear infinite;
+  border-bottom: 0.7rem solid $color-loader-ring;
+}
+
+.loader__ring--two {
+  right: 0;
+  top: 0;
+  animation: rotate-two 1s linear infinite;
+  border-right: 0.7rem solid $color-loader-ring;
+}
+
+.loader__ring--three {
+  right: 0;
+  bottom: 0;
+  animation: rotate-three 1s linear infinite;
+  border-top: 0.7rem solid $color-loader-ring;
+}
+
+// Each ring tilts to its own angle and turns a full circle around its z axis.
+@mixin ring-keyframes($name, $x, $y) {
+  @keyframes #{$name} {
+    0% {
+      transform: rotateX($x) rotateY($y) rotateZ(0);
+    }
+
+    100% {
+      transform: rotateX($x) rotateY($y) rotateZ(360deg);
+    }
+  }
+}
+
+@include ring-keyframes(rotate-one, 35deg, -45deg);
+@include ring-keyframes(rotate-two, 50deg, 10deg);
+@include ring-keyframes(rotate-three, 35deg, 55deg);
