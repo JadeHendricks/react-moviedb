@@ -30,10 +30,9 @@ export default tseslint.config(
       'react/jsx-uses-vars': 'error',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      // Warnings only for now; they become errors in the accessibility phase.
-      ...Object.fromEntries(
-        Object.keys(jsxA11y.configs.recommended.rules).map((name) => [name, 'warn']),
-      ),
+      // Accessibility rules are errors (they were warnings until this phase). The plugin's own recommended
+      // set is used as it ships, so the severities and options are the plugin's, not a blanket 'error'.
+      ...jsxA11y.configs.recommended.rules,
       // React is imported in every file; the JSX transform no longer needs it.
       'no-unused-vars': ['warn', { varsIgnorePattern: '^React$' }],
     },
