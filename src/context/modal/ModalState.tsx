@@ -19,7 +19,7 @@ const ModalState = (props: { children?: ReactNode }) => {
     setModalShow(true);
     if (buttonClicked) setActivity(buttonClicked);
   }, []);
-  const authFailure = useCallback((e: MouseEvent<HTMLElement>) => {
+  const authFailure = useCallback((e: { preventDefault: () => void }) => {
     e.preventDefault();
     alert("This will work in due time");
   }, []);

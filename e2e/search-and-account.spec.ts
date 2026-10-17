@@ -32,7 +32,7 @@ test.describe('login / sign-up modal', () => {
     await expect(page.locator('.modal__signup')).toBeVisible();
     await snap(page, 'modal-signup', { fullPage: false });
 
-    const password = page.locator('input[name="login_password"]');
+    const password = page.locator('input[name="signup_password"]');
     await expect(password).toHaveAttribute('type', 'password');
     await page.locator('.field__icon').first().click();
     await expect(password).toHaveAttribute('type', 'text');

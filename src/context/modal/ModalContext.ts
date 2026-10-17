@@ -1,7 +1,8 @@
 import { createContext, type MouseEvent } from "react";
 export interface ModalContextValue {
   authSelection: (e: MouseEvent<HTMLElement>) => void;
-  authFailure: (e: MouseEvent<HTMLElement>) => void;
+  // Called from the form's submit: anything with preventDefault.
+  authFailure: (e: { preventDefault: () => void }) => void;
   closeModal: () => void;
   activity: string | null;
   modalShow: boolean;
