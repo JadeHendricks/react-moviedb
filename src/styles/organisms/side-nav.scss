@@ -8,11 +8,11 @@
   background-color: $color-white;
   box-shadow: $shadow-side;
   text-align: center;
-  color: $color-muted;
+  color: $color-muted-text;
   font-weight: $font-weight-bold;
 
   @include respond-to(lg) {
-    background-color: $color-green;
+    background-color: $color-green-action;
     flex: 1;
     box-shadow: $shadow-bar-top;
   }
@@ -79,7 +79,7 @@
 
 // The hover and active looks come after the responsive rules above so they win at every width.
 .side-nav__item:hover {
-  color: $color-green;
+  color: $color-green-text;
   cursor: pointer;
 
   @include respond-to(lg) {
@@ -95,7 +95,7 @@
 }
 
 .side-nav__item--active {
-  color: $color-green;
+  color: $color-green-text;
 
   @include respond-to(lg) {
     color: $color-white;

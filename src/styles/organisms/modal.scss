@@ -26,7 +26,7 @@
   left: 50%;
   top: 15%;
   transform: translate(-50%, -15%);
-  color: $color-muted;
+  color: $color-muted-text;
 
   @include respond-to(sm) {
     width: calc(100% - 4rem);
@@ -68,7 +68,7 @@
   flex: 1;
   border: 0;
   background-color: $color-border;
-  color: $color-muted;
+  color: $color-text;
   text-transform: uppercase;
   padding: $space-25 $space-15;
   font-weight: $font-weight-bold;
@@ -84,7 +84,7 @@
 
 
 .modal__tab:hover {
-  background-color: $color-green;
+  background-color: $color-green-action;
   color: $color-white;
 }
 

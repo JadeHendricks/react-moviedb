@@ -28,7 +28,7 @@ function MainContent() {
       <section className="home">
         <div className="container">
           <SwitchTabs />
-          <h3 className="home__title">{whatsShowing}</h3>
+          <h2 className="home__title">{whatsShowing}</h2>
           <div className="media-strip__items">
             { movies ? movies.map(movie => <MovieCardItem key={movie.id} movie={movie}  /> ) : "" }
           </div>

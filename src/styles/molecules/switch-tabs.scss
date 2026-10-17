@@ -24,7 +24,7 @@
   border: $border-medium solid $color-green;
   padding: $space-12 $space-20;
   font-size: $font-size-18;
-  color: $color-green;
+  color: $color-green-text;
   text-align: center;
   text-transform: uppercase;
   transition: $transition-medium;
@@ -41,6 +41,6 @@
 // After the responsive rules above, so the selected look wins at every width.
 .switch-tabs__tab:hover,
 .switch-tabs__tab--active {
-  background: linear-gradient(to bottom right, $color-green, $color-green-dark);
+  background: linear-gradient(to bottom right, $color-green-action, $color-green-action-dark);
   color: $color-white;
 }

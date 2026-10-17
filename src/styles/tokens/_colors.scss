@@ -4,10 +4,18 @@ $color-green: #3cb13e;
 $color-green-dark: #059307;
 $color-green-light: #87e887;
 $color-green-glow: rgba(61, 177, 61, 0.38);
+// Text-safe variants. $color-green stays for decoration, ratings, large text and non-text UI; the ones below
+// are used where text sits on green (white on it) or green is the text colour on white. 4.5:1 or more.
+// To undo the contrast fix, point these three back at $color-green and $color-green-dark.
+$color-green-action: #288628;
+$color-green-action-dark: #1d6e1f;
+$color-green-text: #288628;
 
 // Neutrals, from dark to light
 $color-text: #333333;
 $color-muted: #868686;
+// Grey text on white and on $color-surface-dim: 4.5:1 or more ($color-muted stays for icons and large text).
+$color-muted-text: #636363;
 $color-border: #bbb9bc;
 $color-surface-dim: #e7e7e7;
 $color-field-border: #dddddd;

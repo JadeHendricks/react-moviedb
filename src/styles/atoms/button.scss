@@ -21,22 +21,22 @@
 
 .button--green {
   color: $color-white;
-  background-color: $color-green;
+  background-color: $color-green-action;
 }
 
 .button--skeleton {
   background-color: transparent;
-  color: $color-green;
+  color: $color-green-text;
   padding: var(--button-padding, #{$space-10 3.3rem});
   border: $border-medium solid $color-green;
 }
 
 .button--green:hover {
-  background-color: $color-muted;
+  background-color: $color-muted-text;
 }
 
 .button--skeleton:hover {
-  background-color: $color-muted;
+  background-color: $color-muted-text;
   color: $color-white;
-  border: $border-medium solid $color-muted;
+  border: $border-medium solid $color-muted-text;
 }
