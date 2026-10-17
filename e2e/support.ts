@@ -28,7 +28,11 @@ const fixtureForPath = (pathname: string): string | null => {
   return null;
 };
 
-// Deterministic flat-colour placeholder per image path, so cards are distinguishable but stable.
+// TMDB image URLs look like /t/p/<size>/<file>. The colour must depend on the file only, so asking for a different
+// size (w1280 instead of original, or a srcset candidate) gives the same placeholder and a diff means a real layout change.
+const imageFileName = (url: string) => new URL(url).pathname.split('/').pop() ?? '';
+
+// Deterministic flat-colour placeholder per image file, so cards are distinguishable but stable.
 const placeholderSvg = (path: string) => {
   let hash = 0;
   for (const ch of path) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
@@ -51,14 +55,14 @@ export const test = base.extend<{ app: { unhandled: string[] } }>({
       await page.route('https://image.tmdb.org/**', (route) =>
         route.fulfill({
           contentType: 'image/svg+xml',
-          body: placeholderSvg(new URL(route.request().url()).pathname),
+          body: placeholderSvg(imageFileName(route.request().url())),
         }),
       );
       // index.css hot-links a banner image (account settings header) from a third-party CDN.
       await page.route('https://*.netdna-ssl.com/**', (route) =>
         route.fulfill({
           contentType: 'image/svg+xml',
-          body: placeholderSvg(new URL(route.request().url()).pathname),
+          body: placeholderSvg(imageFileName(route.request().url())),
         }),
       );
       await page.route('https://www.youtube.com/**', (route) =>
