@@ -96,8 +96,9 @@ export const waitForLoaderGone = (page: Page) =>
 export const settleImages = (page: Page) =>
   page.evaluate(async () => {
     const urls = new Set<string>();
-    document.querySelectorAll<HTMLElement>('[style*="background-image"]').forEach((el) => {
-      const m = el.style.backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
+    // Computed style, so backgrounds that come from the stylesheet (the account banner) are waited for too.
+    document.querySelectorAll<HTMLElement>('*').forEach((el) => {
+      const m = getComputedStyle(el).backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
       if (m && m[1]) urls.add(m[1]);
     });
     await Promise.all([
@@ -113,7 +114,8 @@ export const settleImages = (page: Page) =>
     ]);
   });
 
-export const snap = async (page: Page, name: string, options: { fullPage?: boolean } = {}) => {
+// mask hides parts the browser draws itself and that differ between two captures (see the account spec).
+export const snap = async (page: Page, name: string, options: { fullPage?: boolean; mask?: Locator[] } = {}) => {
   await settleImages(page);
   // Park the pointer so hover styles (e.g. .side-nav__item:hover) never leak into a baseline.
   await page.mouse.move(0, 0);
