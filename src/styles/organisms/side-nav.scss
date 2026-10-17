@@ -21,11 +21,16 @@
 // The link around the logo.
 .side-nav__home {
   text-decoration: none;
+  // The logo inside is hidden here, so the empty link must not stay in the tab order.
+  @include respond-to(lg) {
+    display: none;
+  }
 }
 
 .side-nav__logo {
   color: $color-text;
   height: 9rem;
+  font-weight: $font-weight-bold;
   padding: $space-28 0;
   font-size: $font-size-28;
   border-bottom: $border-thin solid $color-surface-dim;
@@ -82,6 +87,13 @@
   }
 }
 
+// On the green bar the blue ring would fade into the background, so it turns white.
+.side-nav__item:focus-visible {
+  @include respond-to(lg) {
+    outline-color: $color-focus-on-dark;
+  }
+}
+
 .side-nav__item--active {
   color: $color-green;
 
@@ -109,6 +121,7 @@
 .side-nav__label {
   color: currentColor;
   font-size: $font-size-14;
+  font-weight: $font-weight-bold;
 
   @include respond-to(xs) {
     font-weight: $font-weight-light;

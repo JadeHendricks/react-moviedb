@@ -1,5 +1,6 @@
 // Spacing scale. The number is tenths of a rem (html is 62.5%, so 10 = 1rem = 10px).
 // Only the steps the app actually uses are listed.
+$space-2: 0.2rem;
 $space-5: 0.5rem;
 $space-8: 0.8rem;
 $space-10: 1rem;
@@ -20,3 +21,4 @@ $space-100: 10rem;
 // Hairlines
 $border-thin: 0.1rem;
 $border-medium: 0.2rem;
+$border-focus: 0.3rem;

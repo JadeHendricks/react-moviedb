@@ -13,7 +13,7 @@ function CastCard({cast: {id, character, name, profile_path}}: {cast: Credit}) {
         </Link>
       </div>
       <div className="cast-card__info">
-          <h5 className="cast-card__name">{name}</h5>
+          <h3 className="cast-card__name">{name}</h3>
           <span className="cast-card__role">{character}</span>
       </div>
     </div>

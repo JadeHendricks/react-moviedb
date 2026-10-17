@@ -17,6 +17,7 @@ const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, first_
 
   const mediaType = mediaTypeOf({media_type});
   const trailer = useTrailer(mediaType, id);
+  const shownTitle = title ? title : name;
   // Cards in the similar / popular roles strips are the compact variant: each part that differs adds its --compact modifier.
   const part = (name: string) => (compact ? `${name} ${name}--compact` : name);
 
@@ -28,12 +29,12 @@ const MovieCardItem = ({movie: {backdrop_path, title, name, release_date, first_
         </div>
       </Link>
       <div className={part("movie-card__info")}>
-          <h5 className={part("movie-card__title")}>{truncate(title ? title : name, 45)}</h5>
+          <h3 className={part("movie-card__title")}>{truncate(title ? title : name, 45)}</h3>
           <Rating rating={vote_average} className={part("movie-card__rating")} />
           <p className="movie-card__date">Release date: {releaseDateOf({release_date, first_air_date})}</p>
           <div className="movie-card__buttons">
-            <button {...trailer} className={`button button--green ${part("movie-card__button")}${compact ? " movie-card__button--compact-trailer" : ""}`}>Watch Trailer</button>
-            <Link to={detailPath(mediaType, id)} className={`button button--skeleton ${part("movie-card__button")}`}>View More</Link>
+            <button type="button" aria-label={`Watch Trailer: ${shownTitle}`} {...trailer} className={`button button--green ${part("movie-card__button")}${compact ? " movie-card__button--compact-trailer" : ""}`}>Watch Trailer</button>
+            <Link to={detailPath(mediaType, id)} aria-label={`View More: ${shownTitle}`} className={`button button--skeleton ${part("movie-card__button")}`}>View More</Link>
           </div>
       </div>
     </div>

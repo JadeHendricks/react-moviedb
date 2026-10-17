@@ -11,5 +11,6 @@
 }
 
 .home__title {
+  @include heading-size(h3);
   margin-bottom: $space-25;
 }

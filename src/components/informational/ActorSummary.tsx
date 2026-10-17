@@ -37,10 +37,10 @@ function ActorSummary() {
       <div className="details-side">
           <div className="details-side__media actor__media">
               <MediaImage path={actor.profile_path} className="details-side__image" alt={actor.name} />
-              <span className="actor__name">{actor.name}</span>
+              <h1 className="actor__name">{actor.name}</h1>
           </div>
           <div className="details-side__body">
-              <h3 className="details__title">Actor Details</h3>
+              <h2 className="details__title">Actor Details</h2>
               <div className="details-info">
                   <div className="details-info__group">
                     <div className="details__title details__title--small">Biography</div>
@@ -73,14 +73,14 @@ function ActorSummary() {
       </div>
 
       <div className="details__content">
-            <main className="movie-main">
+            <div className="movie-main">
               <section className="media-strip">
-                  <h3 className="media-strip__title">Popular Roles</h3>
+                  <h2 className="media-strip__title">Popular Roles</h2>
                   <div className="media-strip__items">
                     {credits && credits.map(movie => <MovieCardItem key={movie.id} movie={movie} compact />)}
                   </div>
               </section>
-            </main>
+            </div>
         </div>
     </div>
     </section>

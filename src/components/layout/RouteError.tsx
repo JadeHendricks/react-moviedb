@@ -15,7 +15,7 @@ function RouteError() {
   return (
     <section className="route-error" role="alert">
       <div className="container">
-        <h2 className="route-error__title">Something went wrong</h2>
+        <h1 className="route-error__title">Something went wrong</h1>
         <p>{detail}</p>
         <Link to="/" className="button button--green">Back to home</Link>
       </div>

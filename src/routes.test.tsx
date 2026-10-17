@@ -75,7 +75,7 @@ describe('routes', () => {
     renderApp('/actorSummary/5');
 
     const card = (await screen.findByText('Credit Movie')).closest('.movie-card') as HTMLElement;
-    expect(within(card).getByRole('link', { name: 'View More' })).toHaveAttribute('href', '/movieSummary/33');
+    expect(within(card).getByRole('link', { name: /^View More/ })).toHaveAttribute('href', '/movieSummary/33');
   });
 
   it('shows the router error boundary instead of a white screen when a page throws', async () => {

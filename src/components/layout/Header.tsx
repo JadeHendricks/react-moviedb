@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import '../../styles/organisms/hero.scss';
 import '../../styles/atoms/icon.scss';
+import '../../styles/atoms/play-button.scss';
 import '../../styles/molecules/category.scss';
 import '../../styles/atoms/pill.scss';
 import '../../styles/atoms/button.scss';
@@ -32,6 +33,7 @@ const Header = () => {
   const genres = genre_ids ? (allGenres ?? []).filter(element => genre_ids.includes(element.id)) : [];
 
   const trailer = useTrailer(heroType, id);
+  const heroName = title ? title : name;
 
   const backgroundImage = {
     backgroundImage: backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(backdrop_path, "original")})` : "",
@@ -43,12 +45,14 @@ const Header = () => {
   return (
     <header className="hero" style={backgroundImage}>
       <div className="container-small">
-          <svg className="icon icon--play hero__play" {...trailer}>
-              <use href={`${svgAssets}#icon-play2`}>
-                <title>Play {title} trailer</title>
-              </use>
-          </svg>
-          <h4 className="hero__slug">Most Popular</h4>
+          {/* A real button, so the keyboard can reach it; the name replaces the old <title> inside the icon. */}
+          <button type="button" className="play-button hero__play" aria-label={heroName ? `Play ${heroName} trailer` : "Play trailer"} {...trailer}>
+              <svg className="icon icon--play" aria-hidden="true" focusable="false">
+                  <use href={`${svgAssets}#icon-play2`}></use>
+              </svg>
+          </button>
+          {/* Not a heading: the h1 below is the page's first heading, and the size and weight come from the class. */}
+          <p className="hero__slug">Most Popular</p>
           <div className="category">
               <div className="category__wrapper">
                 {genres.slice(0, 3).map(genre => <div key={genre.id} className="pill pill--large pill--white">{genre.name}</div>)}
@@ -59,7 +63,8 @@ const Header = () => {
           <p className="hero__description">
             { overview }
           </p>
-          <Link to={detailPath(heroType, id)}><button className="button button--green hero__cta">View More</button></Link>
+          {/* A link that looks like the button; a <button> inside a <Link> is two tab stops for one action. */}
+          <Link to={detailPath(heroType, id)} className="button button--green hero__cta">View More</Link>
       </div>
     </header>
   )

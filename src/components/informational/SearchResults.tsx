@@ -25,7 +25,7 @@ function SearchResults() {
       {loading ? <Loader /> : ""}
       <section className="search">
         <div className="container">
-            <h2 className="search__title">Search results for <span className="search__query">{`${query}`}</span></h2>
+            <h1 className="search__title">Search results for <span className="search__query">{`${query}`}</span></h1>
             <div className="search__results">
               {searchResults.map(result => <SearchCardItem key={searchResultKey(result)} movie={result}/>)}
             </div>

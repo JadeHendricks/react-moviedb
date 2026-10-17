@@ -16,6 +16,7 @@
 }
 
 .movie-main__title {
+  @include heading-size(h2);
   font-weight: $font-weight-bold;
 
   @include respond-to(md) {
@@ -32,6 +33,7 @@
 }
 
 .movie-main__storyline-title {
+  @include heading-size(h3);
   margin-bottom: $space-10;
 }
 

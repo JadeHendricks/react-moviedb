@@ -19,9 +19,12 @@ function Layout() {
       <div className="app__main">
         <TopNavigation />
         {/* While a page chunk loads the same full-screen loader the pages use is shown. */}
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
+        {/* The one main landmark of every page. It adds no box styles of its own. */}
+        <main>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </main>
       </div>
     </>
   );

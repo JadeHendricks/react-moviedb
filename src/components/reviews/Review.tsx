@@ -14,7 +14,7 @@ function Review({review: {author, content, url}}: {review: ReviewData}) {
       <div className="review__description">
           { truncate(content, 300) }
           <br />
-          <a className="review__link" target="_blank" rel="noopener noreferrer" href={url}>See more &rarr;</a>
+          <a className="review__link" target="_blank" rel="noopener noreferrer" href={url} aria-label={`See more of ${author}'s review`}>See more &rarr;</a>
       </div>
     </div>
   )

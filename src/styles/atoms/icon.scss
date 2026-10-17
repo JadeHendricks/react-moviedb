@@ -9,20 +9,13 @@
   fill: var(--icon-fill, currentColor);
 }
 
-// An icon that acts as a button.
-.icon--clickable {
-  cursor: pointer;
+// An icon alone inside a button: no baseline gap under it, so the button is exactly the icon's size.
+.icon--block {
+  display: block;
 }
 
-// The big play symbol on the hero and the details header: white, turns green on hover.
-// The caller positions it and says how it moves on hover.
+// The big play symbol on the hero and the details header. The .play-button around it sets the colour.
 .icon--play {
-  fill: $color-white;
-  position: absolute;
+  display: block;
   transition: $transition-slow;
-}
-
-.icon--play:hover {
-  fill: $color-green;
-  cursor: pointer;
 }

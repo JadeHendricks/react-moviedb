@@ -49,6 +49,7 @@
 }
 
 .details-hero__title {
+  @include heading-size(h3);
   color: currentColor;
   margin-bottom: $space-12;
 }

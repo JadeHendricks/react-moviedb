@@ -120,6 +120,7 @@
 }
 
 .movie-card__title {
+  @include heading-size(h5);
   margin: 0 $space-40 $space-15 0;
   height: 4.5rem;
 

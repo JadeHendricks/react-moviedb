@@ -16,8 +16,14 @@ $color-surface-faint: #fafafa;
 $color-white: #ffffff;
 $color-loader-ring: #efeffa;
 
+// Keyboard focus ring: 3:1 or more against white and against the dark hero backdrops.
+$color-focus: #2b7fff;
+$color-focus-on-dark: #ffffff;
+
 // Feedback
 $color-error: #fe3434;
+// Error text on white: dark enough for 4.5:1 (the lighter red above stays for the existing messages).
+$color-error-text: #c62828;
 $color-warn-start: #ff8400;
 $color-warn-end: #ffda00;
 $color-danger-start: #ff0000;

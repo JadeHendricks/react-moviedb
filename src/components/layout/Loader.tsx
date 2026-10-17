@@ -3,7 +3,7 @@ import '../../styles/atoms/loader.scss';
 
 function Loader() {
   return (
-    <div className="loader">
+    <div className="loader" role="status" aria-label="Loading">
       <div className="loader__spinner">
         <div className="loader__ring loader__ring--one"></div>
         <div className="loader__ring loader__ring--two"></div>
