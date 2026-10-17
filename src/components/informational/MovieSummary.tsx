@@ -53,7 +53,7 @@ function MovieSummary({type}: {type: MediaType}) {
   const title = movie.title ? movie.title : movie.name;
 
   const backgroundImage = {
-    backgroundImage: movie.backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(movie.backdrop_path, "original")})` : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("")`,
+    backgroundImage: movie.backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(movie.backdrop_path, "w1280")})` : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("")`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "top center",
     backgroundSize: "cover"

@@ -36,7 +36,7 @@ const Header = () => {
   const heroName = title ? title : name;
 
   const backgroundImage = {
-    backgroundImage: backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(backdrop_path, "original")})` : "",
+    backgroundImage: backdrop_path ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tmdbImage(backdrop_path, "w1280")})` : "",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "top center",
     backgroundSize: "cover"

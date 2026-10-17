@@ -34,7 +34,7 @@ export async function tmdbGet<T>(path: string, params: TmdbParams = {}, signal?:
   return (await response.json()) as T;
 }
 
-/** Image sizes the app uses today. */
-export type ImageSize = 'w500' | 'original';
+/** TMDB width-based image sizes ("w500") plus the untouched original. */
+export type ImageSize = `w${number}` | 'original';
 
 export const tmdbImage = (path: string, size: ImageSize = 'w500'): string => `${IMAGE_BASE}/${size}${path}`;
