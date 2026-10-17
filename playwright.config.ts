@@ -13,8 +13,10 @@ export default defineConfig({
   timeout: 60_000,
   reporter: [['list']],
   expect: {
-    // Zero tolerance: all data, images and the clock are fixed, so any pixel diff is a real change.
-    toHaveScreenshot: { maxDiffPixels: 0, animations: 'disabled', caret: 'hide' },
+    // Data, images and the clock are fixed, so a diff is a real change. The 50 pixels only absorb Chromium raster
+    // noise (a few to a few dozen stray pixels on gradients); a real change touches hundreds. threshold 0 as well, because the
+    // default 0.2 colour distance hides a change from one green to a slightly darker one.
+    toHaveScreenshot: { maxDiffPixels: 50, threshold: 0, animations: 'disabled', caret: 'hide' },
   },
   use: {
     baseURL: `http://localhost:${PORT}`,
