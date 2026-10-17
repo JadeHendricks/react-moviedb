@@ -66,16 +66,25 @@ describe('top navigation', () => {
     expect(calls.length).toBeGreaterThan(0);
   });
 
-  it('still asks for a term when the box is empty and does not navigate (B20)', async () => {
+  it('asks for a term with a message under the bar, not an alert, and does not navigate (B20)', async () => {
     const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => undefined);
     const { fetchMock } = mockTmdb({});
     vi.stubGlobal('fetch', fetchMock);
     const user = userEvent.setup();
     const { router } = renderApp('/');
 
-    await user.type(screen.getByPlaceholderText('Search for Movies or TV Series'), '{Enter}');
+    const box = screen.getByRole('searchbox', { name: 'Search for Movies or TV Series' });
+    expect(box).not.toHaveAttribute('aria-invalid', 'true');
+    await user.type(box, '{Enter}');
 
-    expect(alertMock).toHaveBeenCalledWith('Please insert a search term');
+    expect(alertMock).not.toHaveBeenCalled();
+    expect(screen.getByRole('alert')).toHaveTextContent('Please insert a search term');
+    expect(box).toHaveAttribute('aria-invalid', 'true');
+    expect(box).toHaveAccessibleDescription('Please insert a search term');
     expect(router.state.location.pathname).toBe('/');
+
+    // Typing clears the message again.
+    await user.type(box, 'a');
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 });

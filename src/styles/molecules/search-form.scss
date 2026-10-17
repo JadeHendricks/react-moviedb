@@ -31,3 +31,18 @@
     --icon-size: #{$space-25};
   }
 }
+
+// "Please insert a search term": a small note under the bar. The bar (.top-nav) is its positioned parent.
+.search-form__error {
+  position: absolute;
+  top: 100%;
+  left: $space-20;
+  margin-top: $space-5;
+  padding: $space-8 $space-15;
+  border-radius: $radius-sm;
+  background-color: $color-white;
+  box-shadow: $shadow-card;
+  color: $color-error-text;
+  font-size: $font-size-14;
+  font-weight: $font-weight-bold;
+}
