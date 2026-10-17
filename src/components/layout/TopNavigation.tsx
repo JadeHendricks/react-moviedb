@@ -57,7 +57,7 @@ function TopNavigation() {
               <button type="button" className="button button--green top-nav__button" aria-haspopup="dialog" data-auth="signup" onClick={authSelection}>Sign up</button>
           </div>
           <div className="top-nav__account">
-              <img className="top-nav__avatar" src={avatar} alt="person" title="person" />
+              <img className="top-nav__avatar" src={avatar} loading="lazy" decoding="async" alt="person" title="person" />
               <span className="top-nav__name">Kevin Adriana</span>
           </div>
       </div>

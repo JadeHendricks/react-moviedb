@@ -128,7 +128,7 @@ function MovieSummary({type}: {type: MediaType}) {
                                 <iframe 
                                   title={video.title ?? video.name ?? "Video"}
                                   key={video.id}
-                                  width="300" height="170" 
+                                  width="300" height="170" loading="lazy" 
                                   src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" 
                                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
                                 </iframe>

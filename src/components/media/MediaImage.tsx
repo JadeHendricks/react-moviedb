@@ -26,6 +26,9 @@ function MediaImage({ path, size = 'w500', widths, sizes, className, alt }: Medi
       src={path ? tmdbImage(path, size) : imageNotFound}
       srcSet={srcSet}
       sizes={srcSet ? sizes : undefined}
+      // Lazy: cards below the fold are not fetched until they scroll near. Async decoding keeps scrolling smooth.
+      loading="lazy"
+      decoding="async"
       className={className}
       alt={alt ?? ''}
     />

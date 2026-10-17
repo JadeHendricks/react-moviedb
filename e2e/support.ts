@@ -101,6 +101,8 @@ export const settleImages = (page: Page) =>
       const m = getComputedStyle(el).backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
       if (m && m[1]) urls.add(m[1]);
     });
+    // Full-page shots do not scroll, so lazy images below the fold would never load. Make them eager first.
+    document.querySelectorAll('img[loading="lazy"]').forEach((img) => img.setAttribute('loading', 'eager'));
     await Promise.all([
       ...Array.from(document.images).map((img) => img.decode().catch(() => undefined)),
       ...Array.from(urls).map(
