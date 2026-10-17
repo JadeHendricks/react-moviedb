@@ -18,19 +18,37 @@ Allowing the site to be more aligned with a real world complete application.
 Node 24 (see `.nvmrc`). The `engines` field allows Node 22.22 or newer.
 
 ## Getting started
-```bash
-npm install
-cp .env.example .env   # then add your key, see below
-npm run dev
-```
+You need [Node 24](https://nodejs.org/) and npm. Then:
+
+1. **Clone and install**
+   ```bash
+   git clone https://github.com/JadeHendricks/react-moviedb.git
+   cd react-moviedb
+   npm install
+   ```
+
+2. **Create your `.env`** from the template, then add your key (see [API key](#api-key) below).
+   - macOS / Linux: `cp .env.example .env`
+   - Windows (PowerShell): `Copy-Item .env.example .env`
+
+3. **Start the dev server**
+   ```bash
+   npm run dev
+   ```
+   Vite prints a local URL (default http://localhost:5173). Open it in your browser.
+
+To check a production build locally instead, run `npm run build` then `npm run preview`.
 
 ### API key
-1. Get a TMDB **v3 API key** at https://www.themoviedb.org/settings/api.
-2. Put it in a local `.env` file in the project root:
+1. Get a TMDB **v3 API key** at https://www.themoviedb.org/settings/api (free; sign in, then request an API key under API).
+2. Open the `.env` file you created and set the key:
    ```
    REACT_APP_API_KEY=your_v3_key_here
    ```
-3. `.env` is gitignored and must never be committed. `.env.example` is the committed template and has no value.
+3. Restart `npm run dev` if it was already running, so Vite picks up the new value.
+4. `.env` is gitignored and must never be committed. `.env.example` is the committed template and has no value.
+
+Without a valid key the app loads but shows no movies, and TMDB requests return 401.
 
 The variable keeps the name `REACT_APP_API_KEY` so existing deploy settings keep working (`vite.config.ts` exposes `VITE_` and `REACT_APP_` variables).
 
