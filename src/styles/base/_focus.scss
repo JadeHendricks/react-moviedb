@@ -1,0 +1,8 @@
+@use '../tokens' as *;
+
+// The keyboard focus ring. :focus-visible shows it for keyboard use (and text fields), not for mouse clicks.
+// Every control gets this one look; a control on a coloured bar swaps the colour with $color-focus-on-dark.
+:focus-visible {
+  outline: $border-focus solid $color-focus;
+  outline-offset: $space-2;
+}

@@ -9,12 +9,16 @@
   width: 100%;
 }
 
+// Fields sit edge to edge in their box or bar, so the ring is drawn inside them.
+.input:focus-visible {
+  outline-offset: -$space-5;
+}
+
 .input--search {
   height: 100%;
   border: 0;
   font-size: $font-size-20;
   padding: $space-20 $space-20 $space-20 $space-70;
-  outline: 0;
   transition: 0.4s all;
 
   @include respond-to(sm) {
@@ -40,10 +44,6 @@
   }
 }
 
-.input--plain:focus {
-  outline: 0;
-}
-
 .input--outlined {
   border: 1px solid $color-field-border;
   border-radius: $radius-sm;
@@ -52,9 +52,6 @@
   font-size: $font-size-16;
 }
 
-.input--outlined:focus {
-  outline: none;
-}
 
 .input--area {
   height: 20rem;
