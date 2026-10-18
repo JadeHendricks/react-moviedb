@@ -1,0 +1,12 @@
+// Centred content column.
+.container {
+  max-width: 156rem;
+  margin: 0 auto;
+  display: block;
+}
+
+// A narrow, left-aligned column (the hero text).
+.container-small {
+  max-width: 70rem;
+  display: block;
+}

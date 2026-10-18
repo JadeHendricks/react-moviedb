@@ -1,0 +1,13 @@
+# Legacy sources keep their original formatting until each phase rewrites them,
+# so the toolchain commit stays free of whitespace noise.
+build
+node_modules
+test-results
+playwright-report
+.agents
+.worktrees
+package-lock.json
+src
+e2e
+README.md
+public

@@ -1,0 +1,78 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The bar above the page: search field on the left, Login / Sign up on the right.
+// It sticks to the top; on phones the buttons stack under the search field.
+.top-nav {
+  background-color: $color-white;
+  box-shadow:
+    inset $shadow-side,
+    0 8px 6px -9px $color-border;
+  height: 9rem;
+  padding: 0 $space-20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+
+  @include respond-to(lg) {
+    box-shadow: $shadow-bar-bottom;
+  }
+
+  @include respond-to(sm) {
+    height: auto;
+    padding: $space-20 $space-20 0 $space-20;
+    flex-direction: column-reverse;
+    justify-content: center;
+    position: relative;
+  }
+}
+
+.top-nav__buttons {
+  @include respond-to(sm) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+// The buttons are .button elements; the hook sets their font size on the narrowest screens.
+.top-nav__button {
+  margin-right: $space-15;
+
+  @include respond-to(sm) {
+    width: 100%;
+  }
+
+  @include respond-to(xs) {
+    --button-font-size: #{$font-size-14};
+  }
+}
+
+.top-nav__button:last-child {
+  margin-right: 0;
+}
+
+// The signed-in user. It is hidden until accounts exist.
+.top-nav__account {
+  display: none;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: $space-20;
+
+  @include respond-to(sm) {
+    justify-content: center;
+  }
+}
+
+.top-nav__avatar {
+  margin-right: $space-15;
+  border-radius: $radius-round;
+}
+
+.top-nav__name {
+  font-size: $font-size-16;
+  font-weight: $font-weight-bold;
+}

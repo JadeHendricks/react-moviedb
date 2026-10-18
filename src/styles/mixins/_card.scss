@@ -1,0 +1,17 @@
+@use '../tokens' as *;
+
+// The raised white-card look shared by movie, cast and search cards.
+@mixin card-surface {
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+}
+
+// A card picture: fills its holder and keeps rounded top corners only.
+@mixin card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: $radius-md;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

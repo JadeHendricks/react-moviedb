@@ -1,0 +1,18 @@
+@use '../tokens' as *;
+
+// The big play button on the hero and the details header: a white symbol that turns green on hover.
+// The caller sizes it (--icon-size) and says how it moves on hover.
+.play-button {
+  --icon-fill: #{$color-white};
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  line-height: 0;
+  cursor: pointer;
+  transition: $transition-slow;
+}
+
+.play-button:hover {
+  --icon-fill: #{$color-green};
+}

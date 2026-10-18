@@ -1,0 +1,87 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The movie, series and actor pages share one layout: a sidebar on the left and the content on the right.
+// Below 991px they stack.
+.details {
+  width: 100%;
+}
+
+.details__layout {
+  display: flex;
+
+  @include respond-to(md) {
+    flex-direction: column;
+  }
+}
+
+.details__content {
+  flex: 1;
+}
+
+// Small-caps headings used in the sidebar.
+.details__title {
+  color: $color-text;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-18;
+  text-transform: uppercase;
+  margin-bottom: $space-5;
+}
+
+.details__title--small {
+  font-size: $font-size-14;
+}
+
+// The sidebar: poster, genres, facts and reviews.
+.details-side {
+  flex: 0 0 32rem;
+  background-color: $color-surface-dim;
+  min-height: 100vh;
+  box-shadow: $shadow-side;
+
+  @include respond-to(md) {
+    min-height: auto;
+  }
+}
+
+.details-side__media {
+  width: 100%;
+  height: 45rem;
+}
+
+.details-side__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  @include respond-to(md) {
+    object-fit: contain;
+  }
+
+  @include respond-to(xs) {
+    object-fit: cover;
+  }
+}
+
+.details-side__body {
+  padding: $space-40 $space-30;
+}
+
+// A list of facts (release date, runtime, ...) in the sidebar.
+.details-info {
+  font-size: $font-size-14;
+  color: $color-text;
+  padding: $space-35 0;
+}
+
+.details-info__group {
+  margin-bottom: $space-40;
+}
+
+.details-info__group:last-child {
+  margin-bottom: 0;
+}
+
+.details-info__text {
+  line-height: $line-height-base;
+}

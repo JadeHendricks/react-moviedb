@@ -1,0 +1,131 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 8,
+  "results": [
+    {
+      "id": 160,
+      "title": "Neon Skyline",
+      "original_title": "Neon Skyline",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd160.jpg",
+      "poster_path": "/po160.jpg",
+      "release_date": "2025-01-10",
+      "vote_average": 8.4,
+      "popularity": 100,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 161,
+      "title": "Crimson Tide Pool",
+      "original_title": "Crimson Tide Pool",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd161.jpg",
+      "poster_path": "/po161.jpg",
+      "release_date": "2025-02-11",
+      "vote_average": 6.2,
+      "popularity": 93,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 162,
+      "title": "Orbit Seven",
+      "original_title": "Orbit Seven",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd162.jpg",
+      "poster_path": "/po162.jpg",
+      "release_date": "2025-03-12",
+      "vote_average": 4.1,
+      "popularity": 86,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 163,
+      "title": "The Fox Court",
+      "original_title": "The Fox Court",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd163.jpg",
+      "poster_path": "/po163.jpg",
+      "release_date": "2025-04-13",
+      "vote_average": 7.5,
+      "popularity": 79,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 164,
+      "title": "Starlight Diner",
+      "original_title": "Starlight Diner",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd164.jpg",
+      "poster_path": "/po164.jpg",
+      "release_date": "2025-05-14",
+      "vote_average": 5.8,
+      "popularity": 72,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 165,
+      "title": "Riverbend",
+      "original_title": "Riverbend",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd165.jpg",
+      "poster_path": "/po165.jpg",
+      "release_date": "2025-06-15",
+      "vote_average": 9,
+      "popularity": 65,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 166,
+      "title": "Cold Signal",
+      "original_title": "Cold Signal",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd166.jpg",
+      "poster_path": "/po166.jpg",
+      "release_date": "2025-07-16",
+      "vote_average": 3.3,
+      "popularity": 58,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 167,
+      "title": "Brass Garden",
+      "original_title": "Brass Garden",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd167.jpg",
+      "poster_path": "/po167.jpg",
+      "release_date": "2025-08-17",
+      "vote_average": 7,
+      "popularity": 51,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    }
+  ]
+}

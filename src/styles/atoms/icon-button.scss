@@ -1,0 +1,9 @@
+// A button that holds only an icon (the show-password eye). The caller places it and sets the icon hooks.
+.icon-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  line-height: 0;
+  cursor: pointer;
+}

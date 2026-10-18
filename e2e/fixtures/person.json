@@ -1,0 +1,10 @@
+{
+  "id": 501,
+  "name": "Ben Okafor",
+  "gender": 2,
+  "birthday": "1984-06-21",
+  "place_of_birth": "Lagos, Nigeria",
+  "known_for_department": "Acting",
+  "profile_path": "/pr501.jpg",
+  "biography": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots. A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots."
+}

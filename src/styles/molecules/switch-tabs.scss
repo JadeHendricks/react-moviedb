@@ -1,0 +1,46 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The Movies / Series switch. The selected tab carries the --active modifier.
+.switch-tabs {
+  display: flex;
+  justify-content: flex-start;
+  margin: $space-20 0 8rem 0;
+  // The space between tabs; the last tab has none after it.
+  gap: $space-40;
+
+  @include respond-to(xs) {
+    margin: 0 0 $space-40 0;
+    gap: $space-20;
+  }
+}
+
+.switch-tabs__tab {
+  position: relative;
+  border-radius: $radius-md;
+  background-color: $color-white;
+  background-clip: padding-box;
+  flex: 1;
+  border: $border-medium solid $color-green;
+  padding: $space-12 $space-20;
+  font-size: $font-size-18;
+  color: $color-green-text;
+  text-align: center;
+  text-transform: uppercase;
+  transition: $transition-medium;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+
+  @include respond-to(xs) {
+    border: $border-thin solid $color-green;
+    padding: $space-10 $space-15;
+    font-size: $font-size-14;
+  }
+}
+
+// After the responsive rules above, so the selected look wins at every width.
+.switch-tabs__tab:hover,
+.switch-tabs__tab--active {
+  background: linear-gradient(to bottom right, $color-green-action, $color-green-action-dark);
+  color: $color-white;
+}

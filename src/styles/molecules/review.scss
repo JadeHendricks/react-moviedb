@@ -1,0 +1,48 @@
+@use '../tokens' as *;
+
+// The list of reviews in the details sidebar.
+.review-list {
+  color: $color-text;
+  font-size: $font-size-16;
+}
+
+// One review: author, text and a "See more" link.
+.review {
+  position: relative;
+  padding: $space-40 0;
+  border-bottom: $border-thin dashed $color-border;
+}
+
+.review__title {
+  color: currentColor;
+  margin-bottom: $space-10;
+  width: calc(100% - 4.5rem);
+}
+
+.review__description {
+  font-size: $font-size-14;
+}
+
+// Contains the floated "See more" link.
+.review__description::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+.review__link {
+  display: block;
+  margin-top: $space-10;
+  float: right;
+  color: $color-green-text;
+  opacity: 0.7;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  transition: $transition-fast;
+  font-size: $font-size-16;
+}
+
+.review__link:hover {
+  color: $color-green-text;
+  opacity: 1;
+}

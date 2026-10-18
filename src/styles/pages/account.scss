@@ -1,0 +1,54 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The "Edit Profile" page: a grey banner and a centred form. Fields use the label and input atoms.
+.account {
+  display: block;
+}
+
+.account__banner {
+  color: $color-text;
+  background-color: $color-surface-faint;
+  width: 100%;
+  padding: $space-100;
+
+  @include respond-to(md) {
+    padding: $space-60;
+  }
+}
+
+.account__title {
+  font-size: $font-size-38;
+  color: currentColor;
+  word-wrap: break-word;
+  text-align: center;
+  line-height: $line-height-none;
+
+  @include respond-to(md) {
+    font-size: $font-size-28;
+  }
+}
+
+.account__form {
+  margin: $space-60 0;
+}
+
+.account__container {
+  display: block;
+  margin: 0 auto;
+  max-width: 80rem;
+
+  @include respond-to(md) {
+    padding: 0 $space-20;
+  }
+}
+
+.account__field {
+  margin-bottom: $space-20;
+}
+
+.account__submit {
+  display: block;
+  margin-top: $space-50;
+  margin-left: auto;
+}

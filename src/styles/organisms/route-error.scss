@@ -1,0 +1,10 @@
+@use '../mixins' as *;
+
+// The "Something went wrong" page. It spaces itself like the search results page.
+.route-error {
+  @include page-section;
+}
+
+.route-error__title {
+  @include page-section-title;
+}

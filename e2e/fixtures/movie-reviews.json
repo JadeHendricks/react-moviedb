@@ -1,0 +1,18 @@
+{
+  "id": 101,
+  "page": 1,
+  "results": [
+    {
+      "id": "r1",
+      "author": "reviewer_one",
+      "content": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots. A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots. A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots. A deliberately long review body so the 300 character trimming is exercised.",
+      "url": "https://www.themoviedb.org/review/r1"
+    },
+    {
+      "id": "r2",
+      "author": "reviewer_two",
+      "content": "Short and sweet.",
+      "url": "https://www.themoviedb.org/review/r2"
+    }
+  ]
+}

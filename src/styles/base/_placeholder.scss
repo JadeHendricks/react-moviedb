@@ -1,0 +1,5 @@
+@use '../tokens' as *;
+
+::placeholder {
+  color: $color-border;
+}

@@ -1,0 +1,18 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// "The Cast" section on the details page: a heading and a wrapping row of cast cards.
+.cast-list {
+  margin: $space-70 0;
+}
+
+.cast-list__title {
+  @include heading-size(h3);
+  margin-bottom: $space-20;
+}
+
+.cast-list__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

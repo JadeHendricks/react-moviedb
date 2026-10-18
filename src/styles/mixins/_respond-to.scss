@@ -1,0 +1,16 @@
+@use 'sass:map';
+@use '../tokens' as *;
+
+// Desktop-first media query: the content applies at this breakpoint and below.
+// Names come from $breakpoints in tokens/_breakpoints.scss: xl, lg, md, sm, xs.
+@mixin respond-to($name) {
+  $width: map.get($breakpoints, $name);
+
+  @if not $width {
+    @error 'Unknown breakpoint `#{$name}`. Use one of: #{map.keys($breakpoints)}.';
+  }
+
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}

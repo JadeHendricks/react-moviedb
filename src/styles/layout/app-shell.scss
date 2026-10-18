@@ -1,0 +1,15 @@
+@use '../mixins' as *;
+
+// The page shell: side navigation next to the content. Below 1200px the navigation moves under the content.
+.app {
+  display: flex;
+
+  @include respond-to(lg) {
+    flex-direction: column-reverse;
+  }
+}
+
+.app__main {
+  flex: 1;
+  position: relative;
+}

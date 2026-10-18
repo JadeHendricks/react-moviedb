@@ -1,0 +1,42 @@
+@use '../tokens' as *;
+
+// The call-to-action button. Colour and outline are modifiers: .button--green and .button--skeleton.
+// A card or bar that needs a smaller button sets the hooks --button-padding and --button-font-size
+// on the button's own element class, so nothing here depends on where the button sits.
+.button {
+  border: 0;
+  padding: var(--button-padding, #{$space-12 $space-35});
+  font-size: var(--button-font-size, $font-size-16);
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: $transition-fast;
+}
+
+// Declared before the colour rules, so a hover colour still shows on a disabled button, as it always did.
+.button:disabled {
+  background-color: $color-border;
+  cursor: not-allowed;
+}
+
+.button--green {
+  color: $color-white;
+  background-color: $color-green-action;
+}
+
+.button--skeleton {
+  background-color: transparent;
+  color: $color-green-text;
+  padding: var(--button-padding, #{$space-10 3.3rem});
+  border: $border-medium solid $color-green;
+}
+
+.button--green:hover {
+  background-color: $color-muted-text;
+}
+
+.button--skeleton:hover {
+  background-color: $color-muted-text;
+  color: $color-white;
+  border: $border-medium solid $color-muted-text;
+}

@@ -1,0 +1,21 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The search results page: a centred heading with the search term, then the cards.
+.search {
+  @include page-section;
+}
+
+.search__title {
+  @include page-section-title;
+}
+
+.search__query {
+  color: $color-green-text;
+}
+
+.search__results {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

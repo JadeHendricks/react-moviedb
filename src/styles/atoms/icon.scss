@@ -1,0 +1,21 @@
+@use '../tokens' as *;
+
+// An icon from the SVG sprite. The element that places it sets the hooks:
+//   --icon-size  width and height
+//   --icon-fill  colour (defaults to the surrounding text colour)
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  fill: var(--icon-fill, currentColor);
+}
+
+// An icon alone inside a button: no baseline gap under it, so the button is exactly the icon's size.
+.icon--block {
+  display: block;
+}
+
+// The big play symbol on the hero and the details header. The .play-button around it sets the colour.
+.icon--play {
+  display: block;
+  transition: $transition-slow;
+}

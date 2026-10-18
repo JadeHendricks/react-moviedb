@@ -1,0 +1,127 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 8,
+  "results": [
+    {
+      "id": 230,
+      "name": "Chronicle",
+      "original_name": "Chronicle",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd230.jpg",
+      "poster_path": "/po230.jpg",
+      "first_air_date": "2024-10-01",
+      "vote_average": 4.1,
+      "popularity": 90,
+      "genre_ids": [
+        18,
+        35
+      ]
+    },
+    {
+      "id": 231,
+      "name": "The Long Table",
+      "original_name": "The Long Table",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd231.jpg",
+      "poster_path": "/po231.jpg",
+      "first_air_date": "2024-11-02",
+      "vote_average": 7.5,
+      "popularity": 84,
+      "genre_ids": [
+        10759,
+        10765
+      ]
+    },
+    {
+      "id": 232,
+      "name": "Blue Hour",
+      "original_name": "Blue Hour",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd232.jpg",
+      "poster_path": "/po232.jpg",
+      "first_air_date": "2024-12-03",
+      "vote_average": 5.8,
+      "popularity": 78,
+      "genre_ids": [
+        18,
+        35
+      ]
+    },
+    {
+      "id": 233,
+      "name": "Stonebridge",
+      "original_name": "Stonebridge",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd233.jpg",
+      "poster_path": "/po233.jpg",
+      "first_air_date": "2024-10-04",
+      "vote_average": 9,
+      "popularity": 72,
+      "genre_ids": [
+        10759,
+        10765
+      ]
+    },
+    {
+      "id": 234,
+      "name": "Cartographers",
+      "original_name": "Cartographers",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd234.jpg",
+      "poster_path": "/po234.jpg",
+      "first_air_date": "2024-11-05",
+      "vote_average": 3.3,
+      "popularity": 66,
+      "genre_ids": [
+        18,
+        35
+      ]
+    },
+    {
+      "id": 235,
+      "name": "Evergreen",
+      "original_name": "Evergreen",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd235.jpg",
+      "poster_path": "/po235.jpg",
+      "first_air_date": "2024-12-06",
+      "vote_average": 7,
+      "popularity": 60,
+      "genre_ids": [
+        10759,
+        10765
+      ]
+    },
+    {
+      "id": 236,
+      "name": "Wild Meadow",
+      "original_name": "Wild Meadow",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd236.jpg",
+      "poster_path": "/po236.jpg",
+      "first_air_date": "2024-10-07",
+      "vote_average": 8.4,
+      "popularity": 54,
+      "genre_ids": [
+        18,
+        35
+      ]
+    },
+    {
+      "id": 237,
+      "name": "Grand Hotel Nova",
+      "original_name": "Grand Hotel Nova",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd237.jpg",
+      "poster_path": "/po237.jpg",
+      "first_air_date": "2024-11-08",
+      "vote_average": 6.2,
+      "popularity": 48,
+      "genre_ids": [
+        10759,
+        10765
+      ]
+    }
+  ]
+}

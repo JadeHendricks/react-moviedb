@@ -1,0 +1,48 @@
+// Colours. Every colour in the app comes from this list.
+// Brand
+$color-green: #3cb13e;
+$color-green-dark: #059307;
+$color-green-light: #87e887;
+$color-green-glow: rgba(61, 177, 61, 0.38);
+// Text-safe variants. $color-green stays for decoration, ratings, large text and non-text UI; the ones below
+// are used where text sits on green (white on it) or green is the text colour on white. 4.5:1 or more.
+// To undo the contrast fix, point these three back at $color-green and $color-green-dark.
+$color-green-action: #288628;
+$color-green-action-dark: #1d6e1f;
+$color-green-text: #288628;
+
+// Neutrals, from dark to light
+$color-text: #333333;
+$color-muted: #868686;
+// Grey text on white and on $color-surface-dim: 4.5:1 or more ($color-muted stays for icons and large text).
+$color-muted-text: #636363;
+$color-border: #bbb9bc;
+$color-surface-dim: #e7e7e7;
+$color-field-border: #dddddd;
+$color-surface-subtle: #f9f9f9;
+$color-surface-faint: #fafafa;
+$color-white: #ffffff;
+$color-loader-ring: #efeffa;
+
+// Keyboard focus ring: 3:1 or more against white and against the dark hero backdrops.
+$color-focus: #2b7fff;
+$color-focus-on-dark: #ffffff;
+
+// Feedback
+$color-error: #fe3434;
+// Error text on white: dark enough for 4.5:1 (the lighter red above stays for the existing messages).
+$color-error-text: #c62828;
+$color-warn-start: #ff8400;
+$color-warn-end: #ffda00;
+$color-danger-start: #ff0000;
+$color-danger-end: #ff9292;
+
+// Dark backdrops and shades
+$color-backdrop: #333;
+$color-shade-5: rgba(0, 0, 0, 0.05);
+$color-shade-12: rgba(0, 0, 0, 0.12);
+$color-shade-22: rgba(0, 0, 0, 0.22);
+$color-shade-30: rgba(0, 0, 0, 0.3);
+$color-overlay-light: rgba(133, 133, 133, 0.8);
+$color-overlay-dark: rgba(0, 0, 0, 0.8);
+$color-hero-shade: rgba(0, 0, 0, 0.5);

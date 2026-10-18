@@ -1,0 +1,84 @@
+{
+  "page": 1,
+  "total_pages": 1,
+  "total_results": 5,
+  "results": [
+    {
+      "id": 600,
+      "title": "Matrix of Lies",
+      "original_title": "Matrix of Lies",
+      "overview": "Short overview.",
+      "backdrop_path": "/bd600.jpg",
+      "poster_path": null,
+      "release_date": "2025-01-10",
+      "vote_average": 8.4,
+      "popularity": 100,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 601,
+      "title": "The Matrix Garden",
+      "original_title": "The Matrix Garden",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd601.jpg",
+      "poster_path": "/po601.jpg",
+      "release_date": "2025-02-11",
+      "vote_average": 6.2,
+      "popularity": 93,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 602,
+      "title": "Matrix Road",
+      "original_title": "Matrix Road",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd602.jpg",
+      "poster_path": "/po602.jpg",
+      "release_date": "2025-03-12",
+      "vote_average": 4.1,
+      "popularity": 86,
+      "genre_ids": [
+        28,
+        12
+      ]
+    },
+    {
+      "id": 603,
+      "title": "Digital Matrix",
+      "original_title": "Digital Matrix",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd603.jpg",
+      "poster_path": "/po603.jpg",
+      "release_date": "2025-04-13",
+      "vote_average": 7.5,
+      "popularity": 79,
+      "genre_ids": [
+        18,
+        35,
+        878
+      ]
+    },
+    {
+      "id": 604,
+      "title": "Matrix Falls",
+      "original_title": "Matrix Falls",
+      "overview": "A fixed placeholder synopsis used for visual regression tests. It is long enough to wrap onto several lines at every viewport so layout changes show up in the screenshots.",
+      "backdrop_path": "/bd604.jpg",
+      "poster_path": "/po604.jpg",
+      "release_date": "2025-05-14",
+      "vote_average": 5.8,
+      "popularity": 72,
+      "genre_ids": [
+        28,
+        12
+      ]
+    }
+  ]
+}

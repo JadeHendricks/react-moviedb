@@ -1,0 +1,30 @@
+@use '../tokens' as *;
+
+// The actor page reuses the details layout. These two parts are only here: the portrait gets a fade
+// into the sidebar colour, and the actor's name sits on top of it.
+.actor__media {
+  position: relative;
+}
+
+.actor__media::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: $space-70;
+  background-image: linear-gradient(to top, $color-surface-dim, transparent);
+  position: absolute;
+  bottom: 0;
+}
+
+.actor__name {
+  text-align: center;
+  display: block;
+  font-size: $font-size-20;
+  font-weight: $font-weight-regular;
+  position: absolute;
+  bottom: $space-20;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $color-white;
+  z-index: $z-raised;
+}

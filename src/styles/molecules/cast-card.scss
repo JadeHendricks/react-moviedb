@@ -1,0 +1,61 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// A cast member: portrait, real name and the character they play.
+.cast-card {
+  @include card-surface;
+
+  margin-bottom: $space-25;
+  background-color: $color-white;
+  text-align: center;
+  font-size: $font-size-14;
+  flex: 0 1 23%;
+
+  @include respond-to(lg) {
+    margin-bottom: $space-40;
+    flex: 0 1 48%;
+  }
+
+  @include respond-to(xs) {
+    flex: 0 1 100%;
+  }
+}
+
+.cast-card__media {
+  width: 100%;
+  height: 36rem;
+
+  @include respond-to(xl) {
+    height: 25rem;
+  }
+
+  @include respond-to(lg) {
+    height: 28rem;
+  }
+}
+
+.cast-card__image {
+  @include card-image;
+}
+
+.cast-card__info {
+  padding: $space-20;
+
+  @include respond-to(xl) {
+    padding: $space-15;
+  }
+}
+
+.cast-card__name {
+  font-size: $font-size-16;
+  margin-bottom: $space-5;
+
+  @include respond-to(xl) {
+    font-size: $font-size-14;
+  }
+}
+
+.cast-card__role {
+  font-size: $font-size-14;
+  color: $color-muted-text;
+}

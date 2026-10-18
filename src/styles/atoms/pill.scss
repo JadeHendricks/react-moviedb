@@ -1,0 +1,23 @@
+@use '../tokens' as *;
+
+// A small outlined tag, used for genres. It follows the text colour of whatever holds it.
+.pill {
+  border: $border-medium solid currentColor;
+  color: currentColor;
+  text-transform: uppercase;
+  font-size: $font-size-12;
+  padding: $space-5 $space-10;
+  border-radius: $radius-md;
+  margin: $space-10 $space-15 0 0;
+  font-weight: $font-weight-bold;
+}
+
+.pill--large {
+  font-size: $font-size-16;
+  margin: $space-10 $space-20 0 0;
+  padding: $space-5 $space-20;
+}
+
+.pill--white {
+  color: $color-white;
+}

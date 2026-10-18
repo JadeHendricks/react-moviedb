@@ -1,0 +1,106 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The Login / Sign up dialog. .modal is the dimmed backdrop; .modal__dialog is the white card on it.
+// The selected tab carries modal__tab--active.
+.modal {
+  display: block;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $z-overlay;
+  background: linear-gradient(128deg, $color-overlay-light 0%, $color-overlay-dark 100%);
+}
+
+.modal__dialog {
+  padding-bottom: $space-15;
+  border-radius: $radius-md;
+  box-shadow: $shadow-modal;
+  background-color: $color-white;
+  width: 65rem;
+  z-index: $z-modal;
+  position: fixed;
+  left: 50%;
+  top: 15%;
+  transform: translate(-50%, -15%);
+  color: $color-muted-text;
+
+  @include respond-to(sm) {
+    width: calc(100% - 4rem);
+    top: 12%;
+  }
+}
+
+// The dialog itself takes focus when it opens; it is a container, not a control, so it shows no ring.
+.modal__dialog:focus {
+  outline: 0;
+}
+
+.modal__padding {
+  padding: 0 $space-20;
+}
+
+.modal__slug {
+  font-size: $font-size-18;
+  margin: $space-50 0;
+  color: currentColor;
+  text-align: center;
+
+  @include respond-to(sm) {
+    font-size: $font-size-16;
+    margin: $space-30 0;
+  }
+
+  @include respond-to(xs) {
+    font-size: $font-size-12;
+  }
+}
+
+.modal__tabs {
+  display: flex;
+  color: $color-white;
+}
+
+.modal__tab {
+  flex: 1;
+  border: 0;
+  background-color: $color-border;
+  color: $color-text;
+  text-transform: uppercase;
+  padding: $space-25 $space-15;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-16;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  @include respond-to(sm) {
+    padding: $space-15 $space-10;
+    font-size: $font-size-14;
+  }
+}
+
+
+.modal__tab:hover {
+  background-color: $color-green-action;
+  color: $color-white;
+}
+
+// After the hover rule, so the selected tab keeps its look under the pointer.
+.modal__tab--active,
+.modal__tab--active:hover {
+  color: $color-text;
+  background-color: $color-white;
+}
+
+.modal__form {
+  color: $color-text;
+  font-size: $font-size-14;
+}
+
+.modal__submit {
+  width: 100%;
+  margin: $space-40 0 $space-5 0;
+}

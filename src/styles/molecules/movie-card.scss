@@ -1,0 +1,174 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// A movie or series card: backdrop, title, rating badge, release date and two buttons.
+//
+// Cards in the "similar" and "popular roles" strips are narrower. Every part that changes carries
+// its own --compact modifier, declared after the base rules so it wins at every width.
+.movie-card {
+  @include card-surface;
+
+  margin-bottom: $space-25;
+  background-color: $color-white;
+  font-size: $font-size-14;
+  flex: 0 1 18%;
+
+  @include respond-to(xl) {
+    flex: 0 1 22%;
+    margin-bottom: $space-40;
+    font-size: $font-size-12;
+  }
+
+  @include respond-to(lg) {
+    flex: 0 1 32%;
+    margin-bottom: $space-20;
+    font-size: $font-size-10;
+  }
+
+  @include respond-to(sm) {
+    flex: 0 1 48%;
+    margin-bottom: $space-30;
+  }
+
+  @include respond-to(xs) {
+    flex: 1;
+    margin-bottom: $space-20;
+  }
+}
+
+.movie-card--compact {
+  flex: 0 1 23%;
+  margin-bottom: $space-25;
+
+  @include respond-to(xl) {
+    flex: 0 1 30%;
+    margin-bottom: $space-25;
+  }
+
+  @include respond-to(lg) {
+    flex: 0 1 48%;
+    margin-bottom: $space-30;
+  }
+
+  @include respond-to(xs) {
+    flex: 1;
+  }
+}
+
+.movie-card__media {
+  height: 32rem;
+
+  @include respond-to(xl) {
+    height: 28rem;
+  }
+
+  @include respond-to(lg) {
+    height: 20rem;
+  }
+
+  @include respond-to(xs) {
+    height: 22rem;
+  }
+}
+
+.movie-card__media--compact {
+  @include respond-to(xl) {
+    height: 24rem;
+  }
+
+  @include respond-to(lg) {
+    height: 28rem;
+  }
+}
+
+.movie-card__image {
+  @include card-image;
+}
+
+.movie-card__info {
+  padding: $space-15;
+  position: relative;
+
+  @include respond-to(xl) {
+    padding: $space-10;
+  }
+}
+
+.movie-card__info--compact {
+  padding: $space-10;
+}
+
+.movie-card__rating {
+  position: absolute;
+  top: $space-10;
+  right: $space-10;
+}
+
+.movie-card__rating--compact {
+  --rating-size: #{$space-30};
+  --rating-number-size: #{$font-size-12};
+
+  @include respond-to(xl) {
+    --rating-size: #{$space-25};
+    --rating-number-size: #{$font-size-10};
+  }
+
+  @include respond-to(lg) {
+    --rating-size: #{$space-35};
+    --rating-number-size: #{$font-size-12};
+  }
+}
+
+.movie-card__title {
+  @include heading-size(h5);
+  margin: 0 $space-40 $space-15 0;
+  height: 4.5rem;
+
+  @include respond-to(xl) {
+    margin: 0 $space-45 $space-20 0;
+    height: $space-60;
+  }
+}
+
+.movie-card__title--compact {
+  font-size: $font-size-14;
+
+  @include respond-to(lg) {
+    font-size: $font-size-16;
+  }
+}
+
+.movie-card__buttons {
+  margin-top: $space-15;
+  display: flex;
+  justify-content: space-between;
+}
+
+// The two buttons share the row. They are .button elements; the hooks below resize them.
+.movie-card__button {
+  --button-padding: #{$space-10 $space-8};
+  --button-font-size: #{$font-size-12};
+
+  width: 48%;
+  text-decoration: none;
+  text-align: center;
+
+  @include respond-to(xl) {
+    --button-font-size: #{$font-size-10};
+
+    width: 49%;
+  }
+}
+
+.movie-card__button--compact {
+  --button-padding: #{$space-10 $space-5};
+
+  width: 49%;
+}
+
+// On the narrowest screens only the trailer button of a compact card grows back to 1.2rem.
+.movie-card__button--compact-trailer {
+  @include respond-to(xs) {
+    --button-font-size: #{$font-size-12};
+  }
+}

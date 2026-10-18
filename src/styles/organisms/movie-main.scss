@@ -1,0 +1,56 @@
+@use '../tokens' as *;
+@use '../mixins' as *;
+
+// The main column of a details page: score badge, title, storyline and the lists below it.
+.movie-main {
+  padding: $space-70 $space-100;
+  position: relative;
+
+  @include respond-to(xl) {
+    padding: $space-40;
+  }
+
+  @include respond-to(lg) {
+    padding: $space-20;
+  }
+}
+
+.movie-main__title {
+  @include heading-size(h2);
+  font-weight: $font-weight-bold;
+
+  @include respond-to(md) {
+    padding-right: $space-70;
+  }
+}
+
+.movie-main__year {
+  color: $color-muted;
+}
+
+.movie-main__storyline {
+  margin-top: $space-40;
+}
+
+.movie-main__storyline-title {
+  @include heading-size(h3);
+  margin-bottom: $space-10;
+}
+
+// The score badge in the top right corner of the column.
+.movie-main__rating {
+  --rating-size: 6rem;
+  --rating-number-size: #{$font-size-18};
+
+  position: absolute;
+  right: $space-100;
+  top: $space-40;
+
+  @include respond-to(md) {
+    --rating-size: #{$space-50};
+    --rating-number-size: #{$font-size-14};
+
+    right: $space-20;
+    top: $space-20;
+  }
+}

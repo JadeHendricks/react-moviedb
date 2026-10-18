@@ -1,0 +1,17 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '../tokens' as *;
+@use 'respond-to' as *;
+
+// A class that sits on a heading whose tag was changed for the outline (h5 -> h3, ...) keeps the size
+// the old tag had: pass the tag whose size it used to take. Same three steps as base/_typography.scss.
+@mixin heading-size($tag) {
+  $sizes: map.get($heading-sizes, $tag);
+  font-size: list.nth($sizes, 1);
+  @include respond-to(md) {
+    font-size: list.nth($sizes, 2);
+  }
+  @include respond-to(sm) {
+    font-size: list.nth($sizes, 3);
+  }
+}
