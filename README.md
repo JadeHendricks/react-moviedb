@@ -18,6 +18,17 @@ Allowing the site to be more aligned with a real world complete application.
 Node 24 (see `.nvmrc`). The `engines` field allows Node 22.22 or newer.
 
 ## Getting started
+
+**Quickstart** (details below):
+```bash
+git clone https://github.com/JadeHendricks/react-moviedb.git
+cd react-moviedb
+npm install
+cp .env.example .env            # Windows PowerShell: Copy-Item .env.example .env
+# then edit .env and set REACT_APP_API_KEY to your TMDB v3 key
+npm run dev                     # opens on http://localhost:5173
+```
+
 You need [Node 24](https://nodejs.org/) and npm. Then:
 
 1. **Clone and install**
